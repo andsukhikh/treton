@@ -1,0 +1,3 @@
+C:/rewritten_treton/build/CMakeFiles/TRETON.dir
+C:/rewritten_treton/build/CMakeFiles/edit_cache.dir
+C:/rewritten_treton/build/CMakeFiles/rebuild_cache.dir
