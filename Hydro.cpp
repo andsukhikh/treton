@@ -106,7 +106,7 @@ double Groz(int i, int j) {
 
 void V_zBlockade() {
     for (int j = 0; j < mf; j++) { 
-        if (blockade[j] == 0) {
+        if (blockade[j] == 1) {
             V_z[0][j] *= BlockadePorousity; 
         }
     }
@@ -268,7 +268,7 @@ void Viter(double dt)
                             if (Vn > 0.0) {
                                 bPV[i] += Vn * (ro[i - 1][j] + ro[i][j]) / 2.0;
                             } else {
-                                dPV[i] -= Vn * (ro[i - 1][jf] + ro[i][jf]) * V_z[i][jf];
+                                dPV[i] -= Vn * (ro[i - 1][jf] + ro[i][jf]) * 0.5 * V_z[i][jf];
                             }
                         }
 
@@ -323,6 +323,7 @@ void Viter(double dt)
         std::fill(targ.begin(), targ.end(), 0);
 
 // В фортране sum = 0, вынужденна мера принять sum = 1, иначе цикл бесконечный
+       //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         sum = 0;
         while (sum < mf) {
             x = random_number();
@@ -360,7 +361,7 @@ void Viter(double dt)
                                     bPV[i] += V_up * roV_n;
                                 } else {
                                     if(i == n) {
-                                        dPV[i] += V_up * ro_output * V_n[i][jV_n];
+                                        dPV[i] -= V_up * ro_output * V_n[i][jV_n];
                                     } else {
                                         cPV[i] += V_up * (ro[i + 1][j] + ro[i + 1][jf]) * 0.5;
                                     }
@@ -435,7 +436,7 @@ void Viter(double dt)
                                             double Vx = V_n[i][onds[k][j]] / 2.0;
                                             
                                             if (jf3 != -1) {
-                                                Vx += is(jf - j) * is(j2 - j3) * V_n[i][onds[k][jf3]] / 2.0;
+                                                Vx += is(jf - j) * is(jf2 - jf3) * V_n[i][onds[k][jf3]] / 2.0;
                                             }
                                             
                                             dPV[i] = dPV[i] - V3 * ro[i][jf] * Vx;
@@ -507,7 +508,7 @@ void Viter(double dt)
                                                 Vx += is(jf - j) * is(jf3 - jf4) * V_n[i][onds[k][jf4]] / 2.0;
                                             }
                                             
-                                            dPV[i] -= V3 * ro[i][j] * Vx;
+                                            dPV[i] -= V3 * ro[i][jf] * Vx;
                                         }
 
                                         //d
@@ -523,7 +524,7 @@ void Viter(double dt)
                                                 Vx += is(jf - j) * is(jf1 - jf6) * V_n[i][onds[k][jf6]] / 2.0;
                                             }
                                             
-                                            dPV[i] -= V3 * ro[i][j] * Vx;
+                                            dPV[i] -= V3 * ro[i][jf] * Vx;
                                         }
                                     }
                                     break;
@@ -567,7 +568,7 @@ void Viter(double dt)
                                             + is(j4 - j) * V_n[i][onds[3][j]]) * fr_vf;
 
                                         if (V3 > 0) {
-                                            bPV[i] += V3 * ro[i][j];
+                                            bPV[i] += V3 * ro[i][jf];
                                         } else {
                                             double Vx = V_n[i][onds[k][j]] / 2.0;
                                             
@@ -575,7 +576,7 @@ void Viter(double dt)
                                                 Vx += is(jf - j) * is(jf4 - jf5) * V_n[i][onds[k][jf5]] / 2.0;
                                             }
                                             
-                                            dPV[i] -= V3 * ro[i][j] * Vx;
+                                            dPV[i] -= V3 * ro[i][jf] * Vx;
                                         }
 
                                         //d
@@ -583,7 +584,7 @@ void Viter(double dt)
                                             + is(j2 - j) * V_n[i][onds[1][j]]) * fr_vf;
 
                                         if (V3 > 0) {
-                                            bPV[i] += V3 * ro[i][j];
+                                            bPV[i] += V3 * ro[i][jf];
                                         } else {
                                             double Vx = V_n[i][onds[k][j]] / 2.0;
                                             
@@ -591,7 +592,7 @@ void Viter(double dt)
                                                 Vx += is(jf - j) * is(jf2 - jf1) * V_n[i][onds[k][jf1]] / 2.0;
                                             }
                                             
-                                            dPV[i] -= V3 * ro[i][j] * Vx;
+                                            dPV[i] -= V3 * ro[i][jf] * Vx;
                                         }
                                     }
                                     //std::cout << "Hyrdo flags " << 3 << " is completely " << std::endl;
@@ -636,7 +637,7 @@ void Viter(double dt)
                                             + is(j5 - j) * V_n[i][onds[4][j]]) * fr_vf;
 
                                         if (V3 > 0) {
-                                            bPV[i] += V3 * ro[i][j];
+                                            bPV[i] += V3 * ro[i][jf];
                                         } else {
                                             double Vx = V_n[i][onds[k][j]] / 2.0;
                                             
@@ -644,7 +645,7 @@ void Viter(double dt)
                                                 Vx += is(jf - j) * is(jf5 - jf6) * V_n[i][onds[k][jf6]] / 2.0;
                                             }
                                             
-                                            dPV[i] -= V3 * ro[i][j] * Vx;
+                                            dPV[i] -= V3 * ro[i][jf] * Vx;
                                         }
 
                                         //d
@@ -660,7 +661,7 @@ void Viter(double dt)
                                                 Vx += is(jf - j) * is(jf3 - jf2) * V_n[i][onds[k][jf2]] / 2.0;
                                             }
                                             
-                                            dPV[i] -= V3 * ro[i][j] * Vx;
+                                            dPV[i] -= V3 * ro[i][jf] * Vx;
                                         }
                                     }
                                     //std::cout << "Hyrdo flags " << 4 << " is completely " << std::endl;
@@ -705,7 +706,7 @@ void Viter(double dt)
                                             + is(j6 - j) * V_n[i][onds[5][j]]) * fr_vf;
 
                                         if (V3 > 0) {
-                                            bPV[i] += V3 * ro[i][j];
+                                            bPV[i] += V3 * ro[i][jf];
                                         } else {
                                             double Vx = V_n[i][onds[k][j]] / 2.0;
                                             
@@ -713,7 +714,7 @@ void Viter(double dt)
                                                 Vx += is(jf - j) * is(jf6 - jf1) * V_n[i][onds[k][jf1]] / 2.0;
                                             }
                                             
-                                            dPV[i] -= V3 * ro[i][j] * Vx;
+                                            dPV[i] -= V3 * ro[i][jf] * Vx;
                                         }
 
                                         //d
@@ -721,7 +722,7 @@ void Viter(double dt)
                                             + is(j4 - j) * V_n[i][onds[3][j]]) * fr_vf;
 
                                         if (V3 > 0) {
-                                            bPV[i] += V3 * ro[i][j];
+                                            bPV[i] += V3 * ro[i][jf];
                                         } else {
                                             double Vx = V_n[i][onds[k][j]] / 2.0;
                                             
@@ -729,7 +730,7 @@ void Viter(double dt)
                                                 Vx += is(jf - j) * is(jf4 - jf3) * V_n[i][onds[k][jf3]] / 2.0;
                                             }
                                             
-                                            dPV[i] -= V3 * ro[i][j] * Vx;
+                                            dPV[i] -= V3 * ro[i][jf] * Vx;
                                         }
                                     }
                                     //std::cout << "Hyrdo flags " << 5 << " is completely " << std::endl;
@@ -774,7 +775,7 @@ void Viter(double dt)
                                             + is(j1 - j) * V_n[i][onds[0][j]]) * fr_vf;
 
                                         if (V3 > 0) {
-                                            bPV[i] += V3 * ro[i][j];
+                                            bPV[i] += V3 * ro[i][jf];
                                         } else {
                                             double Vx = V_n[i][onds[k][j]] / 2.0;
                                             
@@ -782,7 +783,7 @@ void Viter(double dt)
                                                 Vx += is(jf - j) * is(jf1 - jf2) * V_n[i][onds[k][jf2]] / 2.0;
                                             }
                                             
-                                            dPV[i] -= V3 * ro[i][j] * Vx;
+                                            dPV[i] -= V3 * ro[i][jf] * Vx;
                                         }
 
                                         //d
@@ -790,7 +791,7 @@ void Viter(double dt)
                                             + is(j5 - j) * V_n[i][onds[4][j]]) * fr_vf;
 
                                         if (V3 > 0) {
-                                            bPV[i] += V3 * ro[i][j];
+                                            bPV[i] += V3 * ro[i][jf];
                                         } else {
                                             double Vx = V_n[i][onds[k][j]] / 2.0;
                                             
@@ -798,14 +799,14 @@ void Viter(double dt)
                                                 Vx += is(jf - j) * is(jf5 - jf4) * V_n[i][onds[k][jf4]] / 2.0;
                                             }
                                             
-                                            dPV[i] -= V3 * ro[i][j] * Vx;
+                                            dPV[i] -= V3 * ro[i][jf] * Vx;
                                         }
                                     }
                                     break;
                                     //std::cout << "Hyrdo flags " << 6 <<" is completely " << std::endl;
                             }
 
-                            sy(aPV, bPV, cPV, dPV, 0, n);
+                            sy(aPV, bPV, cPV, dPV, 0, n - 1);
                             for(int i = 0; i < n; i++) {
                                 V_n[i][jV_n] = dPV[i];
                                 if (ePV[i] > 0.000002 || ePV[i] < -0.000002) {
@@ -1058,7 +1059,7 @@ void pes(double dt) {
                                 dp_dn[i][jV_n] -= V3 * ro[i][jf] * V_n[i][jV_n];
                             } else {
                                 double Vx = V_n[i][onds[k][j]] / 2.0;
-                                if (jf3 != -1) Vx += is(jf - jf) * is(jf2 - jf3) * V_n[i][onds[k][jf3]] / 2.0;
+                                if (jf3 != -1) Vx += is(jf - j) * is(jf2 - jf3) * V_n[i][onds[k][jf3]] / 2.0;
                                 dp_dn[i][jV_n] -= V3 * ro[i][jf] * Vx;
                             }
 
@@ -1070,7 +1071,7 @@ void pes(double dt) {
                                 dp_dn[i][jV_n] -= V3 * ro[i][jf] * V_n[i][jV_n];
                             } else {
                                 double Vx = V_n[i][onds[k][j]] / 2.0;
-                                if (jf5 != -1) Vx += is(jf - jf) * is(jf6 - jf5) * V_n[i][onds[k][jf5]] / 2.0;
+                                if (jf5 != -1) Vx += is(jf - j) * is(jf6 - jf5) * V_n[i][onds[k][jf5]] / 2.0;
                                 dp_dn[i][jV_n] -= V3 * ro[i][jf] * Vx;
                             }
                         }
@@ -1356,6 +1357,7 @@ void pes(double dt) {
                         }
                         break;
                 }
+                V_nMap[jV_n] = 1;
             }
         }
     }
@@ -1465,7 +1467,7 @@ void piter() {
                     }
                 }
 
-                sy(aPV, bPV, cPV, dPV, 0, n);
+                sy(aPV, bPV, cPV, dPV, 0, n - 1);
 
                 for (int i = 0; i < n; i++) {
                     p[i][j] = dPV[i];
@@ -1488,7 +1490,7 @@ void KinViscosity() {
     double const_term = 2.0 * d_mesh * std::pow(x_mesh, 2) / Pi * (2.0 + 0.115 / (x_mesh - 1.0)) * (x_mesh - 1.0);
     
     for (int j = 0; j < mf; ++j) {
-        for (int i = 0; i <= n; ++i) {
+        for (int i = 0; i < n + 1; ++i) {
             double vel = std::abs(V_z[i][j]); 
             double temperature, pression;
 

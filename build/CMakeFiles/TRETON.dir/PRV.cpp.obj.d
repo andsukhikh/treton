@@ -1,4 +1,5 @@
-CMakeFiles/TRETON.dir/PRV.cpp.obj: C:\rewritten_treton\PRV.cpp \
+CMakeFiles/TRETON.dir/PRV.cpp.obj: \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\PRV.cpp \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cmath \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \

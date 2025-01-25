@@ -1,4 +1,5 @@
-CMakeFiles/TRETON.dir/ANU.cpp.obj: C:\rewritten_treton\ANU.cpp \
+CMakeFiles/TRETON.dir/ANU.cpp.obj: \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\ANU.cpp \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cmath \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
@@ -52,4 +53,4 @@ CMakeFiles/TRETON.dir/ANU.cpp.obj: C:\rewritten_treton\ANU.cpp \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/poly_hermite.tcc \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/poly_laguerre.tcc \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/riemann_zeta.tcc \
- C:\rewritten_treton\headers/ANU.hpp
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/ANU.hpp

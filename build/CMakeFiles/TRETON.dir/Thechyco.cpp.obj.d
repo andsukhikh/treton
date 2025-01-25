@@ -1,4 +1,5 @@
-CMakeFiles/TRETON.dir/Thechyco.cpp.obj: C:\rewritten_treton\Thechyco.cpp \
+CMakeFiles/TRETON.dir/Thechyco.cpp.obj: \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\Thechyco.cpp \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/iostream \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
@@ -159,9 +160,9 @@ CMakeFiles/TRETON.dir/Thechyco.cpp.obj: C:\rewritten_treton\Thechyco.cpp \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/poly_hermite.tcc \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/poly_laguerre.tcc \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/riemann_zeta.tcc \
- C:\rewritten_treton\headers/SodiumProp.hpp \
- C:\rewritten_treton\headers/ThechycoGlobalVar.hpp \
- C:\rewritten_treton\headers/NamelistReader.hpp \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/SodiumProp.hpp \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/ThechycoGlobalVar.hpp \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/NamelistReader.hpp \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/sstream \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/sstream.tcc \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/algorithm \
@@ -190,8 +191,8 @@ CMakeFiles/TRETON.dir/Thechyco.cpp.obj: C:\rewritten_treton\Thechyco.cpp \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/unordered_map.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/erase_if.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/pstl/execution_defs.h \
- C:\rewritten_treton\headers/Hydro.hpp \
- C:\rewritten_treton\headers/Heat.hpp \
- C:\rewritten_treton\headers/CpSodium.hpp \
- C:\rewritten_treton\headers/AMUV.hpp \
- C:\rewritten_treton\headers/Thechyco.hpp
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/Hydro.hpp \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/Heat.hpp \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/CpSodium.hpp \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/AMUV.hpp \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/Thechyco.hpp

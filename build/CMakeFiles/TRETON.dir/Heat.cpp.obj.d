@@ -1,4 +1,5 @@
-CMakeFiles/TRETON.dir/Heat.cpp.obj: C:\rewritten_treton\Heat.cpp \
+CMakeFiles/TRETON.dir/Heat.cpp.obj: \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\Heat.cpp \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/iostream \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
@@ -171,14 +172,14 @@ CMakeFiles/TRETON.dir/Heat.cpp.obj: C:\rewritten_treton\Heat.cpp \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/quoted_string.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/sstream \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/sstream.tcc \
- C:\rewritten_treton\headers/SodiumProp.hpp \
- C:\rewritten_treton\headers/ThechycoGlobalVar.hpp \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/SodiumProp.hpp \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/ThechycoGlobalVar.hpp \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/vector \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_uninitialized.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_vector.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_bvector.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/vector.tcc \
- C:\rewritten_treton\headers/NamelistReader.hpp \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/NamelistReader.hpp \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/fstream \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/c++io.h \
@@ -203,7 +204,9 @@ CMakeFiles/TRETON.dir/Heat.cpp.obj: C:\rewritten_treton\Heat.cpp \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/unordered_map.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/erase_if.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/pstl/execution_defs.h \
- C:\rewritten_treton\headers/Thechyco.hpp \
- C:\rewritten_treton\headers/Matrix.hpp \
- C:\rewritten_treton\headers/ANU.hpp C:\rewritten_treton\headers/AMUV.hpp \
- C:\rewritten_treton\headers/PRV.hpp C:\rewritten_treton\headers/Heat.hpp
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/Thechyco.hpp \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/Matrix.hpp \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/ANU.hpp \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/AMUV.hpp \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/PRV.hpp \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/Heat.hpp

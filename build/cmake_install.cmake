@@ -1,4 +1,4 @@
-# Install script for directory: C:/rewritten_treton
+# Install script for directory: Z:/learning/diploma/TRETON/TRETON_CMAKE
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -52,6 +52,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-  file(WRITE "C:/rewritten_treton/build/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "Z:/learning/diploma/TRETON/TRETON_CMAKE/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

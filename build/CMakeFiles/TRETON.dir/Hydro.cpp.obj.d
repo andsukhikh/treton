@@ -1,5 +1,6 @@
-CMakeFiles/TRETON.dir/Hydro.cpp.obj: C:\rewritten_treton\Hydro.cpp \
- C:\rewritten_treton\headers/ThechycoGlobalVar.hpp \
+CMakeFiles/TRETON.dir/Hydro.cpp.obj: \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\Hydro.cpp \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/ThechycoGlobalVar.hpp \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/vector \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_algobase.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
@@ -168,4 +169,4 @@ CMakeFiles/TRETON.dir/Hydro.cpp.obj: C:\rewritten_treton\Hydro.cpp \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ostream.tcc \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/istream \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/istream.tcc \
- C:\rewritten_treton\headers/Thechyco.hpp
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/Thechyco.hpp

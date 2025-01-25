@@ -1,4 +1,5 @@
-CMakeFiles/TRETON.dir/Matrix.cpp.obj: C:\rewritten_treton\Matrix.cpp \
+CMakeFiles/TRETON.dir/Matrix.cpp.obj: \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\Matrix.cpp \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/vector \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_algobase.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \

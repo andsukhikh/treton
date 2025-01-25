@@ -1,5 +1,5 @@
 CMakeFiles/TRETON.dir/SodiumProp.cpp.obj: \
- C:\rewritten_treton\SodiumProp.cpp \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\SodiumProp.cpp \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cmath \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
@@ -53,4 +53,4 @@ CMakeFiles/TRETON.dir/SodiumProp.cpp.obj: \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/poly_hermite.tcc \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/poly_laguerre.tcc \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/riemann_zeta.tcc \
- C:\rewritten_treton\headers/EntV.hpp
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\headers/EntV.hpp

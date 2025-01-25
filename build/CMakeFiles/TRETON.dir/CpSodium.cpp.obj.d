@@ -1,4 +1,5 @@
-CMakeFiles/TRETON.dir/CpSodium.cpp.obj: C:\rewritten_treton\CpSodium.cpp \
+CMakeFiles/TRETON.dir/CpSodium.cpp.obj: \
+ Z:\learning\diploma\TRETON\TRETON_CMAKE\CpSodium.cpp \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cmath \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
  C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \

@@ -23,6 +23,10 @@ set(SOURCES
 	ThechycoGlobalVar.cpp
 )
 
+
+#set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -march=native")
+#set(CMAKE_BUILD_TYPE Release)
+
 # Создание исполняемого файла
 add_executable(${PROJECT_NAME} ${SOURCES})
 
