@@ -268,7 +268,7 @@ void Viter(double dt)
                             if (Vn > 0.0) {
                                 bPV[i] += Vn * (ro[i - 1][j] + ro[i][j]) / 2.0;
                             } else {
-                                dPV[i] -= Vn * (ro[i - 1][jf] + ro[i][jf]) * 0.5 * V_z[i][jf];
+                                dPV[i] -= Vn * (ro[i - 1][jf] + ro[i][j]) * 0.5 * V_z[i][jf];
                             }
                         }
 
@@ -317,13 +317,11 @@ void Viter(double dt)
         } 
                     /*****V_n****** */
 
-        for (int jV_n = 0; jV_n < mV_n; ++jV_n) {
-            V_nMap[jV_n] = 0;
-        }
+        std::fill(V_nMap.begin(), V_nMap.end(), 0);
+
         std::fill(targ.begin(), targ.end(), 0);
 
 // В фортране sum = 0, вынужденна мера принять sum = 1, иначе цикл бесконечный
-       //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         sum = 0;
         while (sum < mf) {
             x = random_number();
@@ -922,7 +920,6 @@ void pes(double dt) {
                 }
             }
         }
-    //    !!!!! below code is incorrect
             //модуль полной скорости
         i = n;
         dp_dz[i][j] = OLD_ro[i - 1][j] * oldV_z[i][j] / dt -
@@ -1535,7 +1532,7 @@ void FormFriction() {
     }
 
     for (int j = 0; j < mf; ++j) {
-        for (int i = 0; i <= n; ++i) {
+        for (int i = 0; i < n + 1; ++i) {
             double vel = std::abs(V_z[i][j]);
             if (vel == 0.0) {
                 effK_z[i][j] = 0.0;

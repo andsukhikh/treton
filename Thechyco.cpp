@@ -45,6 +45,7 @@ double thehyco(double dt) {
 
 
     for (int i = 0; i < iterations; ++i) {
+        bool disbalanceSatisfied = false;
         for (int j = 0; j < 50; ++j) {
             KinViscosity();
             //std::cout << "KinViscosity in thehyco is completely p = " << p[i][j] << std::endl;
@@ -63,22 +64,15 @@ double thehyco(double dt) {
             //std::cout << "MassDisbalance in thehyco is completely p = "<< p[i][j] << std::endl;
 
             if (MassDisb < Disbalance) {
-                alf();
-                //std::cout << "alf in thehyco is completely p = "<< p[i][j] << std::endl;
-                HeatConduction();
-                //std::cout << "HeatConduction in thehyco is completely p = " << p[i][j]<< std::endl;
-
-                heat(dt);
-                //std::cout << "heat in thehyco is completely" << std::endl;
-                density();
-                //std::cout << "density in thehyco is completely " << std::endl;
-
+                disbalanceSatisfied = true;
+                break;
             }
         }
 
-        /*exit(1);*/
+        if(!disbalanceSatisfied) {
+            std::cout << "MassDisbalance = " << MassDisb << std::endl;
+        }
 
-        std::cout << "MassDisbalance = " << MassDisb << std::endl;
         //std::cout << "iteration = " << iterations << std::endl;
         //std::cout << "i = " << i  << std::endl;
         //std::cout << "j = " << i << std::endl;
@@ -92,21 +86,8 @@ double thehyco(double dt) {
     double thehyco = 0.0;
 
     if (EneRoDisbalance() > Disbalance) thehyco = 1;
-    {
-        //std::cout << "EneRoDisbalance in thehyco is completely" << std::endl;
-        thehyco = 1;
-    }
-    if (EnerCoreDisbalance() > Disbalance)
-    {
-        //std::cout << "EnerCoreDisbalance in thehyco is completely" << std::endl;
-        thehyco = 1;
-    }
-
-    if (EnerFluiDisbalance() > Disbalance)
-    {
-        //std::cout << "EnerFluiDisbalance in thehyco is completely" << std::endl;
-        thehyco = 1;
-    }
+    if (EnerCoreDisbalance() > Disbalance) thehyco = 1;
+    if (EnerFluiDisbalance() > Disbalance) thehyco = 1;
 
     //std::cout << "thehyco = " << static_cast<int>(thehyco) << std::endl;
 
@@ -144,6 +125,7 @@ void HeatHydroOnce() {
     p_input = nlr.get<double>("p_input", 1);
     p_output = nlr.get<double>("p_output", 1);
     iterations = nlr.get<int>("iterations", 1);
+    
     for (int i = 0; i < type; ++i) {
         n_RodsInTBC[i] = nlr.get<int>("n_RodsInTBC", 1.0, i);
     }
@@ -319,7 +301,7 @@ void HeatHydroGeometry() {
         sum += n_RodsInTBC[k] * (a_fuel[k] + a_clad[k]);
     }
     
-    fz -= 0.25 * Pi * D_tube * D_tube + sum;
+    fz -= 0.25 * Pi * D_tube * D_tube - sum;
     vf = fz * dz;
     fr = vf / v * dz * dr / sqrt(3.0);
     fr_vf = fr / vf;
@@ -582,10 +564,10 @@ double absV(int i, int j) {
     double result;
     
     switch (i) {
-        case 1:
+        case 0:
             result = std::sqrt(V_z[i][j] * V_z[i][j] + V_r(i, j) * V_r(i, j));
             break;
-        case n + 1:
+        case n:
             result = std::sqrt(V_z[i][j] * V_z[i][j] + V_r(i - 1, j) * V_r(i - 1, j));
             break;
         default:

@@ -55,8 +55,7 @@ CMakeFiles/TRETON.dir/AMUV.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAKE/AMUV
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/stdlib.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/vadefs.h \
-  C:/rewritten_treton/AMUV.cpp \
-  C:/rewritten_treton/headers/AMUV.hpp
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/AMUV.hpp
 
 CMakeFiles/TRETON.dir/ANU.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAKE/ANU.cpp \
   C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/limits.h \
@@ -112,8 +111,7 @@ CMakeFiles/TRETON.dir/ANU.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAKE/ANU.c
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/stdlib.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/vadefs.h \
-  C:/rewritten_treton/ANU.cpp \
-  C:/rewritten_treton/headers/ANU.hpp
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/ANU.hpp
 
 CMakeFiles/TRETON.dir/CpSodium.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAKE/CpSodium.cpp \
   C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/limits.h \
@@ -168,12 +166,10 @@ CMakeFiles/TRETON.dir/CpSodium.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAKE/
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/stdlib.h \
-  C:/TDM-GCC-64/x86_64-w64-mingw32/include/vadefs.h \
-  C:/rewritten_treton/CpSodium.cpp
+  C:/TDM-GCC-64/x86_64-w64-mingw32/include/vadefs.h
 
 CMakeFiles/TRETON.dir/EntV.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAKE/EntV.cpp \
-  C:/rewritten_treton/EntV.cpp \
-  C:/rewritten_treton/headers/EntV.hpp
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/EntV.hpp
 
 CMakeFiles/TRETON.dir/Heat.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAKE/Heat.cpp \
   C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/limits.h \
@@ -377,16 +373,15 @@ CMakeFiles/TRETON.dir/Heat.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAKE/Heat
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/vadefs.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/wchar.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/wctype.h \
-  C:/rewritten_treton/Heat.cpp \
-  C:/rewritten_treton/headers/AMUV.hpp \
-  C:/rewritten_treton/headers/ANU.hpp \
-  C:/rewritten_treton/headers/Heat.hpp \
-  C:/rewritten_treton/headers/Matrix.hpp \
-  C:/rewritten_treton/headers/NamelistReader.hpp \
-  C:/rewritten_treton/headers/PRV.hpp \
-  C:/rewritten_treton/headers/SodiumProp.hpp \
-  C:/rewritten_treton/headers/Thechyco.hpp \
-  C:/rewritten_treton/headers/ThechycoGlobalVar.hpp
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/AMUV.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/ANU.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/Heat.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/Matrix.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/NamelistReader.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/PRV.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/SodiumProp.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/Thechyco.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/ThechycoGlobalVar.hpp
 
 CMakeFiles/TRETON.dir/Hydro.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAKE/Hydro.cpp \
   C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/limits.h \
@@ -557,9 +552,8 @@ CMakeFiles/TRETON.dir/Hydro.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAKE/Hyd
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/vadefs.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/wchar.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/wctype.h \
-  C:/rewritten_treton/Hydro.cpp \
-  C:/rewritten_treton/headers/Thechyco.hpp \
-  C:/rewritten_treton/headers/ThechycoGlobalVar.hpp
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/Thechyco.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/ThechycoGlobalVar.hpp
 
 CMakeFiles/TRETON.dir/Main.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAKE/Main.cpp \
   C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/limits.h \
@@ -763,13 +757,12 @@ CMakeFiles/TRETON.dir/Main.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAKE/Main
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/vadefs.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/wchar.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/wctype.h \
-  C:/rewritten_treton/Main.cpp \
-  C:/rewritten_treton/headers/Heat.hpp \
-  C:/rewritten_treton/headers/Hydro.hpp \
-  C:/rewritten_treton/headers/NamelistReader.hpp \
-  C:/rewritten_treton/headers/SodiumProp.hpp \
-  C:/rewritten_treton/headers/Thechyco.hpp \
-  C:/rewritten_treton/headers/ThechycoGlobalVar.hpp
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/Heat.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/Hydro.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/NamelistReader.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/SodiumProp.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/Thechyco.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/ThechycoGlobalVar.hpp
 
 CMakeFiles/TRETON.dir/Matrix.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAKE/Matrix.cpp \
   C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/limits.h \
@@ -926,8 +919,7 @@ CMakeFiles/TRETON.dir/Matrix.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAKE/Ma
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/sys/types.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/vadefs.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/wchar.h \
-  C:/TDM-GCC-64/x86_64-w64-mingw32/include/wctype.h \
-  C:/rewritten_treton/Matrix.cpp
+  C:/TDM-GCC-64/x86_64-w64-mingw32/include/wctype.h
 
 CMakeFiles/TRETON.dir/PRV.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAKE/PRV.cpp \
   C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/limits.h \
@@ -982,8 +974,7 @@ CMakeFiles/TRETON.dir/PRV.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAKE/PRV.c
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/stdlib.h \
-  C:/TDM-GCC-64/x86_64-w64-mingw32/include/vadefs.h \
-  C:/rewritten_treton/PRV.cpp
+  C:/TDM-GCC-64/x86_64-w64-mingw32/include/vadefs.h
 
 CMakeFiles/TRETON.dir/SodiumProp.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAKE/SodiumProp.cpp \
   C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/limits.h \
@@ -1039,8 +1030,7 @@ CMakeFiles/TRETON.dir/SodiumProp.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAK
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/stdlib.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/vadefs.h \
-  C:/rewritten_treton/SodiumProp.cpp \
-  C:/rewritten_treton/headers/EntV.hpp
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/EntV.hpp
 
 CMakeFiles/TRETON.dir/Thechyco.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAKE/Thechyco.cpp \
   C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/limits.h \
@@ -1231,15 +1221,14 @@ CMakeFiles/TRETON.dir/Thechyco.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAKE/
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/vadefs.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/wchar.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/wctype.h \
-  C:/rewritten_treton/Thechyco.cpp \
-  C:/rewritten_treton/headers/AMUV.hpp \
-  C:/rewritten_treton/headers/CpSodium.hpp \
-  C:/rewritten_treton/headers/Heat.hpp \
-  C:/rewritten_treton/headers/Hydro.hpp \
-  C:/rewritten_treton/headers/NamelistReader.hpp \
-  C:/rewritten_treton/headers/SodiumProp.hpp \
-  C:/rewritten_treton/headers/Thechyco.hpp \
-  C:/rewritten_treton/headers/ThechycoGlobalVar.hpp
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/AMUV.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/CpSodium.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/Heat.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/Hydro.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/NamelistReader.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/SodiumProp.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/Thechyco.hpp \
+  Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/ThechycoGlobalVar.hpp
 
 CMakeFiles/TRETON.dir/ThechycoGlobalVar.cpp.obj: Z:/learning/diploma/TRETON/TRETON_CMAKE/ThechycoGlobalVar.cpp \
   C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/limits.h \
@@ -1357,8 +1346,7 @@ CMakeFiles/TRETON.dir/ThechycoGlobalVar.cpp.obj: Z:/learning/diploma/TRETON/TRET
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/sys/timeb.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/sys/types.h \
   C:/TDM-GCC-64/x86_64-w64-mingw32/include/vadefs.h \
-  C:/TDM-GCC-64/x86_64-w64-mingw32/include/wchar.h \
-  C:/rewritten_treton/ThechycoGlobalVar.cpp
+  C:/TDM-GCC-64/x86_64-w64-mingw32/include/wchar.h
 
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/syslimits.h:
@@ -1369,9 +1357,9 @@ Z:/learning/diploma/TRETON/TRETON_CMAKE/AMUV.cpp:
 
 C:/TDM-GCC-64/x86_64-w64-mingw32/include/_mingw_stat64.h:
 
-Z:/learning/diploma/TRETON/TRETON_CMAKE/Heat.cpp:
-
 C:/TDM-GCC-64/x86_64-w64-mingw32/include/malloc.h:
+
+Z:/learning/diploma/TRETON/TRETON_CMAKE/Heat.cpp:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/functional_hash.h:
 
@@ -1386,8 +1374,6 @@ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include-fixed/limits.h:
 C:/TDM-GCC-64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h:
 
 C:/TDM-GCC-64/x86_64-w64-mingw32/include/_mingw_mac.h:
-
-C:/rewritten_treton/Hydro.cpp:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/fstream:
 
@@ -1419,11 +1405,13 @@ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/debug/debug.h:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/ptr_traits.h:
 
-C:/rewritten_treton/headers/EntV.hpp:
+C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/algorithm:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/beta_function.tcc:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/specfun.h:
+
+Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/ANU.hpp:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/range_access.h:
 
@@ -1437,15 +1425,15 @@ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_iterator.h:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_iterator_base_funcs.h:
 
-C:/rewritten_treton/Thechyco.cpp:
-
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/pstl/execution_defs.h:
 
 C:/TDM-GCC-64/x86_64-w64-mingw32/include/corecrt.h:
 
-C:/rewritten_treton/AMUV.cpp:
-
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/stl_iterator_base_types.h:
+
+C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/sstream:
+
+C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/array:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tr1/bessel_function.tcc:
 
@@ -1468,8 +1456,6 @@ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/limits:
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/pstl/pstl_config.h:
-
-C:/rewritten_treton/ANU.cpp:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/stdlib.h:
 
@@ -1515,13 +1501,9 @@ C:/TDM-GCC-64/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/random.h:
 
-C:/rewritten_treton/Heat.cpp:
-
 C:/TDM-GCC-64/x86_64-w64-mingw32/include/_mingw_secapi.h:
 
 C:/TDM-GCC-64/x86_64-w64-mingw32/include/corecrt_wstdlib.h:
-
-C:/rewritten_treton/headers/ANU.hpp:
 
 C:/TDM-GCC-64/x86_64-w64-mingw32/include/crtdefs.h:
 
@@ -1529,21 +1511,13 @@ C:/TDM-GCC-64/x86_64-w64-mingw32/include/math.h:
 
 C:/TDM-GCC-64/x86_64-w64-mingw32/include/vadefs.h:
 
-C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/charconv.h:
+Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/Matrix.hpp:
 
-C:/rewritten_treton/headers/AMUV.hpp:
+Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/AMUV.hpp:
 
 Z:/learning/diploma/TRETON/TRETON_CMAKE/CpSodium.cpp:
 
-C:/rewritten_treton/CpSodium.cpp:
-
-C:/rewritten_treton/EntV.cpp:
-
-C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/algorithm:
-
-C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/sstream:
-
-C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/array:
+Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/EntV.hpp:
 
 C:/TDM-GCC-64/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h:
 
@@ -1563,11 +1537,11 @@ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/basic_ios.h:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/basic_ios.tcc:
 
-C:/rewritten_treton/headers/Matrix.hpp:
-
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/basic_string.h:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/char_traits.h:
+
+C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/charconv.h:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/bits/codecvt.h:
 
@@ -1695,6 +1669,8 @@ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cstdlib:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ctime:
 
+Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/NamelistReader.hpp:
+
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/cwctype:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/aligned_buffer.h:
@@ -1703,11 +1679,11 @@ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/alloc_traits.h:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/atomicity.h:
 
-C:/rewritten_treton/headers/SodiumProp.hpp:
-
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/new_allocator.h:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/ext/string_conversions.h:
+
+Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/PRV.hpp:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/functional:
 
@@ -1740,6 +1716,8 @@ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/stdexcept:
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/streambuf:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/string:
+
+Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/ThechycoGlobalVar.hpp:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/tuple:
 
@@ -1783,8 +1761,6 @@ C:/TDM-GCC-64/x86_64-w64-mingw32/include/pthread_compat.h:
 
 C:/TDM-GCC-64/x86_64-w64-mingw32/include/pthread_signal.h:
 
-C:/rewritten_treton/Matrix.cpp:
-
 C:/TDM-GCC-64/x86_64-w64-mingw32/include/pthread_time.h:
 
 C:/TDM-GCC-64/x86_64-w64-mingw32/include/sec_api/wchar_s.h:
@@ -1809,15 +1785,11 @@ C:/TDM-GCC-64/x86_64-w64-mingw32/include/wchar.h:
 
 C:/TDM-GCC-64/x86_64-w64-mingw32/include/wctype.h:
 
-C:/rewritten_treton/headers/Heat.hpp:
+Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/Heat.hpp:
 
-C:/rewritten_treton/headers/NamelistReader.hpp:
+Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/SodiumProp.hpp:
 
-C:/rewritten_treton/headers/PRV.hpp:
-
-C:/rewritten_treton/headers/Thechyco.hpp:
-
-C:/rewritten_treton/headers/ThechycoGlobalVar.hpp:
+Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/Thechyco.hpp:
 
 Z:/learning/diploma/TRETON/TRETON_CMAKE/Hydro.cpp:
 
@@ -1829,22 +1801,14 @@ C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/numeric:
 
 C:/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/10.3.0/include/c++/pstl/glue_numeric_defs.h:
 
-C:/rewritten_treton/Main.cpp:
-
-C:/rewritten_treton/headers/Hydro.hpp:
+Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/Hydro.hpp:
 
 Z:/learning/diploma/TRETON/TRETON_CMAKE/Matrix.cpp:
 
-C:/rewritten_treton/PRV.cpp:
-
 Z:/learning/diploma/TRETON/TRETON_CMAKE/SodiumProp.cpp:
-
-C:/rewritten_treton/SodiumProp.cpp:
 
 Z:/learning/diploma/TRETON/TRETON_CMAKE/Thechyco.cpp:
 
-C:/rewritten_treton/headers/CpSodium.hpp:
+Z:/learning/diploma/TRETON/TRETON_CMAKE/headers/CpSodium.hpp:
 
 Z:/learning/diploma/TRETON/TRETON_CMAKE/ThechycoGlobalVar.cpp:
-
-C:/rewritten_treton/ThechycoGlobalVar.cpp:
