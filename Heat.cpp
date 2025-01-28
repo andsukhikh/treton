@@ -63,7 +63,7 @@ void RodGeometry() {
         double eq_area = (std::pow(cvd[n_rod][j], 2) - zero) / (2 * (n_rod - 1));
 
         for (int i = 1; i < n_rod; ++i) {
-            cvd[i][j] = std::sqrt(zero + (2 * i - 1) * eq_area);
+            cvd[i][j] = std::sqrt(zero + (2 * i - 3) * eq_area);
         }
     }
 
@@ -490,7 +490,7 @@ double EnerFluiDisbalance() {
             if (jf != -1) {
                 int jV_n = onds[k][j];
                 for (i = 0; i < n; ++i) {
-                    double cr_V = fr * is(jV_n - j) * V_n[i][jV_n];
+                    double cr_V = fr * is(jf - j) * V_n[i][jV_n];
                     if (cr_V > 0) {
                         bb[i] += cr_V * ro[i][j] * h_f[i][j];
                     } else {
