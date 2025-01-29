@@ -153,6 +153,12 @@ extern std::vector<double> a, b, c, d, aPV, bPV, cPV, dPV, ePV, fPV;
 extern std::vector<std::vector<double>> effM, effK_r, effK_z, oldV_z, oldV_n, source, dp_dz, dp_dn, OLD_ro, OLDh_f, h_f;
 extern std::vector<double> V_nMap;
 
+extern std::vector<double> transposed_OLDt_rod;
+extern std::vector<double> transposed_t_rod;
+extern std::vector<double> transposed_geo_left;
+extern std::vector<double> transposed_geo_right;
+extern std::vector<double> transposed_bundle;
+
 using namespace capacity;
     using namespace loop;
     using namespace temperature;

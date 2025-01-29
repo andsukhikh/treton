@@ -167,7 +167,7 @@ double Rod(double& dt, std::vector<double> old, std::vector<double> New, double 
     
     sy(a, b, c, d, 0, n_rod + 1);
     
-    for (i = 0; i < n_rod + 2; ++i) {
+    for (int i = 0; i < n_rod + 2; ++i) {
         double e = std::abs(1.0 - New[i] / d[i]);
         New[i] = d[i];
         Rod = std::max(Rod, e);
@@ -190,7 +190,7 @@ void rod_average() {
                     fuel += t_rod[l][i][j][k] * area[l][k];
                 }
 
-                for (int l = n_rod; l < n_rod + 1; ++l) {
+                for (int l = n_rod; l < n_rod + 2; ++l) {
                     clad += t_rod[l][i][j][k] * area[l][k];
                 }
 
@@ -278,11 +278,6 @@ void heat(double dt) {
     int iii = 0;
     int NM = n * mf;
     double p_r, t_r, h_r, v_r;
-    std::vector<double> transpose_OLDt_rod(n_rod + 2);
-    std::vector<double> transpose_t_rod(n_rod + 2);
-    std::vector<double> transpose_geo_left(n_rod + 2);
-    std::vector<double> transpose_geo_right(n_rod + 2);
-    std::vector<double> transpose_bundle(n_rod + 2);
 
     for (int k = 0; k < type; ++k) {
         tmp1 += P_rod[k] * n_RodsInTBC[k];
@@ -319,17 +314,17 @@ void heat(double dt) {
                 std::vector<double> transpose_geo_right(n_rod + 2);
                 std::vector<double> transpose_bundle(n_rod + 2);*/
 
-                separationMatrix4D(OLDt_rod, transpose_OLDt_rod, i, j, k);
-                separationMatrix4D(t_rod, transpose_t_rod, i, j, k);
-                separationMatrix2D(geo_left, transpose_geo_left, k);
-                separationMatrix2D(geo_right, transpose_geo_right, k);
-                separationMatrix2D(bundle, transpose_bundle, k);
+                separationMatrix4D(OLDt_rod, transposed_OLDt_rod, i, j, k);
+                separationMatrix4D(t_rod, transposed_t_rod, i, j, k);
+                separationMatrix2D(geo_left, transposed_geo_left, k);
+                separationMatrix2D(geo_right, transposed_geo_right, k);
+                separationMatrix2D(bundle, transposed_bundle, k);
 
 
-                double RodError = Rod(dt, transpose_OLDt_rod, transpose_t_rod, alfa[i][j], t_f[i][j],
-                                        Qv, transpose_geo_left, transpose_geo_right, transpose_bundle, fuel_l[i][j][k], fuel_rc[i][j][k]);
+                double RodError = Rod(dt, transposed_OLDt_rod, transposed_t_rod, alfa[i][j], t_f[i][j],
+                                        Qv, transposed_geo_left, transposed_geo_right, transposed_bundle, fuel_l[i][j][k], fuel_rc[i][j][k]);
 
-                swapOnNewValue(transpose_t_rod, t_rod, i, j, k);
+                swapOnNewValue(transposed_t_rod, t_rod, i, j, k);
                 /*std::cout << "RodError = " << RodError <<  std::endl;*/
 
                 if (RodError > error) error = RodError;

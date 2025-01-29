@@ -71,11 +71,11 @@ void ResCalc(int N, const std::vector<double>& A, const std::vector<int>& NC, co
     }
 
     MatTVect(N, A, NC, NE, R, P);
-    /*for (int i = 0; i < N; ++i) {
+    for (int i = 0; i < N; ++i) {
         Ar[i] = P[i];
-    }*/
+    }
 
-    Ar = P;
+    // Ar = P;
 
     MatVect(N, A, NC, NE, P, Ap);
 

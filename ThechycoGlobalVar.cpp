@@ -191,6 +191,12 @@ namespace info {
     std::vector<std::vector<double>> h_f(n, std::vector<double>(mf));
     std::vector<double> V_nMap(mV_n);
 
+    std::vector<double> transposed_OLDt_rod(n_rod + 2);
+    std::vector<double> transposed_t_rod(n_rod + 2);
+    std::vector<double> transposed_geo_left(n_rod + 2);
+    std::vector<double> transposed_geo_right(n_rod + 2);
+    std::vector<double> transposed_bundle(n_rod + 2);
+
 
 
 namespace mat {

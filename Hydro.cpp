@@ -358,7 +358,7 @@ void Viter(double dt)
                                 if (V_up > 0.0) {
                                     bPV[i] += V_up * roV_n;
                                 } else {
-                                    if(i == n) {
+                                    if(i == n - 1) {
                                         dPV[i] -= V_up * ro_output * V_n[i][jV_n];
                                     } else {
                                         cPV[i] += V_up * (ro[i + 1][j] + ro[i + 1][jf]) * 0.5;
