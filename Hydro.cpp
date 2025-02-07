@@ -1,5 +1,6 @@
 #include "headers/ThechycoGlobalVar.hpp"
 #include <random>
+#include <cmath>
 #include <ctime>
 #include <iostream>
 #include "headers/Thechyco.hpp"
@@ -130,7 +131,7 @@ void Viter(double dt)
     int sum;
     double error = 1.0;
     int iii = 0;
-    double V_up , V_down, jf, jV_n, const_Vn, cr_M, roV_n, Vn, e;
+    double V_up, V_down, jf, jV_n, const_Vn, cr_M, roV_n, Vn, e;
     /*выбрать инициализацию переменных в начале или в конце*/
         
 
@@ -196,7 +197,7 @@ void Viter(double dt)
                                 int jV_n = onds[k][j];
                                 //if (jV_n < 0) { std::cout << "onds[" << k << "][" << j << "] = " << onds[k][j] << std::endl; }
                                 double Vn = fr_vf * is(jf - j) * V_n[i][jV_n];
-                                double cr_M = fr_vf * ( (effM[i][j] + effM[i][jf]) * 0.5) / dr;
+                                double cr_M = fr_vf * 0.5 * (effM[i][j] + effM[i][jf]) / dr;
                                 bPV[i] += cr_M;
                                 dPV[i] += cr_M * V_z[i][jf];
 
@@ -268,7 +269,7 @@ void Viter(double dt)
                             if (Vn > 0.0) {
                                 bPV[i] += Vn * (ro[i - 1][j] + ro[i][j]) / 2.0;
                             } else {
-                                dPV[i] -= Vn * (ro[i - 1][jf] + ro[i][j]) * 0.5 * V_z[i][jf];
+                                dPV[i] -= Vn * (ro[i - 1][jf] + ro[i][j]) / 2 * V_z[i][jf];
                             }
                         }
 
@@ -315,6 +316,7 @@ void Viter(double dt)
                 }
             }
         } 
+
                     /*****V_n****** */
 
         std::fill(V_nMap.begin(), V_nMap.end(), 0);
@@ -371,25 +373,25 @@ void Viter(double dt)
                                     if(i == 0) {
                                         dPV[i] -= V_down * ro_input[j] * V_n[i][jV_n];
                                     } else {
-                                        aPV[i] += V_down * (ro[i - 1][j] + ro[i - 1][jf]) * 0.5;
+                                        aPV[i] += V_down * (ro[i - 1][j] + ro[i - 1][jf]) / 2;
                                     }
                                 }
                             }
                             //std::cout << "Hyrdo flags(viter func) " << 0 <<" is completely " << std::endl;
-                            double j1 = bonds[0][j];
-                            double j2 = bonds[1][j];
-                            double j3 = bonds[2][j];
-                            double j4 = bonds[3][j];
-                            double j5 = bonds[4][j];
-                            double j6 = bonds[5][j];
+                            int j1 = bonds[0][j];
+                            int j2 = bonds[1][j];
+                            int j3 = bonds[2][j];
+                            int j4 = bonds[3][j];
+                            int j5 = bonds[4][j];
+                            int j6 = bonds[5][j];
 
-                            double jf1 = bonds[0][jf];
-                            double jf2 = bonds[1][jf];
-                            double jf3 = bonds[2][jf];
-                            double jf4 = bonds[3][jf];  
-                            double jf5 = bonds[4][jf];
-                            double jf6 = bonds[5][jf];
-                            double V3 = 0.0;
+                            int jf1 = bonds[0][jf];
+                            int jf2 = bonds[1][jf];
+                            int jf3 = bonds[2][jf];
+                            int jf4 = bonds[3][jf];
+                            int jf5 = bonds[4][jf];
+                            int jf6 = bonds[5][jf];
+                            double V3;
 
                             switch (k) {
                                 case 0:
@@ -498,7 +500,7 @@ void Viter(double dt)
                                             + is(j3 - j) * V_n[i][onds[2][j]]) * fr_vf;
 
                                         if (V3 > 0) {
-                                            bPV[i] += V3 * ro[i][j];
+                                            bPV[i] += V3 * ro[i][jf];
                                         } else {
                                             double Vx = V_n[i][onds[k][j]] / 2.0;
                                             
@@ -514,7 +516,7 @@ void Viter(double dt)
                                             + is(j1 - j) * V_n[i][onds[0][j]]) * fr_vf;
 
                                         if (V3 > 0) {
-                                            bPV[i] += V3 * ro[i][j];
+                                            bPV[i] += V3 * ro[i][jf];
                                         } else {
                                             double Vx = V_n[i][onds[k][j]] / 2.0;
                                             
@@ -651,7 +653,7 @@ void Viter(double dt)
                                             + is(j3 - j) * V_n[i][onds[2][j]]) * fr_vf;
 
                                         if (V3 > 0) {
-                                            bPV[i] += V3 * ro[i][j];
+                                            bPV[i] += V3 * ro[i][jf];
                                         } else {
                                             double Vx = V_n[i][onds[k][j]] / 2.0;
                                             
@@ -869,7 +871,7 @@ void pes(double dt) {
                     int jf = bonds[k][j];
                     if (jf != -1) {
                         double Vn = fr_vf * is(jf - j) * V_n[i][onds[k][j]];
-                        double cr_M =  (fr_vf * (effM[i][j] + effM[i][jf]) / 2.0 ) / dr;
+                        double cr_M =  fr_vf * (effM[i][j] + effM[i][jf]) / 2.0 / dr;
                         dp_dz[i][j] += cr_M * (V_z[i][jf] - V_z[i][j]);
 
                         if (Vn > 0) {
@@ -913,9 +915,9 @@ void pes(double dt) {
                     dp_dz[i][j] += cr_M * (V_z[i][jf] - V_z[i][j]);
 
                     if (Vn > 0) {
-                        dp_dz[i][j] -= (Vn * (ro[i - 1][j] + ro[i][j]) / 2.0 ) * V_z[i][j];
+                        dp_dz[i][j] -= Vn * (ro[i - 1][j] + ro[i][j]) / 2.0  * V_z[i][j];
                     } else {
-                        dp_dz[i][j] -= (Vn * (ro[i - 1][jf] + ro[i][jf]) / 2.0 ) * V_z[i][jf];
+                        dp_dz[i][j] -= Vn * (ro[i - 1][jf] + ro[i][jf]) / 2.0 * V_z[i][jf];
                     }
                 }
             }
@@ -963,8 +965,6 @@ void pes(double dt) {
                 }
             }
         }
-
-        
 
             //dp_dn:
         for(int k = 0; k < nbf; ++k) {
@@ -1020,8 +1020,6 @@ void pes(double dt) {
                 double V3;
 
                 switch (k) {
-
-                    //1!!!!!!!!!!!!!!!!!!!!!!!1
                     case 0:
                         for (int i = 0; i < n; ++i) {
                             // a:
@@ -1173,57 +1171,57 @@ void pes(double dt) {
                     case 3:
                         for (int i = 0; i < n; ++i) {
                             //a
-                            V3 = ((is(j6 - j)) * V_n[i][onds[5][j]] - (is(j3 - j)) * V_n[i][onds[2][j]]
-                                + (is(jf6 - jf)) * V_n[i][onds[5][jf]]) * fr_vf;
+                            V3 = (is(j6 - j) * V_n[i][onds[5][j]] - is(j3 - j) * V_n[i][onds[2][j]]
+                                + is(jf6 - jf) * V_n[i][onds[5][jf]]) * fr_vf;
 
                             if (V3 > 0) {
                                 dp_dn[i][jV_n] -= V3 * ro[i][j] * V_n[i][jV_n];
                             } else {
                                 double Vx = V_n[i][onds[k][j]] / 2.0;
                                 if (j6 != -1) {
-                                    Vx += (is(jf - j)) * (is(j5 - j6)) * V_n[i][onds[k][j6]] / 2.0;
+                                    Vx += is(jf - j) * is(j5 - j6) * V_n[i][onds[k][j6]] / 2.0;
                                 }
                                 dp_dn[i][jV_n] -= V3 * ro[i][j] * Vx;
                             }
 
                             //b
-                            V3 = ((is(j2 - j)) * V_n[i][onds[1][j]] - (is(j5 - j)) * V_n[i][onds[4][j]]
-                                + (is(jf2 - jf)) * V_n[i][onds[1][jf]]) * fr_vf;
+                            V3 = (is(j2 - j) * V_n[i][onds[1][j]] - is(j5 - j) * V_n[i][onds[4][j]]
+                                + is(jf2 - jf) * V_n[i][onds[1][jf]]) * fr_vf;
 
                             if (V3 > 0) {
                                 dp_dn[i][jV_n] -= V3 * ro[i][j] * V_n[i][jV_n];
                             } else {
                                 double Vx = V_n[i][onds[k][j]] / 2.0;
                                 if (j2 != -1) {
-                                    Vx += (is(jf - j)) * (is(j3 - j2)) * V_n[i][onds[k][j2]] / 2.0;
+                                    Vx += is(jf - j) * is(j3 - j2) * V_n[i][onds[k][j2]] / 2.0;
                                 }
                                 dp_dn[i][jV_n] -= V3 * ro[i][j] * Vx;
                             }
 
                             //c
-                            V3 = ((is(jf5 - jf)) * V_n[i][onds[4][jf]] - (is(jf2 - jf)) * V_n[i][onds[1][jf]]
-                                + (is(j5 - j)) * V_n[i][onds[4][j]]) * fr_vf;
+                            V3 = (is(jf5 - jf) * V_n[i][onds[4][jf]] - is(jf2 - jf) * V_n[i][onds[1][jf]]
+                                + is(j5 - j) * V_n[i][onds[4][j]]) * fr_vf;
 
                             if (V3 > 0) {
                                 dp_dn[i][jV_n] -= V3 * ro[i][jf] * V_n[i][jV_n];
                             } else {
                                 double Vx = V_n[i][onds[k][j]] / 2.0;
                                 if (jf6 != -1) {
-                                    Vx += (is(jf - j)) * (is(jf5 - jf6)) * V_n[i][onds[k][jf6]] / 2.0;
+                                    Vx += is(jf - j) * is(jf5 - jf6) * V_n[i][onds[k][jf6]] / 2.0;
                                 }
                                 dp_dn[i][jV_n] -= V3 * ro[i][jf] * Vx;
                             }
 
                             //d
-                            V3 = ((is(jf3 - jf)) * V_n[i][onds[2][jf]] - (is(jf6 - jf)) * V_n[i][onds[5][jf]]
-                                + (is(j3 - j)) * V_n[i][onds[2][j]]) * fr_vf;
+                            V3 = (is(jf3 - jf) * V_n[i][onds[2][jf]] - is(jf6 - jf) * V_n[i][onds[5][jf]]
+                                + is(j3 - j) * V_n[i][onds[2][j]]) * fr_vf;
 
                             if (V3 > 0) {
                                 dp_dn[i][jV_n] -= V3 * ro[i][jf] * V_n[i][jV_n];
                             } else {
                                 double Vx = V_n[i][onds[k][j]] / 2.0;
                                 if (jf2 != -1) {
-                                    Vx += (is(jf - j)) * (is(jf3 - jf2)) * V_n[i][onds[k][jf2]] / 2.0;
+                                    Vx += is(jf - j) * is(jf3 - jf2) * V_n[i][onds[k][jf2]] / 2.0;
                                 }
                                 dp_dn[i][jV_n] -= V3 * ro[i][jf] * Vx;
                             }
@@ -1243,7 +1241,7 @@ void pes(double dt) {
                             } else {
                                 double Vx = V_n[i][onds[k][j]] / 2.0;
                                 if (j1 != -1) {
-                                    Vx += (is(jf - j) * is(j6 - j1) * V_n[i][onds[k][j1]]) / 2.0;
+                                    Vx += is(jf - j) * is(j6 - j1) * V_n[i][onds[k][j1]] / 2.0;
                                 }
                                 dp_dn[i][jV_n] -= V3 * ro[i][j] * Vx;
                             }
@@ -1257,7 +1255,7 @@ void pes(double dt) {
                             } else {
                                 double Vx = V_n[i][onds[k][j]] / 2.0;
                                 if (j3 != -1) {
-                                    Vx += (is(jf - j) * is(j4 - j3) * V_n[i][onds[k][j3]]) / 2.0;
+                                    Vx += is(jf - j) * is(j4 - j3) * V_n[i][onds[k][j3]] / 2.0;
                                 }
                                 dp_dn[i][jV_n] -= V3 * ro[i][j] * Vx;
                             }
@@ -1271,7 +1269,7 @@ void pes(double dt) {
                             } else {
                                 double Vx = V_n[i][onds[k][j]] / 2.0;
                                 if (jf1 != -1) {
-                                    Vx += (is(jf - j) * is(jf6 - jf1) * V_n[i][onds[k][jf1]]) / 2.0;
+                                    Vx += is(jf - j) * is(jf6 - jf1) * V_n[i][onds[k][jf1]] / 2.0;
                                 }
                                 dp_dn[i][jV_n] -= V3 * ro[i][jf] * Vx;
                             }
@@ -1285,7 +1283,7 @@ void pes(double dt) {
                             } else {
                                 double Vx = V_n[i][onds[k][j]] / 2.0;
                                 if (jf3 != -1) {
-                                    Vx += (is(jf - j) * is(jf4 - jf3) * V_n[i][onds[k][jf3]]) / 2.0;
+                                    Vx += is(jf - j) * is(jf4 - jf3) * V_n[i][onds[k][jf3]] / 2.0;
                                 }
                                 dp_dn[i][jV_n] -= V3 * ro[i][jf] * Vx;
                             }
@@ -1305,7 +1303,7 @@ void pes(double dt) {
                             } else {
                                 double Vx = V_n[i][onds[k][j]] / 2.0;
                                 if (j2 != -1) {
-                                    Vx += (is(jf - j) * is(j1 - j2) * V_n[i][onds[k][j2]]) / 2.0;
+                                    Vx += is(jf - j) * is(j1 - j2) * V_n[i][onds[k][j2]] / 2.0;
                                 }
                                 dp_dn[i][jV_n] -= V3 * ro[i][j] * Vx;
                             }
@@ -1319,7 +1317,7 @@ void pes(double dt) {
                             } else {
                                 double Vx = V_n[i][onds[k][j]] / 2.0;
                                 if (j4 != -1) {
-                                    Vx += (is(jf - j) * is(j5 - j4) * V_n[i][onds[k][j4]]) / 2.0;
+                                    Vx += is(jf - j) * is(j5 - j4) * V_n[i][onds[k][j4]] / 2.0;
                                 }
                                 dp_dn[i][jV_n] -= V3 * ro[i][j] * Vx;
                             }
@@ -1333,7 +1331,7 @@ void pes(double dt) {
                             } else {
                                 double Vx = V_n[i][onds[k][j]] / 2.0;
                                 if (jf2 != -1) {
-                                    Vx += (is(jf - j) * is(jf1 - jf2) * V_n[i][onds[k][jf2]]) / 2.0;
+                                    Vx += is(jf - j) * is(jf1 - jf2) * V_n[i][onds[k][jf2]] / 2.0;
                                 }
                                 dp_dn[i][jV_n] -= V3 * ro[i][jf] * Vx;
                             }
@@ -1347,7 +1345,7 @@ void pes(double dt) {
                             } else {
                                 double Vx = V_n[i][onds[k][j]] / 2.0;
                                 if (jf4 != -1) {
-                                    Vx += (is(jf - j) * is(jf5 - jf4) * V_n[i][onds[k][jf4]]) / 2.0;
+                                    Vx += is(jf - j) * is(jf5 - jf4) * V_n[i][onds[k][jf4]] / 2.0;
                                 }
                                 dp_dn[i][jV_n] -= V3 * ro[i][jf] * Vx;
                             }
@@ -1552,11 +1550,11 @@ void FormFriction() {
                 double viscosity = Sodium_KinVis(pression, temperature);
                 double re = vel * d_hydraulic / viscosity;
 
-                if (i % 2 == 0) {
-                    effK_z[i][j] = zKoeff1 * formula * pow(100 * re, -0.25) / (2.0 * d_hydraulic);
+                if (std::fmod(i + 1, 2) == 0) {
+                    effK_z[i][j] = zKoeff1 * formula * std::pow(100 * re, -0.25) / (2.0 * d_hydraulic);
 
                 } else {
-                    effK_z[i][j] = zKoeff2 * formula * pow(100 * re, -0.25) / (2.0 * d_hydraulic);
+                    effK_z[i][j] = zKoeff2 * formula * std::pow(100 * re, -0.25) / (2.0 * d_hydraulic);
                 }
             }
         }
@@ -1565,7 +1563,7 @@ void FormFriction() {
             int jf = bonds[k][j];
             if (jf == -1) continue;
 
-            int jV_n = bonds[k][j];
+            int jV_n = onds[k][j];
             //if (jV_n < 0)  std::cout << "bonds[" << k << "][" << j << "] < 0" << std::endl;
             if (V_nMap[jV_n] == 0) {
                 for (int i = 0; i < n; ++i) {
@@ -1576,7 +1574,7 @@ void FormFriction() {
                     } else {
                         double re = vel * d_mesh / Sodium_KinVis((p[i][j] + p[i][jf]) / 2.0,
                                                               (h_f[i][j] + h_f[i][jf]) / 2.0);
-                        effK_r[i][jV_n] = Constant * (rows + 1.0) * pow(re, -0.27) / (2.0 * dr);
+                        effK_r[i][jV_n] = Constant * (rows + 1.0) * std::pow(re, -0.27) / (2.0 * dr);
                     }
                 }
                 V_nMap[jV_n] = 1;

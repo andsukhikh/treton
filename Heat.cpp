@@ -14,7 +14,6 @@
 
 void RodOnce() {
     static int manager = 0;
-    double s_mesh;
 
     if (manager != 1) {
 
@@ -63,7 +62,7 @@ void RodGeometry() {
         double eq_area = (std::pow(cvd[n_rod][j], 2) - zero) / (2 * (n_rod - 1));
 
         for (int i = 1; i < n_rod; ++i) {
-            cvd[i][j] = std::sqrt(zero + (2 * i - 3) * eq_area);
+            cvd[i][j] = std::sqrt(zero + (2 * (i + 1) - 3) * eq_area);
         }
     }
 
@@ -94,8 +93,8 @@ void RodGeometry() {
 
 void rod_property() {
     // CLADDING
-    double clad_rc = 1.89E+6;    // 6510.[kg/m**3] * 290.[J/(kg*K)]
-    double clad_l = 20.5;        // ~Zr lamda
+    clad_rc = 1.89E+6;    // 6510.[kg/m**3] * 290.[J/(kg*K)]
+    clad_l = 20.5;        // ~Zr lamda
 
     for (int k = 0; k < type; ++k) {
         for (int j = 0; j < mf; ++j) {
@@ -127,9 +126,9 @@ void rod_property() {
 // Здесь потенциально может быть ошибка в алшоритме из-за хранения многомерного массива по строкам
 // проблема решается транпонированием матрицы или циклическое переопредлени индексов
  
-double Rod(double& dt, std::vector<double> old, std::vector<double> New, double alf, 
-           double tf, double Q_v, std::vector<double> g_left, std::vector<double> g_right, 
-           std::vector<double> cor, double l, double rc) {
+double Rod(double dt, std::vector<double>& old, std::vector<double>& New, double alf, 
+           double tf, double Q_v, std::vector<double>& g_left, std::vector<double>& g_right, 
+           std::vector<double>& cor, double l, double rc) {
     
     double Rod = 0.0;
 
@@ -225,7 +224,8 @@ double EneRoDisbalance() {
     }
 
     std::cout << '\n' <<  std::endl; 
-    std::cout << "EneRoDisbalance in (" << i_er + 1 << "," << j_er + 1 << "," << k_er + 1 << "): " << EneRoDisbalance << std::endl;
+    std::cout << "EneRoDisbalance in (" << i_er + 1 << "," << j_er + 1 << "," << k_er + 1 << "): " << 
+        std::setprecision(6) << std::fixed << EneRoDisbalance << std::endl;
 
     return EneRoDisbalance;
 }
@@ -272,9 +272,8 @@ void swapOnNewValue(std::vector<double>& arrayValue, std::vector<std::vector<std
 
 
 void heat(double dt) {
-
     double tmp1 = 0.0;
-    double error = 1.0;
+    double error = 0.0;
     int iii = 0;
     int NM = n * mf;
     double p_r, t_r, h_r, v_r;
@@ -320,10 +319,8 @@ void heat(double dt) {
                 separationMatrix2D(geo_right, transposed_geo_right, k);
                 separationMatrix2D(bundle, transposed_bundle, k);
 
-
                 double RodError = Rod(dt, transposed_OLDt_rod, transposed_t_rod, alfa[i][j], t_f[i][j],
                                         Qv, transposed_geo_left, transposed_geo_right, transposed_bundle, fuel_l[i][j][k], fuel_rc[i][j][k]);
-
                 swapOnNewValue(transposed_t_rod, t_rod, i, j, k);
                 /*std::cout << "RodError = " << RodError <<  std::endl;*/
 
@@ -385,7 +382,7 @@ void heat(double dt) {
 
         for (i = 0; i < n; ++i) {
             kk = j * n + i;
-            int nk = (i == 0 || i == n - 1) ? 0 : 1;
+            int nk = (i == 0 || i == n - 1) ? 1 : 2;
             for (int k = 0; k < nbf; ++k) {
                 int jf = bonds[k][j];
                 if (jf != -1) {
@@ -418,6 +415,7 @@ void heat(double dt) {
             t_f[i][j] = t_r;
         }
     }
+
 }
 
 
@@ -513,7 +511,8 @@ double EnerFluiDisbalance() {
         }
     }
 
-    std::cout << "EnerFluiDisbalance in (" << i_er << "," << j_er << "): " << EnerFluiDisbalance << std::endl;
+    std::cout << "EnerFluiDisbalance in (" << i_er << "," << j_er << "): " << 
+        std::setprecision(7) << std::fixed << EnerFluiDisbalance << std::endl;
 
     return EnerFluiDisbalance;
 }
@@ -579,7 +578,7 @@ double EnerCoreDisbalance() {
 
     double EnerCoreDisbalance = std::abs(1.0 - (top - bottom) * fz / Energy);
 
-    std::cout << "EnerCoreDisbalance :  " << std::right << std::scientific << std::setw(9) << std::setprecision(9) << EnerCoreDisbalance << std::endl;
+    std::cout << "EnerCoreDisbalance :  " << std::fixed << std::setprecision(6) << EnerCoreDisbalance << std::endl;
 
     return EnerCoreDisbalance;
 }

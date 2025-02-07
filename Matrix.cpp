@@ -2,7 +2,6 @@
 #include <cmath>
 #include <iostream>
 
-//!!!!!!!!!!!!!!здесь возможна ошибка в логике 
 //! 
 //! 
 // 		Расчет произведения матрицы А[NxN] на вектор х[N]. Результат в векторе В[N]. 
@@ -115,4 +114,5 @@ void ResCalc(int N, const std::vector<double>& A, const std::vector<int>& NC, co
         std::cout << "Превышено максимальное число итераций ni = " << ni << std::endl;
     }
 }
+
 

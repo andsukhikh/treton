@@ -59,7 +59,6 @@ double thehyco(double dt) {
             //std::cout << "piter in thehyco is completely p[0][0] = "<< p[i][j] << std::endl;
             //std::cout << "V_z["<< i << "][" << j << "] = "<< V_z[i][j] << std::endl;
 
-
             MassDisb = MassDisbalance(dt);
             //std::cout << "MassDisbalance in thehyco is completely p = "<< p[i][j] << std::endl;
 
@@ -82,6 +81,8 @@ double thehyco(double dt) {
         heat(dt);
         density();
     }
+    /*auto sodium_density = ro[n - 1][mf - 1];
+    auto pressure = p[n - 1][mf - 1];*/
 
     double thehyco = 0.0;
 
@@ -250,27 +251,27 @@ void CrossConnection() {
     for (int j = 0; j < mf; ++j) {
         for (int i = 0; i < n; ++i) {
             if (i == 0) {
-                NC[k] = 1;
-                //NC[k] = 0;
+                //NC[k] = 1;
+                NC[k] = 0;
                 NE[kk] = i + 1 + j * n; // +1 для индексации в C++
                 ++kk;
             } else if (i == n - 1) {
-                NC[k] = 1;
-                //NC[k] = 0;
+                //NC[k] = 1;
+                NC[k] = 0;
                 NE[kk] = i - 1 + j * n; // индексация
                 ++kk;
             } else {
-                NC[k] = 2;
-                //NC[k] = 1;
+                //NC[k] = 2;
+                NC[k] = 1;
                 NE[kk] = i - 1 + j * n; // индексация
                 ++kk;
-                NE[kk] = i + j * n; // индексация
+                NE[kk] = i + 1 + j * n; // индексация
                 ++kk;
             }
             for (int l = 0; l < nbf; ++l) {
                 if (bonds[l][j] != -1) {
                     ++NC[k];
-                    NE[kk] = (bonds[l][j]) * n + i; // индексация
+                    NE[kk] = (bonds[l][j]) * n + i ; // индексация
                     ++kk;
                 }
             }
@@ -279,20 +280,29 @@ void CrossConnection() {
         }
     }
 
-    k = NC[0] + 1;
-    NC[0] = 1;
+    k = NC[0];
+    NC[0] = 0;
+    //k = NC[0] + 1;
+    //NC[0] = 1;
 
     for (int i = 1; i < ( n * mf + 1 ); ++i) {
-        int j = NC[i];
-        NC[i] = k;
+        int j = NC[i] + 1;
+        NC[i] = k + 1;
         //std::cout << "NC[" << i << "] = " << NC[i] << std::endl;
         k += j;
     }
+
+   /* for (int j = 0; j != mf; ++j) {
+        for (int i = 0; i != nbf; ++i) {
+            std::cout << "onds[" << i + 1 << "][" << j + 1 << "] = " << onds[i][j] << std::endl;
+        }
+    }*/
 }
 
 
 void HeatHydroGeometry() {
-    fz = 0.5 * sqrt(3.0) * dr * dr;
+    fz = 0.5 * std::sqrt(3.0) * dr * dr;
+
     double v = fz * dz;
 
     double sum = 0.0;
@@ -303,7 +313,7 @@ void HeatHydroGeometry() {
     
     fz -= 0.25 * Pi * D_tube * D_tube - sum;
     vf = fz * dz;
-    fr = vf / v * dz * dr / sqrt(3.0);
+    fr = vf / v * dz * dr / std::sqrt(3.0);
     fr_vf = fr / vf;
     fz_vf = fz / vf;
 }
@@ -324,7 +334,6 @@ double Sodium_KinVis(double pvod, double ent) {
     double t_r = 0.0, v_r = 0.0;
     
     SodiumTV(pvod, ent, t_r, v_r);
-
     return AMUV(t_r) * v_r;
 }
 
@@ -335,8 +344,9 @@ double Sodium_Density(double pvod, double ent) {
     double t_r = 0.0, v_r = 0.0;
     
     SodiumTV(pvod, ent, t_r, v_r);
+    double ro = 1 / v_r;
 
-    return 1.0 / v_r;
+    return ro;
 }
 
 
@@ -385,7 +395,7 @@ void sy(std::vector<double>& AA, std::vector<double>& BB, std::vector<double>& C
 
 int is(int iarg) {
     if (iarg > 0) {
-        return 1;
+        return +1;
     } else {
         return -1;
     }

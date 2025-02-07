@@ -87,7 +87,7 @@ int main() {
     p_r = p_input;
     //double h_HeatExchangerOutput2 = 1268500.0;
 
-    std::ifstream file_in("T_in.txt");  
+    std::ifstream file_in("T_in.txt");
     if(file_in.is_open()) {
         for(int j = 0; j < mf; ++j) {
             for(int i = 0; i < 1; ++i) {
@@ -141,7 +141,7 @@ int main() {
         for (int j = 0; j < mf; ++j) {
             for (int i = 0; i < n; ++i) {
                 for (int l = 0; l < n_rod + 2; ++l) {
-                    t_rod[l][i][j][k] = 1400.0 - 7.5 * std::pow(l, 2);
+                    t_rod[l][i][j][k] = 1400.0 - 7.5 * std::pow(l + 1, 2);
                 }
                 t_fuel[i][j][k] = 1100.0;
                 t_clad[i][j][k] = 340.0;
@@ -188,8 +188,6 @@ int main() {
     int icont_key;
     std::cout << "Enter 0 for new or 1 for continue: ";
      std::cin >> icont_key;
-    //icont_key = 0;
-    //icont_key = 0;
 
     if (icont_key == 1) {
         read_all();
@@ -210,7 +208,6 @@ int main() {
     double dt;
     std::cout << "Enter dt = ";
     std::cin >> dt;
-    //dt = 0.005;
     int kk = 100;
 
     for (int k = 1; k <= kk; ++k) {
