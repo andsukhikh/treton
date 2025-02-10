@@ -244,7 +244,8 @@ void CrossConnection() {
         exit(1);
     }
 
-    // Заполнение NC и NE
+    // Заполнение 
+    // и NE
     k = 0;
     int kk = 0;
 
@@ -490,7 +491,7 @@ void read_all() {
 double V_r(int i, int j) {
     double Vx, Vy;
     Vxy_ij(i, j, Vx, Vy);
-    return sqrt(Vx * Vx + Vy * Vy);
+    return std::sqrt(Vx * Vx + Vy * Vy);
 }
 
 
@@ -505,19 +506,19 @@ void Vxy_ij(int i, int j, double &Vx_ij, double &Vy_ij) {
 
     double Vn1 = 0.0, Vn2 = 0.0, Vn3 = 0.0, Vn4 = 0.0, Vn5 = 0.0, Vn6 = 0.0;
 
-    if (jf1 != -1) Vn1 = is(jf1 - j) * V_n[i][bonds[0][j]];
-    if (jf2 != -1) Vn2 = is(jf2 - j) * V_n[i][bonds[1][j]];
-    if (jf3 != -1) Vn3 = is(jf3 - j) * V_n[i][bonds[2][j]];
-    if (jf4 != -1) Vn4 = is(jf4 - j) * V_n[i][bonds[3][j]];
-    if (jf5 != -1) Vn5 = is(jf5 - j) * V_n[i][bonds[4][j]];
-    if (jf6 != -1) Vn6 = is(jf6 - j) * V_n[i][bonds[5][j]];
+    if (jf1 != -1) Vn1 = is(jf1 - j) * V_n[i][onds[0][j]];
+    if (jf2 != -1) Vn2 = is(jf2 - j) * V_n[i][onds[1][j]];
+    if (jf3 != -1) Vn3 = is(jf3 - j) * V_n[i][onds[2][j]];
+    if (jf4 != -1) Vn4 = is(jf4 - j) * V_n[i][onds[3][j]];
+    if (jf5 != -1) Vn5 = is(jf5 - j) * V_n[i][onds[4][j]];
+    if (jf6 != -1) Vn6 = is(jf6 - j) * V_n[i][onds[5][j]];
 
     double V1 = (Vn1 - Vn4);
     double V2 = (Vn2 - Vn5);
     double V3 = (Vn3 - Vn6);
 
     Vx_ij = (2.0 * V1 + V2 - V3) / 6.0;
-    Vy_ij = (V2 + V3) / (2.0 * sqrt3);
+    Vy_ij = (V2 + V3) / 2.0 / sqrt3;
 }
 
 
@@ -546,19 +547,15 @@ void V_full_calc() {
             switch (i) {
                 case 0:
                     Vxy_ij(i, j, Vx, Vy);
-                    //std::cout << "case 0: Vx = " << Vx << ", Vy = " << Vy << std::endl;
                     break;
                 case n:
                     Vxy_ij(i - 1, j, Vx, Vy);
-                    //std::cout << "case n: Vx = " << Vx << ", Vy = " << Vy << std::endl;
-
                     break;
                 default:
                     Vxy_ij(i - 1, j, Vx1, Vy1);
                     Vxy_ij(i, j, Vx, Vy);
                     Vx = (Vx + Vx1) / 2.0;
                     Vy = (Vy + Vy1) / 2.0;
-                    //std::cout << "case default: Vx = " << Vx << ", Vy = " << Vy << std::endl;
                     break;
             }
 

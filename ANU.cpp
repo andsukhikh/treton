@@ -8,6 +8,8 @@ double ANU(double RE, double PR, double& A) {
         return 3.66;
     } else if (RE > 10000.0) {
         A = 1.0;
+        auto g = std::pow(PR, 0.33);
+        auto gg = std::pow(RE, 0.87);
         return 0.012 * std::pow(PR, 0.33) * std::pow(RE, 0.87);
     } else {
         A = 2.0;

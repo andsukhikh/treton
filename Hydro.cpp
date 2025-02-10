@@ -819,10 +819,15 @@ void Viter(double dt)
                     }
                 }
             }
+            auto fddgd = j;
+            auto V_qwerty = V_n;
+            auto V_rgwwe = V_z;
         }
     }
 
     if(iii == 1500) std::cout << "Piter. PVTerror > eps!" << std::endl;
+    //auto V_qwerty = V_n;
+    //auto V_rgwwe = V_z;
 }
 
 //Poisson Equation Source
