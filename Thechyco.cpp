@@ -48,19 +48,11 @@ double thehyco(double dt) {
         bool disbalanceSatisfied = false;
         for (int j = 0; j < 50; ++j) {
             KinViscosity();
-            //std::cout << "KinViscosity in thehyco is completely p = " << p[i][j] << std::endl;
             FormFriction();
-            //std::cout << "FormFriction in thehyco is completely p = " << p[i][j] << std::endl;
             Viter(dt);
-            //std::cout << "Viter in thehyco is completely p = "<< p[i][j] << std::endl;
             pes(dt);
-            //std::cout << "pes in thehyco is completely p = " << p[i][j]<< std::endl;
             piter();
-            //std::cout << "piter in thehyco is completely p[0][0] = "<< p[i][j] << std::endl;
-            //std::cout << "V_z["<< i << "][" << j << "] = "<< V_z[i][j] << std::endl;
-
             MassDisb = MassDisbalance(dt);
-            //std::cout << "MassDisbalance in thehyco is completely p = "<< p[i][j] << std::endl;
 
             if (MassDisb < Disbalance) {
                 disbalanceSatisfied = true;
@@ -72,17 +64,11 @@ double thehyco(double dt) {
             std::cout << "MassDisbalance = " << MassDisb << std::endl;
         }
 
-        //std::cout << "iteration = " << iterations << std::endl;
-        //std::cout << "i = " << i  << std::endl;
-        //std::cout << "j = " << i << std::endl;
-
         alf();
         HeatConduction();
         heat(dt);
         density();
     }
-    /*auto sodium_density = ro[n - 1][mf - 1];
-    auto pressure = p[n - 1][mf - 1];*/
 
     double thehyco = 0.0;
 
@@ -90,12 +76,8 @@ double thehyco(double dt) {
     if (EnerCoreDisbalance() > Disbalance) thehyco = 1;
     if (EnerFluiDisbalance() > Disbalance) thehyco = 1;
 
-    //std::cout << "thehyco = " << static_cast<int>(thehyco) << std::endl;
-
     rod_average();
-    //std::cout << "rod_average in thehyco is completely" << std::endl;
     rod_property();
-    //std::cout << "rod_property in thehyco is completely" << std::endl;
     
     return thehyco;
 }
@@ -132,13 +114,11 @@ void HeatHydroOnce() {
     }
 
 
-    //заполнение blockade
     for (auto& var : blockade) {
         var = 0;
     }
 
     if (manager != 1) {
-        // readNamelistFile(HEATandHYDROlist, "THEHYCO.INI");
         CrossConnection();
         HeatHydroGeometry();
         density();
@@ -149,7 +129,6 @@ void HeatHydroOnce() {
     }
 }
 
-             //WARNING поменял jx + 1 -> jx и ... = k++ на ... = ++k в bonds//****************//
 void CrossConnection() {
     double n_x;
     double n_y;
@@ -162,13 +141,8 @@ void CrossConnection() {
 
 
     for (int j = 0; j != mf; ++j) {
-        //int i = -1;
         int i = 0;
         for (int jx = 0; jx != mf; ++jx) {
-            //const auto crd_0jx = crd[0][jx];
-            //const auto crd_0j = crd[0][j];
-            //const auto crd_1jx = crd[1][jx];
-            //const auto crd_1j = crd[1][j];
 
             n_x = crd[0][jx] - crd[0][j];
             n_y = crd[1][jx] - crd[1][j];
@@ -203,17 +177,14 @@ void CrossConnection() {
         }
     }
 
-    int k = -1;// k = 0;
+    int k = -1;
     for (int j = 0; j < mf; ++j) {
         for (int i = 0; i < nbf; ++i) {
             int jf = bonds[i][j];
-
-            //std::cout << "bonds[" << i << "][" << j << "] = " << bonds[i][j] << std::endl;
-
+            
             if (j < jf || jf == -1) {
                 ++k;
                 onds[i][j] = k;
-                //std::cout << "onds[" << i << "][" << j << "] = " << onds[i][j] << std::endl;
             } else {
 
                 int i_f;
@@ -229,13 +200,9 @@ void CrossConnection() {
                     std::cout << "Error in BONDS; aborting..." << std::endl;
                     exit(1);
                 }
-                //std::cout << "onds[" << i << "][" << j << "] = " << onds[i][j] << std::endl;
             }
-            //std::cout << "bonds[" << i << "][" << j << "] = " << bonds[i][j] << std::endl;
         }
     }
-
-    //const auto var = onds[nbf- 1][mf - 1];
 
     if (k + 1 != mV_n) {
         std::cout << "Для данного mf неправильно указано mV_n!" << std::endl;
@@ -254,29 +221,28 @@ void CrossConnection() {
             if (i == 0) {
                 //NC[k] = 1;
                 NC[k] = 0;
-                NE[kk] = i + 1 + j * n; // +1 для индексации в C++
+                NE[kk] = i + 1 + j * n; 
                 ++kk;
             } else if (i == n - 1) {
                 //NC[k] = 1;
                 NC[k] = 0;
-                NE[kk] = i - 1 + j * n; // индексация
+                NE[kk] = i - 1 + j * n;
                 ++kk;
             } else {
                 //NC[k] = 2;
                 NC[k] = 1;
-                NE[kk] = i - 1 + j * n; // индексация
+                NE[kk] = i - 1 + j * n; 
                 ++kk;
-                NE[kk] = i + 1 + j * n; // индексация
+                NE[kk] = i + 1 + j * n; 
                 ++kk;
             }
             for (int l = 0; l < nbf; ++l) {
                 if (bonds[l][j] != -1) {
                     ++NC[k];
-                    NE[kk] = (bonds[l][j]) * n + i ; // индексация
+                    NE[kk] = (bonds[l][j]) * n + i ;
                     ++kk;
                 }
             }
-            //std::cout << "NE[" << kk << "] = " << NE[kk] << std::endl;
             ++k;
         }
     }
@@ -289,21 +255,13 @@ void CrossConnection() {
     for (int i = 1; i < ( n * mf + 1 ); ++i) {
         int j = NC[i] + 1;
         NC[i] = k + 1;
-        //std::cout << "NC[" << i << "] = " << NC[i] << std::endl;
         k += j;
     }
-
-   /* for (int j = 0; j != mf; ++j) {
-        for (int i = 0; i != nbf; ++i) {
-            std::cout << "onds[" << i + 1 << "][" << j + 1 << "] = " << onds[i][j] << std::endl;
-        }
-    }*/
 }
 
 
 void HeatHydroGeometry() {
     fz = 0.5 * std::sqrt(3.0) * dr * dr;
-
     double v = fz * dz;
 
     double sum = 0.0;
@@ -312,7 +270,7 @@ void HeatHydroGeometry() {
         sum += n_RodsInTBC[k] * (a_fuel[k] + a_clad[k]);
     }
     
-    fz -= 0.25 * Pi * D_tube * D_tube - sum;
+    fz -= 0.25 * Pi * D_tube * D_tube + sum;
     vf = fz * dz;
     fr = vf / v * dz * dr / std::sqrt(3.0);
     fr_vf = fr / vf;
@@ -354,9 +312,9 @@ double Sodium_Density(double pvod, double ent) {
 void density() {
     InOut_f();
 
-    double Cp_input = CpSodium(t_CoreInput);
-    double ro_output = Sodium_Density(p_output, h_CoreOutput);
-    double Cp_output = CpSodium(t_CoreOutput);
+    Cp_input = CpSodium(t_CoreInput);
+    ro_output = Sodium_Density(p_output, h_CoreOutput);
+    Cp_output = CpSodium(t_CoreOutput);
 
     for (int j = 0; j < mf; ++j) {
         ro_input[j] = Sodium_Density(p_input, h_HeatExchangerOutput_new[j]);
@@ -382,12 +340,9 @@ void sy(std::vector<double>& AA, std::vector<double>& BB, std::vector<double>& C
         double R = AA[i] / BB[i - 1];
         BB[i] -= R * CC[i - 1];
         DD[i] -= R * DD[i - 1];
-        //std::cout << "\tBB[" << i << "] = " << BB[i] << std::endl;
-        //std::cout << "\tDD[" << i << "] = " << DD[i] << std::endl;
     }
 
     DD[IU] = DD[IU] / BB[IU];
-    //std::cout << "\tDD[" << IU - 1 << "] = " << DD[IU - 1] << std::endl;
     for (int i = IU - 1; i >= IL; --i) {
         DD[i] = (DD[i] - CC[i] * DD[i + 1]) / BB[i];
     }
@@ -496,7 +451,6 @@ double V_r(int i, int j) {
 
 
 void Vxy_ij(int i, int j, double &Vx_ij, double &Vy_ij) {
-    const double sqrt3 = 1.7320508;
     int jf1 = bonds[0][j];
     int jf2 = bonds[1][j];
     int jf3 = bonds[2][j];
@@ -518,17 +472,13 @@ void Vxy_ij(int i, int j, double &Vx_ij, double &Vy_ij) {
     double V3 = (Vn3 - Vn6);
 
     Vx_ij = (2.0 * V1 + V2 - V3) / 6.0;
-    Vy_ij = (V2 + V3) / 2.0 / sqrt3;
+    Vy_ij = (V2 + V3) / 2.0 / std::sqrt(3);
 }
 
 
 void VrFi_nm(int i, int j, double Vn, double Vm, double &Vr, double &Fi) {
     Vr = std::sqrt(Vn * Vn + Vm * Vm);
     Fi = std::asin(Vm / Vr);
-
-    //std::cout << "Vm = " << Vm << std::endl;
-    //std::cout << "Vr = " << Vr << std::endl;
-
     
     if (Vn < 0.0) {
         Fi = Pi - Fi;
@@ -539,7 +489,6 @@ void VrFi_nm(int i, int j, double Vn, double Vm, double &Vr, double &Fi) {
 
 
 void V_full_calc() {
-    const double sqrt3 = 1.7320508;
     double Vx, Vy, Vx1, Vy1;
 
     for (int i = 0; i < n + 1; ++i) {

@@ -114,13 +114,13 @@ namespace capacity {
 }
 
 namespace velocity {
-    std::vector<std::vector<double>> V_z(n + 1, std::vector<double>(mf)); // n + 1
+    std::vector<std::vector<double>> V_z(n + 1, std::vector<double>(mf));
     std::vector<std::vector<double>> V_n(n + 1, std::vector<double>(mV_n));
-    std::vector<std::vector<std::vector<double>>> V_full(3, std::vector<std::vector<double>>(n + 1, std::vector<double> (mf))); // 3 * (n + 1)
+    std::vector<std::vector<std::vector<double>>> V_full(3, std::vector<std::vector<double>>(n + 1, std::vector<double> (mf))); 
 }
 
 namespace nodes {
-    std::vector<std::vector<int>> crd(2, std::vector<int>(mf)); // nodes 
+    std::vector<std::vector<int>> crd(2, std::vector<int>(mf));
 }
 
 namespace bondaries {
@@ -149,7 +149,7 @@ namespace boundary_temperature {
 
 namespace core_geometry {
     double D_tube, dz, dr, fz, fr, vf, fr_vf, fz_vf; 
-    std::vector<int> n_RodsInTBC(type); // number of rods in TBC 
+    std::vector<int> n_RodsInTBC(type);
 }
 
 namespace loop {

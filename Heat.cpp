@@ -30,7 +30,6 @@ void RodOnce() {
             for (int j = 0; j < type; ++j)
             {
                 tmp[i][j] = nlr.get<double>("tmp", 1.0, i);
-                //std::cout << tmp[i][j] << std::endl;
             }
         }
 
@@ -231,18 +230,6 @@ double EneRoDisbalance() {
 }
 
 
-//void transposeMatrix(double* before, std::vector<double>& after, int numRow, int numCol)
-//{
-//    for (int i = 0; i < numCol; ++i)
-//    {
-//        for (int j = 0; j < numRow; ++j)
-//        {
-//            after[i * numRow + j] = *(before + numCol * j + i);
-//        }
-//    }
-//}
-
-
 void separationMatrix2D(std::vector<std::vector<double>>& before, std::vector<double>& after, int numCol)
 {
     for (int i = 0; i < n_rod + 2; ++i)
@@ -296,7 +283,6 @@ void heat(double dt) {
 
             p_r = p[i][j];
             h_r = h_f[i][j];
-            //std::cout << "flag of 1 in Heat in Thechyco has worked  " << p_r << std:: endl;
 
             SodiumTV(p_r, h_r, t_r, v_r);
 
@@ -305,13 +291,6 @@ void heat(double dt) {
 
             for (int k = 0; k < type; ++k) {
                 double Qv = Q_neutron[i][j][k] / (a_fuel[k] * dz * n_RodsInTBC[k]);
-                // вызов функций ниже сильно замедляет код(наверное)
-
-               /* std::vector<double> transpose_OLDt_rod(n_rod + 2);
-                std::vector<double> transpose_t_rod(n_rod + 2);
-                std::vector<double> transpose_geo_left(n_rod + 2);
-                std::vector<double> transpose_geo_right(n_rod + 2);
-                std::vector<double> transpose_bundle(n_rod + 2);*/
 
                 separationMatrix4D(OLDt_rod, transposed_OLDt_rod, i, j, k);
                 separationMatrix4D(t_rod, transposed_t_rod, i, j, k);
@@ -322,7 +301,6 @@ void heat(double dt) {
                 double RodError = Rod(dt, transposed_OLDt_rod, transposed_t_rod, alfa[i][j], t_f[i][j],
                                         Qv, transposed_geo_left, transposed_geo_right, transposed_bundle, fuel_l[i][j][k], fuel_rc[i][j][k]);
                 swapOnNewValue(transposed_t_rod, t_rod, i, j, k);
-                /*std::cout << "RodError = " << RodError <<  std::endl;*/
 
                 if (RodError > error) error = RodError;
                 tmp2 += P_rod[k] * (t_rod[n_rod + 1][i][j][k] - t_f[i][j]) * n_RodsInTBC[k];
@@ -332,7 +310,6 @@ void heat(double dt) {
             Vect_B[kk] = OLDh_f[i][j] * OLD_ro[i][j] / dt + tmp2 * alfadz_vf;
         }
 
-        //std::cout << "flag of 2 in Heat in Thechyco has worked" << std:: endl;
         int i = 0;
         int kk = j * n + i;
         double V_up = fz_vf * V_z[i + 1][j];

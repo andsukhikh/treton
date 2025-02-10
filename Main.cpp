@@ -203,7 +203,6 @@ int main() {
 
         for (int i = 0; i < 100; ++i) {
             icall = thehyco(dt);
-            std::cout << t_f[1][1] << std::endl;
             if (icall < 1) break;
             time += dt;
         }
@@ -217,8 +216,6 @@ int main() {
         // –асчет распределени€ компонент полного вектора скорости (Vx, Vy, Vz)
         V_full_calc();
 
-
-        // ѕол€ скоростей в поперечном сечении, подготовленные дл€ векторного представлени€
         std::ofstream VxVy_z_file(".//output//VxVy_z.dat");
         for (int ii = 0; ii < n + 1; ++ii) {
             for (int j = 0; j < mf; ++j) {
@@ -226,7 +223,7 @@ int main() {
                 double Fi_nm;
                 VrFi_nm(ii, j, V_full[0][ii][j], V_full[1][ii][j], Vr_nm, Fi_nm);
 
-                VxVy_z_file.setf(std::ios::scientific | std::ios::right);
+                VxVy_z_file.setf(std::ios::scientific);
                 VxVy_z_file.precision(6);
 
                 VxVy_z_file << std::setw(14) << xx[j] 
@@ -236,9 +233,7 @@ int main() {
             }
         }
         VxVy_z_file.close();
-      
 
-        // ѕол€ скоростей в центральном продольном сечении, подготовленные дл€ векторного представлени€
         std::ofstream VxVz_file(".//output//VxVz.dat");
         for (int j = 75; j < 88; ++j) {
             for (int ii = 0; ii < n + 1; ++ii) {
@@ -332,14 +327,14 @@ int main() {
         // Vz.dat
         std::ofstream Vz_file(".//output//Vz.dat");
         for (int j = 0; j < mf; ++j) {
+            Vz_file.precision(6);
+            Vz_file.setf(std::ios::fixed);
+            Vz_file << std::setw(12) << xx[j]
+                    << std::setw(12) << yy[j];
+
             for (int ii = 0; ii < n + 1; ++ii) {
 
-                Vz_file.precision(6);
-                Vz_file.setf(std::ios::fixed);
-
-                Vz_file << std::setw(12) << xx[j]
-                        << std::setw(12) << yy[j]
-                        << std::setw(12) << V_z[ii][j];
+                Vz_file << std::setw(12) << V_z[ii][j];
             }
             Vz_file << std::endl;
         }
@@ -348,14 +343,13 @@ int main() {
         // G.dat
         std::ofstream G_file(".//output//G.dat");
         for (int j = 0; j < mf; ++j) {
+            G_file.precision(6);
+            G_file.setf(std::ios::fixed);
+            G_file << std::setw(12) << xx[j]
+                   << std::setw(12) << yy[j];
             for (int ii = 0; ii < n + 1; ++ii) {
 
-                G_file.precision(6);
-                G_file.setf(std::ios::fixed);
-
-                G_file  << std::setw(12) << xx[j] 
-                        << std::setw(12) << yy[j]
-                        << std::setw(12) << V_z[ii][j] * fz;
+                G_file << std::setw(12) << V_z[ii][j] * fz;
             }
             G_file << std::endl;
         }
@@ -504,8 +498,8 @@ int main() {
             file.setf(std::ios::fixed);
             file.precision(2);
 
-            file << std::setw(10) << 0
-                 << std::setw(10) << 0;
+            file << std::setw(10) << 0.0
+                 << std::setw(10) << 0.0;
 
             for (int i = 0; i < n; ++i) {
                 file.precision(4);
@@ -548,7 +542,7 @@ int main() {
             file.precision(4);
 
             for (int l = 0; l < n_rod + 2; ++l) {
-                file << std::setw(12) << t_rod[l][ii][77][0];
+                file << std::setw(12) << t_rod[l][ii][76][0];
             }
             file << std::endl;
         }
@@ -602,14 +596,14 @@ int main() {
 
         std::ofstream XXX_file(".//output//XXX.dat");
         XXX_file << "Max T topl: " << tmax << "\n"
-                 << "V kassete # " << jjmax << "\n"
-                 << "V el-te # " << iimax << "\n"
+                 << "V kassete # " << jjmax + 1 << "\n"
+                 << "V el-te # " << iimax + 1<< "\n"
                  << "Max T tepl: " << t_tepl_max << "\n"
-                 << "V kassete # " << jjjmax << "\n"
-                 << "V el-te # " << iiimax << "\n"
+                 << "V kassete # " << jjjmax + 1 << "\n"
+                 << "V el-te # " << iiimax + 1<< "\n"
                  << "Max T obol: " << t_obol_max << "\n"
-                 << "V kassete # " << jjjjmax << "\n"
-                 << "V el-te # " << iiiimax << std::endl;
+                 << "V kassete # " << jjjjmax + 1 << "\n"
+                 << "V el-te # " << iiiimax + 1 << std::endl;
         XXX_file.close();
 
         // 1. t_rXXX.dat
@@ -628,13 +622,15 @@ int main() {
         // 2. t_r_obl_vnutr.dat
         file.open(".//output//t_r_obl_vnutr.dat");
         for (int j = 0; j < mf; ++j) {
-            for (int ii = 0; ii < n; ++ii) {
-                file.setf(std::ios::fixed);
-                file.precision(4);
 
-                file << std::setw(12) << 0.0 
-                     << std::setw(12) << 0.0 
-                     << std::setw(12) << t_rod[n_rod][ii][j][0];
+            file.setf(std::ios::fixed);
+            file.precision(4);
+            file << std::setw(12) << 0.0
+                 << std::setw(12) << 0.0;
+
+            for (int ii = 0; ii < n; ++ii) {
+
+                file << std::setw(12) << t_rod[n_rod][ii][j][0];
             }
             file << "\n";
         }
@@ -643,13 +639,15 @@ int main() {
         // 3. t_r_obl_naruj.dat
         file.open(".//output//t_r_obl_naruj.dat");
         for (int j = 0; j < mf; ++j) {
-            for (int ii = 0; ii < n; ++ii) {
-                file.setf(std::ios::fixed);
-                file.precision(4);
 
-                file << std::setw(12) << 0.0
-                     << std::setw(12) << 0.0 
-                     << std::setw(12) << t_rod[n_rod + 1][ii][j][0];
+            file.setf(std::ios::fixed);
+            file.precision(4);
+            file << std::setw(12) << 0.0
+                 << std::setw(12) << 0.0;
+
+            for (int ii = 0; ii < n; ++ii) {
+
+                file << std::setw(12) << t_rod[n_rod + 1][ii][j][0];
             }
             file << std::endl;
         }
@@ -658,13 +656,13 @@ int main() {
         // 4. koeff_z.dat
         file.open(".//output//koeff_z.dat");
         for (int j = 0; j < mf; ++j) {
-            for (int i = 0; i < n; ++i) {
-                file.setf(std::ios::fixed);
-                file.precision(4);
+            file.setf(std::ios::fixed);
+            file.precision(4);
+            file << std::setw(12) << 0.0
+                 << std::setw(12) << 0.0;
 
-                file << std::setw(10) << 0.0
-                     << std::setw(10) << 0.0 
-                     << std::setw(10)<< effK_z[i][j];
+            for (int i = 0; i < n; ++i) {
+                file << std::setw(10)<< effK_z[i][j];
             }
             file << std::endl;
         }
@@ -698,15 +696,15 @@ int main() {
             G1 += V_z[n][j] * fz;
         }
 
-        file.precision(6);
-        file << " " << std::setw(12) << G
-                    << std::setw(12) << G1
-                    << std::setw(12) << Q
-                    << std::setw(12) << t_CoreOutput
-                    << std::setw(12) << t_CoreInput
-                    << std::setw(12) << (t_CoreOutput - t_CoreInput)
-                    << std::setw(12) << ro_input[76]
-                    << std::setw(12) << ro_output << std::endl;
+        file.precision(4);
+        file << "G = " << G << "\n"
+             << "G1 = " << G1 << "\n"
+             << "Q = " << Q << "\n"
+             << "t_CoreOutput " << t_CoreOutput << "\n"
+             << "t_CoreInput = " << t_CoreInput << "\n"
+             << "(t_CoreOutput - t_CoreInput) = " << (t_CoreOutput - t_CoreInput) << "\n"
+             << "ro_input[76] = " << ro_input[76] << "\n"
+             << "ro_output = " << ro_output << std::endl;
         file.close();
     
         if (icall < 1) {

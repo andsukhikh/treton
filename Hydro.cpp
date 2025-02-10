@@ -131,15 +131,13 @@ void Viter(double dt)
     int sum;
     double error = 1.0;
     int iii = 0;
-    double V_up, V_down, jf, jV_n, const_Vn, cr_M, roV_n, Vn, e;
-    /*выбрать инициализацию переменных в начале или в конце*/
-        
+    double V_up, V_down, jf, jV_n, const_Vn, cr_M, roV_n, Vn, e;   
 
     while ((error > PVTerror) && (iii < 1500)) 
     {
         error = 0.0;
-        iii++;
-                    /* V_z */
+        iii++;  
+                    /**************V_z ******************/
         std::fill(targ.begin(), targ.end(), 0);
 
         sum = 0;
@@ -164,7 +162,7 @@ void Viter(double dt)
 
                 int i = 0;
 
-                switch(blockade[j]) //potentional error of iterator
+                switch(blockade[j])
                 {
                     case 1: 
                         bPV[i] = 1.0;
@@ -195,7 +193,6 @@ void Viter(double dt)
                             if (jf != -1)
                             {
                                 int jV_n = onds[k][j];
-                                //if (jV_n < 0) { std::cout << "onds[" << k << "][" << j << "] = " << onds[k][j] << std::endl; }
                                 double Vn = fr_vf * is(jf - j) * V_n[i][jV_n];
                                 double cr_M = fr_vf * 0.5 * (effM[i][j] + effM[i][jf]) / dr;
                                 bPV[i] += cr_M;
@@ -288,26 +285,10 @@ void Viter(double dt)
 
                     }
                 }
-// возможно, ошибка в логике алгоритма функции sy
-                //std::cout << "sy j = " << j << "\n";
-                //if (j == 162)
-                //{
-                //    for (auto i = 0; i != aPV.size(); ++i)
-                //    {
-                //        std::cout << "\taPV[" << i << "] = " << aPV[i] << std::endl;
-                //        std::cout << "\tbPV[" << i << "] = " << bPV[i] << std::endl;
-                //        std::cout << "\tcPV[" << i << "] = " << cPV[i] << std::endl;
-                //        std::cout << "\tdPV[" << i << "] = " << dPV[i] << std::endl;
-                //    }
-                //}
                 sy(aPV, bPV, cPV, dPV, 0, n);
                 for(int i = 0; i < n + 1; i++) 
                 {
                     V_z[i][j] = dPV[i];
-                    /*if (i == n && j == 16)
-                    {
-                        std::cout << "V_z[" << i << "][" << j << "] = " << V_z[i][j] << std::endl;
-                    }*/
                     if(ePV[i] != 0.0)
                     {
                         e = abs(1.0 - V_z[i][j] / ePV[i]);
@@ -323,7 +304,6 @@ void Viter(double dt)
 
         std::fill(targ.begin(), targ.end(), 0);
 
-// В фортране sum = 0, вынужденна мера принять sum = 1, иначе цикл бесконечный
         sum = 0;
         while (sum < mf) {
             x = random_number();
@@ -377,7 +357,6 @@ void Viter(double dt)
                                     }
                                 }
                             }
-                            //std::cout << "Hyrdo flags(viter func) " << 0 <<" is completely " << std::endl;
                             int j1 = bonds[0][j];
                             int j2 = bonds[1][j];
                             int j3 = bonds[2][j];
@@ -397,7 +376,6 @@ void Viter(double dt)
                                 case 0:
                                     for(int i = 0; i < n; i++) {
                                         //a
-                                        //const auto var = onds[2][j];
                                         V3 = (is(j3-j) * V_n[i][onds[2][j]] - is(j6-j) * V_n[i][onds[5][j]] 
                                             + is(jf3-jf) * V_n[i][onds[2][jf]]) * fr_vf;
                                         if (V3 > 0.0) {
@@ -458,7 +436,6 @@ void Viter(double dt)
                                             dPV[i] = dPV[i] - V3 * ro[i][jf] * Vx;
                                         }
                                     }
-                                    //std::cout << "Hyrdo flags " << 1 << " is completely " << std::endl;
                                     break;
 
                                 case 1:
@@ -595,7 +572,6 @@ void Viter(double dt)
                                             dPV[i] -= V3 * ro[i][jf] * Vx;
                                         }
                                     }
-                                    //std::cout << "Hyrdo flags " << 3 << " is completely " << std::endl;
                                     break;
 
                                 case 3:
@@ -664,7 +640,6 @@ void Viter(double dt)
                                             dPV[i] -= V3 * ro[i][jf] * Vx;
                                         }
                                     }
-                                    //std::cout << "Hyrdo flags " << 4 << " is completely " << std::endl;
                                     break;
 
                                 case 4:
@@ -733,7 +708,6 @@ void Viter(double dt)
                                             dPV[i] -= V3 * ro[i][jf] * Vx;
                                         }
                                     }
-                                    //std::cout << "Hyrdo flags " << 5 << " is completely " << std::endl;
                                     break;
                                 
                                 case 5:
@@ -803,7 +777,6 @@ void Viter(double dt)
                                         }
                                     }
                                     break;
-                                    //std::cout << "Hyrdo flags " << 6 <<" is completely " << std::endl;
                             }
 
                             sy(aPV, bPV, cPV, dPV, 0, n - 1);
@@ -819,18 +792,11 @@ void Viter(double dt)
                     }
                 }
             }
-            auto fddgd = j;
-            auto V_qwerty = V_n;
-            auto V_rgwwe = V_z;
         }
     }
 
     if(iii == 1500) std::cout << "Piter. PVTerror > eps!" << std::endl;
-    //auto V_qwerty = V_n;
-    //auto V_rgwwe = V_z;
 }
-
-//Poisson Equation Source
 
 void pes(double dt) {
 
@@ -840,7 +806,7 @@ void pes(double dt) {
     
 
     for(int j = 0; j < mf; j++) {
-        //dp_dz
+                                    /*********dp_dz**********/
         int i = 0; 
         switch (blockade[j]) {
             case 1:
@@ -849,14 +815,6 @@ void pes(double dt) {
             case 0:
                 dp_dz[i][j] = OLD_ro[i][j] * oldV_z[i][j] / dt -
                             ro[i][j] * V_z[i][j] * effK_z[i][j] * std::abs(V_z[i][j]);
-                /*std::cout << "in pes: dt = " << dt << " " << V_z[i][j] << " " << effK_z[i][j] << " " << dp_dz[i][j]<<  std::endl;
-                std::cout << "in pes: effK_z[i][j] = " << effK_z[i][j] << std::endl;
-
-                {
-                    std::cout << "\tfz_vf = " << fz_vf << std::endl;
-                    std::cout << "\tV_z[i][j] = " << V_z[i][j] << std::endl;
-                    std::cout << "\V_z[i + 1][j] = " << V_z[i + 1][j] << std::endl;
-                }*/
                 double V_up = fz_vf * (V_z[i][j] + V_z[i + 1][j]);
                 double V_down = -2.0 * fz_vf * V_z[i][j];
 
@@ -931,14 +889,6 @@ void pes(double dt) {
         i = n;
         dp_dz[i][j] = OLD_ro[i - 1][j] * oldV_z[i][j] / dt -
                     ro[i - 1][j] * V_z[i][j] * effK_z[i][j] * std::abs(V_z[i][j]);
-        //{
-        //    std::cout << "\tOLD_ro[i - 1][j] = " << OLD_ro[i - 1][j] << std::endl;
-        //    std::cout << "\toldV_z[i][j] = " << oldV_z[i][j] << std::endl;
-        //    std::cout << "\tro[i - 1][j] = " << ro[i - 1][j] << std::endl;
-        //    std::cout << "\tV_z[i][j] = " << V_z[i][j] << std::endl;
-        //    std::cout << "\tstd::abs(V_z[i][j]) = " << std::abs(V_z[i][j]) << std::endl;
-        //}
-        //std::cout << "in pes: dp_dz[i][j] = " << dp_dz[i][j]  << std::endl;
 
         double V_up = 2.0 * fz_vf * V_z[i][j];
         double V_down = -fz_vf * (V_z[i][j] + V_z[i - 1][j]);
@@ -971,7 +921,7 @@ void pes(double dt) {
             }
         }
 
-            //dp_dn:
+                                /******************dp_dn*****************/
         for(int k = 0; k < nbf; ++k) {
             double jf = bonds[k][j];
             if(jf == -1) continue;
@@ -1001,7 +951,6 @@ void pes(double dt) {
                     } else {
                         if (i == 0) {
                             dp_dn[i][jV_n] -= V_down * ro_input[jV_n] * V_n[i][jV_n];
-                            //std::cout << "ro_input[" << jV_n << "] = " << ro_input[jV_n] << std::endl;
                         } else {
                             dp_dn[i][jV_n] -= V_down * (ro[i - 1][j] + ro[i - 1][jf]) / 2.0 * V_n[i - 1][jV_n];
                         }
@@ -1369,10 +1318,8 @@ void pes(double dt) {
     for (int j = 0; j < mf; ++j) {
         for (int i = 0; i < n; ++i) {
             source[i][j] = (dp_dz[i + 1][j] - dp_dz[i][j]) * fz + vf * (ro[i][j] - OLD_ro[i][j]) / (dt * dt);
-            //std::cout << "uncorrect output in pes: " << dp_dz[i + 1][j] << " " << dp_dz[i][j] << " " << ro[i][j] << " " << OLD_ro[i][j] << std::endl;
         }
-        /*std::cout << "exit pes in hydro" << std::endl;
-        exit(1);*/
+
         
         source[0][j] = source[0][j] - Gravity * (ro[0][j] - ro_input[j]) * fz / dz;
         
@@ -1390,9 +1337,6 @@ void pes(double dt) {
             }
         }
     }
-    /*std::cout << "exit pes in hydro" << std::endl;
-    exit(1);*/
-
 }
 
 
@@ -1404,7 +1348,6 @@ void piter() {
     double x;
     int sum;
     std::vector<int> targ(mf);
-    //std::cout << p[0][0] << std::endl;
 
     while (error > PVTerror && iii < 1500) {
         error = 0.0;
@@ -1434,13 +1377,11 @@ void piter() {
                         bPV[i] = -fz_dz * 3.0;
                         cPV[i] = fz_dz;
                         dPV[i] = -fz_dz * 2.0 * p_input + source[i][j];
-                        // std::cout << "piter source " << source[i][j] << std::endl;
                         break;
                     case 1:
                         bPV[i] = -fz_dz;
                         cPV[i] = fz_dz;
                         dPV[i] = source[i][j];
-                        // std::cout << "piter dPV with no blockade " << dPV[i] << std::endl;
                         break;
                 }
 
@@ -1449,7 +1390,6 @@ void piter() {
                     bPV[i] = -fz_dz * 2.0;
                     cPV[i] = fz_dz;
                     dPV[i] = source[i][j];
-                    // std::cout << "piter dPV " << dPV[i] << std::endl;
                 }
 
                 i = n - 1;
@@ -1569,12 +1509,10 @@ void FormFriction() {
             if (jf == -1) continue;
 
             int jV_n = onds[k][j];
-            //if (jV_n < 0)  std::cout << "bonds[" << k << "][" << j << "] < 0" << std::endl;
             if (V_nMap[jV_n] == 0) {
                 for (int i = 0; i < n; ++i) {
                     double vel = V_nz(i, j, jf, jV_n);
                     if (vel == 0.0) {
-                        /*if (jV_n < 0)  std::cout << "bonds[" << i << "][" << j << "] < 0" << std::endl;*/
                         effK_r[i][jV_n] = 0.0;
                     } else {
                         double re = vel * d_mesh / Sodium_KinVis((p[i][j] + p[i][jf]) / 2.0,
