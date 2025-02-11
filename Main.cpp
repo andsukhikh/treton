@@ -213,7 +213,7 @@ int main() {
         // Расчет распределения компонент полного вектора скорости (Vx, Vy, Vz)
         V_full_calc();
 
-        std::ofstream VxVy_z_file(".//output//VxVy_z.dat");
+        std::ofstream VxVy_z_file("..//output//VxVy_z.dat");
         for (int ii = 0; ii < n + 1; ++ii) {
             for (int j = 0; j < mf; ++j) {
                 double Vr_nm;
@@ -231,7 +231,7 @@ int main() {
         }
         VxVy_z_file.close();
 
-        std::ofstream VxVz_file(".//output//VxVz.dat");
+        std::ofstream VxVz_file("..//output//VxVz.dat");
         for (int j = 75; j < 88; ++j) {
             for (int ii = 0; ii < n + 1; ++ii) {
                 double Vr_nm;
@@ -250,7 +250,7 @@ int main() {
         VxVz_file.close();
 
         // roVz_xz.dat
-        std::ofstream roVz_xz_file(".//output//roVz_xz.dat");
+        std::ofstream roVz_xz_file("..//output//roVz_xz.dat");
         for (int j = 75; j < 88; ++j) {
 
             roVz_xz_file.setf(std::ios::scientific | std::ios::right);
@@ -273,7 +273,7 @@ int main() {
         roVz_xz_file.close();
 
         // T_xz.dat
-        std::ofstream T_xz_file(".//output//T_xz.dat");
+        std::ofstream T_xz_file("..//output//T_xz.dat");
         for (int j = 75; j < 88; ++j) {
             for (int ii = 0; ii < n; ++ii) {
 
@@ -288,7 +288,7 @@ int main() {
         T_xz_file.close();
 
         // Vz77.dat
-        std::ofstream Vz77_file(".//output//Vz77.dat");
+        std::ofstream Vz77_file("..//output//Vz77.dat");
         for (int ii = 0; ii < n + 1; ++ii) {
             Vz77_file << std::setw(5) << std::right << ii + 1 << " "
                       << std::setw(8) << std::setprecision(6) << V_z[ii][77] << std::endl;
@@ -296,7 +296,7 @@ int main() {
         Vz77_file.close();
 
         // Kord.dat
-        std::ofstream Kord_file(".//output//Kord.dat");
+        std::ofstream Kord_file("..//output//Kord.dat");
         for (int j = 0; j < mf; ++j) {
             Kord_file.setf(std::ios::fixed);
 
@@ -307,7 +307,7 @@ int main() {
         Kord_file.close();
 
         // V_n.dat
-        std::ofstream V_n_file(".//output//V_n.dat");
+        std::ofstream V_n_file("..//output//V_n.dat");
         for (int j = 0; j < mf; ++j) {
             for (int ii = 0; ii < n + 1; ++ii) {
 
@@ -322,7 +322,7 @@ int main() {
         V_n_file.close();
 
         // Vz.dat
-        std::ofstream Vz_file(".//output//Vz.dat");
+        std::ofstream Vz_file("..//output//Vz.dat");
         for (int j = 0; j < mf; ++j) {
             Vz_file.precision(6);
             Vz_file.setf(std::ios::fixed);
@@ -338,7 +338,7 @@ int main() {
         Vz_file.close();
 
         // G.dat
-        std::ofstream G_file(".//output//G.dat");
+        std::ofstream G_file("..//output//G.dat");
         for (int j = 0; j < mf; ++j) {
             G_file.precision(6);
             G_file.setf(std::ios::fixed);
@@ -353,7 +353,7 @@ int main() {
         G_file.close();
 
         //G_inp.dat
-        std::ofstream file(".//output//G_inp.dat");
+        std::ofstream file("..//output//G_inp.dat");
         for (int j = 0; j < mf; ++j) {
             file.precision(6);
             file.setf(std::ios::fixed);
@@ -365,7 +365,7 @@ int main() {
         file.close();
 
         // G_out.dat
-        file.open(".//output//G_out.dat");
+        file.open("..//output//G_out.dat");
         for (int j = 0; j < mf; ++j) {
             file.precision(6);
             file.setf(std::ios::fixed);
@@ -377,7 +377,7 @@ int main() {
         file.close();
 
         // p_tepl.dat
-        file.open(".//output//p_tepl.dat");
+        file.open("..//output//p_tepl.dat");
         for (int j = 0; j < mf; ++j) {
             file.precision(4);
             file.setf(std::ios::fixed);
@@ -393,7 +393,7 @@ int main() {
         file.close();
 
         // ro_tepl.dat
-        file.open(".//output//ro_tepl.dat");
+        file.open("..//output//ro_tepl.dat");
         for (int j = 0; j < mf; ++j) {
             file.setf(std::ios::fixed);
             file.precision(4);
@@ -409,7 +409,7 @@ int main() {
         file.close();
 
         // p_tepl_poln.dat
-        file.open(".//output//p_tepl_poln.dat");
+        file.open("..//output//p_tepl_poln.dat");
         for (int j = 0; j < mf; ++j) {
             file.setf(std::ios::fixed);
             file.precision(4);
@@ -426,7 +426,7 @@ int main() {
 
 
         // t_tepl.dat
-        file.open(".//output//t_tepl.dat");
+        file.open("..//output//t_tepl.dat");
         for (int j = 0; j < mf; ++j) {
             file.setf(std::ios::fixed);
             file.precision(4);
@@ -442,7 +442,7 @@ int main() {
         file.close();
 
         // h_tepl.dat
-        file.open(".//output//h_tepl.dat");
+        file.open("..//output//h_tepl.dat");
         for (int j = 0; j < mf; ++j) {
             file.setf(std::ios::fixed);
             file.precision(4);
@@ -458,7 +458,7 @@ int main() {
         file.close();
 
         // alfa.dat
-        file.open(".//output//alfa.dat");
+        file.open("..//output//alfa.dat");
         for (int j = 0; j < mf; ++j) {
             file.setf(std::ios::fixed);
             file.precision(2);
@@ -474,7 +474,7 @@ int main() {
         file.close();
 
         // t_clad.dat
-        file.open(".//output//t_clad.dat");
+        file.open("..//output//t_clad.dat");
         for (int j = 0; j < mf; ++j) {
             file.setf(std::ios::fixed);
             file.precision(2);
@@ -490,7 +490,7 @@ int main() {
         file.close();
 
         // t_fuel.dat
-        file.open(".//output//t_fuel.dat");
+        file.open("..//output//t_fuel.dat");
         for (int j = 0; j < mf; ++j) {
             file.setf(std::ios::fixed);
             file.precision(2);
@@ -507,7 +507,7 @@ int main() {
         file.close();
 
         // n_rod.dat
-        file.open(".//output//n_rod.dat");
+        file.open("..//output//n_rod.dat");
         for (int ii = 0; ii < n_rod + 2; ++ii) {
             file.setf(std::ios::fixed);
             file.precision(4);
@@ -517,7 +517,7 @@ int main() {
         file.close();
 
         // Q.dat
-        file.open(".//output//Q.dat");
+        file.open("..//output//Q.dat");
         for (int j = 0; j < mf; ++j) {
             file.setf(std::ios::fixed);
             file.precision(4);
@@ -533,7 +533,7 @@ int main() {
         file.close();
 
         // t_r77.dat
-        file.open(".//output//t_r77.dat");
+        file.open("..//output//t_r77.dat");
         for (int ii = 0; ii < n; ++ii) {
             file.setf(std::ios::fixed);
             file.precision(4);
@@ -546,7 +546,7 @@ int main() {
         file.close();
 
         // t_r_centr.dat
-        file.open(".//output//t_r_centr.dat");
+        file.open("..//output//t_r_centr.dat");
         for (int j = 0; j < mf; ++j) {
             file.setf(std::ios::fixed);
             file.precision(4);
@@ -591,7 +591,7 @@ int main() {
             }
         }
 
-        std::ofstream XXX_file(".//output//XXX.dat");
+        std::ofstream XXX_file("..//output//XXX.dat");
         XXX_file << "Max T topl: " << tmax << "\n"
                  << "V kassete # " << jjmax + 1 << "\n"
                  << "V el-te # " << iimax + 1<< "\n"
@@ -604,7 +604,7 @@ int main() {
         XXX_file.close();
 
         // 1. t_rXXX.dat
-        file.open(".//output//t_rXXX.dat");
+        file.open("..//output//t_rXXX.dat");
         for (int ii = 0; ii < n; ++ii) {
             for (int l = 0; l < n_rod + 2; ++l) {
                 file.setf(std::ios::fixed);
@@ -617,7 +617,7 @@ int main() {
         file.close();
 
         // 2. t_r_obl_vnutr.dat
-        file.open(".//output//t_r_obl_vnutr.dat");
+        file.open("..//output//t_r_obl_vnutr.dat");
         for (int j = 0; j < mf; ++j) {
 
             file.setf(std::ios::fixed);
@@ -634,7 +634,7 @@ int main() {
         file.close();
 
         // 3. t_r_obl_naruj.dat
-        file.open(".//output//t_r_obl_naruj.dat");
+        file.open("..//output//t_r_obl_naruj.dat");
         for (int j = 0; j < mf; ++j) {
 
             file.setf(std::ios::fixed);
@@ -651,7 +651,7 @@ int main() {
         file.close();
 
         // 4. koeff_z.dat
-        file.open(".//output//koeff_z.dat");
+        file.open("..//output//koeff_z.dat");
         for (int j = 0; j < mf; ++j) {
             file.setf(std::ios::fixed);
             file.precision(4);
@@ -666,7 +666,7 @@ int main() {
         file.close();
 
         // 5. Cp.dat
-        file.open(".//output//Cp.dat");
+        file.open("..//output//Cp.dat");
         file.setf(std::ios::fixed);
         file.precision(4);
 
@@ -687,7 +687,7 @@ int main() {
         double G = 0;
         double G1 = 0;
 
-        file.open(".//output//GQT.dat");
+        file.open("..//output//GQT.dat");
         for (int j = 0; j < mf; ++j) {
             G += V_z[0][j] * fz; 
             G1 += V_z[n][j] * fz;
