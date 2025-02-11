@@ -218,24 +218,27 @@ void CrossConnection() {
 
     for (int j = 0; j < mf; ++j) {
         for (int i = 0; i < n; ++i) {
+            // нумерация по высоте
             if (i == 0) {
-                //NC[k] = 1;
-                NC[k] = 0;
+                NC[k] = 1;
+                //NC[k] = 0;
                 NE[kk] = i + 1 + j * n; 
                 ++kk;
             } else if (i == n - 1) {
-                //NC[k] = 1;
-                NC[k] = 0;
+                NC[k] = 1;
+                //NC[k] = 0;
                 NE[kk] = i - 1 + j * n;
                 ++kk;
             } else {
-                //NC[k] = 2;
-                NC[k] = 1;
+                NC[k] = 2;
+                //NC[k] = 1;
                 NE[kk] = i - 1 + j * n; 
                 ++kk;
                 NE[kk] = i + 1 + j * n; 
                 ++kk;
-            }
+            } 
+
+            //нумерация в поперечном сечении
             for (int l = 0; l < nbf; ++l) {
                 if (bonds[l][j] != -1) {
                     ++NC[k];
@@ -248,13 +251,14 @@ void CrossConnection() {
     }
 
     k = NC[0];
+    //NC[0] = 1;
     NC[0] = 0;
     //k = NC[0] + 1;
     //NC[0] = 1;
 
     for (int i = 1; i < ( n * mf + 1 ); ++i) {
-        int j = NC[i] + 1;
-        NC[i] = k + 1;
+        int j = NC[i];
+        NC[i] = k;
         k += j;
     }
 }

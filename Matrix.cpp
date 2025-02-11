@@ -2,8 +2,6 @@
 #include <cmath>
 #include <iostream>
 
-//! 
-//! 
 // 		Расчет произведения матрицы А[NxN] на вектор х[N]. Результат в векторе В[N]. 
 // 		Структура матрицы задана с помощью массивов связей NC и NE.
 // 		Хранение только отличных от нуля членов. Сначала в матрице А расположены члены с главной диагонали
@@ -13,18 +11,15 @@ void MatVect(int N, const std::vector<double>& A, const std::vector<int>& NC,
     for (int i = 0; i < N; ++i) {
         double s = A[i] * X[i]; 
         for (int j = NC[i]; j < NC[i + 1]; ++j) {
-            //std::cout << "NE[" << j << "] = " << NE[j] << std::endl;
             s += A[j + N] * X[NE[j]]; 
         }
         B[i] = s;
     }
 }
 
-
 // 		Расчет произведения матрицы АT[NxN] (транспонированной матрицы по отношению к матрице А) на вектор х[N].  
 // 		Результат в векторе в[N]. Структура матрицы задана с помощью массивов связей NC и NE. 
 // 		Хранение только отличных от нуля членов. Сначала в матрице А расположены члены с главной диагонали
-
 
 void MatTVect(int N, const std::vector<double>& A, const std::vector<int>& NC, 
                 const std::vector<int>& NE, const std::vector<double>& X, std::vector<double>& B) {
@@ -53,7 +48,6 @@ double VectNorm2(int N, const std::vector<double>& A) {
     return s;
 }
 
-
 // 		Решение системы уравнений Ах = в методои сопряженных градиентов. Система преобразуется к виду (АТА)х = АТв.
 // 		Структура матрицы задана с помощью массивов связей NC и NE. Заданная погрешность расчета - eps, начальное
 // 		приближение х0, результат - Х1.
@@ -73,8 +67,6 @@ void ResCalc(int N, const std::vector<double>& A, const std::vector<int>& NC, co
     for (int i = 0; i < N; ++i) {
         Ar[i] = P[i];
     }
-
-    // Ar = P;
 
     MatVect(N, A, NC, NE, P, Ap);
 

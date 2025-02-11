@@ -174,9 +174,7 @@ int main() {
 
     int icont_key;
     std::cout << "Enter 0 for new or 1 for continue: ";
-     //std::cin >> icont_key;
-    icont_key = 0;
-    //icont_key = 0;
+     std::cin >> icont_key;
 
     if (icont_key == 1) {
         read_all();
@@ -191,8 +189,7 @@ int main() {
 
     double dt;
     std::cout << "Enter dt = ";
-    //std::cin >> dt;
-    dt = 0.005;
+    std::cin >> dt;
     int kk = 100;
 
     for (int k = 1; k <= kk; ++k) {
