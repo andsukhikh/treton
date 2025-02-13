@@ -2,6 +2,8 @@
 #include <fstream>
 #include <vector>
 #include <cmath>
+#include <numbers>
+
 #include "headers/SodiumProp.hpp"
 #include "headers/ThechycoGlobalVar.hpp"
 #include "headers/NamelistReader.hpp"
@@ -274,7 +276,7 @@ void HeatHydroGeometry() {
         sum += n_RodsInTBC[k] * (a_fuel[k] + a_clad[k]);
     }
     
-    fz -= 0.25 * Pi * D_tube * D_tube + sum;
+    fz -= 0.25 * std::numbers::pi * D_tube * D_tube + sum;
     vf = fz * dz;
     fr = vf / v * dz * dr / std::sqrt(3.0);
     fr_vf = fr / vf;
@@ -485,9 +487,9 @@ void VrFi_nm(int i, int j, double Vn, double Vm, double &Vr, double &Fi) {
     Fi = std::asin(Vm / Vr);
     
     if (Vn < 0.0) {
-        Fi = Pi - Fi;
+        Fi = std::numbers::pi - Fi;
     } else if (Vm < 0.0) {
-        Fi += 2.0 * Pi;
+        Fi += 2.0 * std::numbers::pi;
     }
 }
 
@@ -497,19 +499,18 @@ void V_full_calc() {
 
     for (int i = 0; i < n + 1; ++i) {
         for (int j = 0; j < mf; ++j) {
-            switch (i) {
-                case 0:
-                    Vxy_ij(i, j, Vx, Vy);
-                    break;
-                case n:
-                    Vxy_ij(i - 1, j, Vx, Vy);
-                    break;
-                default:
-                    Vxy_ij(i - 1, j, Vx1, Vy1);
-                    Vxy_ij(i, j, Vx, Vy);
-                    Vx = (Vx + Vx1) / 2.0;
-                    Vy = (Vy + Vy1) / 2.0;
-                    break;
+
+            if (i == 0) {
+                Vxy_ij(i, j, Vx, Vy);
+            }
+            else if (i == n) {
+                Vxy_ij(i - 1, j, Vx, Vy);
+            }
+            else {
+                Vxy_ij(i - 1, j, Vx1, Vy1);
+                Vxy_ij(i, j, Vx, Vy);
+                Vx = (Vx + Vx1) / 2.0;
+                Vy = (Vy + Vy1) / 2.0;
             }
 
             V_full[0][i][j] = Vx;
@@ -523,17 +524,16 @@ void V_full_calc() {
 double absV(int i, int j) {
     double result;
     
-    switch (i) {
-        case 0:
-            result = std::sqrt(V_z[i][j] * V_z[i][j] + V_r(i, j) * V_r(i, j));
-            break;
-        case n:
-            result = std::sqrt(V_z[i][j] * V_z[i][j] + V_r(i - 1, j) * V_r(i - 1, j));
-            break;
-        default:
-            result = std::sqrt(V_z[i][j] * V_z[i][j] + 0.25 * std::pow(V_r(i - 1, j) + V_r(i, j), 2));
-            break;
+    if (i == 0) {
+        result = std::sqrt(V_z[i][j] * V_z[i][j] + V_r(i, j) * V_r(i, j));
     }
+    else if (i == n) {
+        result = std::sqrt(V_z[i][j] * V_z[i][j] + V_r(i - 1, j) * V_r(i - 1, j));
+    }
+    else {
+        result = std::sqrt(V_z[i][j] * V_z[i][j] + 0.25 * std::pow(V_r(i - 1, j) + V_r(i, j), 2));
+    }
+
 
     return result;
 }

@@ -1,14 +1,17 @@
-#include "headers/ThechycoGlobalVar.hpp"
 #include <random>
+#include <numbers>
 #include <cmath>
+#include <numbers>
 #include <ctime>
 #include <iostream>
+
 #include "headers/Thechyco.hpp"
+#include "headers/ThechycoGlobalVar.hpp"
 
 
 double V_nz(int i, int j, int jf, int jV_n) {
     double avgV_z = (V_z[i][j] + V_z[i + 1][j] + V_z[i][jf] + V_z[i + 1][jf]) / 4.0;
-    double result = std::sqrt(avgV_z * avgV_z + (Pi / 2.0 * V_n[i][jV_n]) * (Pi / 2.0 * V_n[i][jV_n]));
+    double result = std::sqrt(avgV_z * avgV_z + (std::numbers::pi / 2.0 * V_n[i][jV_n]) * (std::numbers::pi / 2.0 * V_n[i][jV_n]));
     return result;
 }
 
@@ -1427,7 +1430,7 @@ void piter() {
 
 
 void KinViscosity() {
-    double const_term = 2.0 * d_mesh * std::pow(x_mesh, 2) / Pi * (2.0 + 0.115 / (x_mesh - 1.0)) * (x_mesh - 1.0);
+    double const_term = 2.0 * d_mesh * std::pow(x_mesh, 2) / std::numbers::pi * (2.0 + 0.115 / (x_mesh - 1.0)) * (x_mesh - 1.0);
     
     for (int j = 0; j < mf; ++j) {
         for (int i = 0; i < n + 1; ++i) {

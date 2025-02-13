@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cmath>
+#include <numbers>
 #include <iomanip>
+
 #include "headers/SodiumProp.hpp"
 #include "headers/ThechycoGlobalVar.hpp"
 #include "headers/NamelistReader.hpp"
@@ -13,17 +15,18 @@
 
 
 void RodOnce() {
-    static int manager = 0;
+    static int manager = 1;
 
-    if (manager != 1) {
+    if (manager) {
 
         // заполнение RodList
         NLReader::NamelistReader nlr("THEHYCO.INI");
 
         nlr.use_namelist("RodList");
-        double s_mesh = nlr.get<double>("s_mesh", 1);
-        d_mesh = nlr.get<double>("d_mesh", 1);
-        R_contact = nlr.get<double>("R_contact", 1);
+
+        s_mesh =            nlr.get<double>("s_mesh", 1);
+        d_mesh =            nlr.get<double>("d_mesh", 1);
+        R_contact =         nlr.get<double>("R_contact", 1);
 
         for (int i = 0; i < 4; ++i)
         {
@@ -32,7 +35,6 @@ void RodOnce() {
                 tmp[i][j] = nlr.get<double>("tmp", 1.0, i);
             }
         }
-
 
         x_mesh = s_mesh / d_mesh;
         d_mesh /= 1000.0;
@@ -45,7 +47,7 @@ void RodOnce() {
         }
 
         RodGeometry();
-        manager = 1;
+        manager = 0;
     }
 }
 
@@ -80,12 +82,12 @@ void RodGeometry() {
             area[i][j] = std::pow(cvd[i + 1][j], 2) - std::pow(cvd[i][j], 2);
             geo_left[i][j] = 2 * cvd[i][j] / area[i][j];
             geo_right[i][j] = 2 * cvd[i + 1][j] / area[i][j];
-            area[i][j] = Pi * area[i][j];
+            area[i][j] = std::numbers::pi * area[i][j];
         }
 
-        a_fuel[j] = Pi * (std::pow(cvd[n_rod][j], 2) - std::pow(cvd[0][j], 2));
-        a_clad[j] = Pi * (std::pow(cvd[n_rod + 2][j], 2) - std::pow(cvd[n_rod][j], 2));
-        P_rod[j] = 2 * Pi * cvd[n_rod + 2][j];
+        a_fuel[j] = std::numbers::pi * (std::pow(cvd[n_rod][j], 2) - std::pow(cvd[0][j], 2));
+        a_clad[j] = std::numbers::pi * (std::pow(cvd[n_rod + 2][j], 2) - std::pow(cvd[n_rod][j], 2));
+        P_rod[j] = 2 * std::numbers::pi * cvd[n_rod + 2][j];
     }
 }
 
@@ -224,7 +226,7 @@ double EneRoDisbalance() {
 
     std::cout << '\n' <<  std::endl; 
     std::cout << "EneRoDisbalance in (" << i_er + 1 << "," << j_er + 1 << "," << k_er + 1 << "): " << 
-        std::setprecision(6) << std::fixed << EneRoDisbalance << std::endl;
+                    std::setprecision(6) << std::fixed << EneRoDisbalance << std::endl;
 
     return EneRoDisbalance;
 }
@@ -496,7 +498,7 @@ double EnerFluiDisbalance() {
 
 
 void HeatConduction() {
-    double const_val = 2.0 * d_mesh * std::pow(x_mesh, 2) / Pi * (2.0 + 0.115 / (x_mesh - 1.0)) * (x_mesh - 1.0);
+    double const_val = 2.0 * d_mesh * std::pow(x_mesh, 2) / std::numbers::pi * (2.0 + 0.115 / (x_mesh - 1.0)) * (x_mesh - 1.0);
 
     for (int j = 0; j < mf; ++j) {
         for (int i = 0; i < n; ++i) {

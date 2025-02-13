@@ -4,170 +4,225 @@
 #include <vector>
 #include <string>
 
-constexpr auto mf = 163;
-constexpr auto mV_n = 534;//должно быть 534, но при нем не работает 
-constexpr auto n = 30;
-constexpr auto n_rod = 10;
-constexpr auto type = 1;
-constexpr auto nbf = 6;
-constexpr auto Pi = 3.1415926;
-constexpr auto Gravity = 9.8;
-constexpr auto c_p1 = 4800.0;
-constexpr auto dt = 0.005;
+template <typename T, typename Head, typename... Tail>
+extern void resize_vector(std::vector<T>& vec, Head head, Tail... tail);
 
-namespace Power_per_TBC {
-    extern std::vector<std::vector<std::vector<double>>> Q_neutron;
-}
+namespace GlobalVariables {
 
-namespace temperature {
-    extern std::vector<std::vector<double>> t_f;
-    extern std::vector<std::vector<std::vector<double>>> t_fuel;
-    extern std::vector<std::vector<std::vector<double>>> t_clad;
-}
+    extern double Gravity;
+    extern int mf;
+    extern int mV_n;
+    extern int n;
+    extern int n_rod;
+    extern int type;
+    extern int nbf;
 
-namespace rod_geometry {
-    extern double x_mesh;
-    extern double d_mesh;
-    extern std::vector<std::vector<double>> tmp;
-    extern std::vector<double> P_rod;
-    extern std::vector<double> a_fuel;
-    extern std::vector<double> a_clad;
-    extern std::vector<std::vector<double>> area;
-    extern std::vector<std::vector<double>> geo_left;
-    extern std::vector<std::vector<double>> geo_right;
-}
+    namespace Power_per_TBC {
+        extern std::vector<std::vector<std::vector<double>>> Q_neutron;
 
-namespace rod_temperature {
-    extern std::vector<std::vector<std::vector<std::vector<double>>>> t_rod;
-}
+        void initialisation();
+    }
 
-namespace rod_property1 {
-    extern double clad_l;
-    extern double clad_rc;
-    extern std::vector<std::vector<std::vector<double>>> fuel_l;
-    extern std::vector<std::vector<std::vector<double>>> fuel_rc;
-}
+    namespace temperature {
+        extern std::vector<std::vector<double>> t_f;
+        extern std::vector<std::vector<std::vector<double>>> t_fuel;
+        extern std::vector<std::vector<std::vector<double>>> t_clad;
 
-namespace bundles {
-    extern std::vector<std::vector<double>> bundle;
-}
+        void initialisation();
+    }
 
-namespace contact_resistance {
-    extern double R_contact;
-}
+    namespace rod_geometry {
+        extern double x_mesh;
+        extern double s_mesh;
+        extern double d_mesh;
+        extern std::vector<std::vector<double>> tmp;
+        extern std::vector<double> P_rod;
+        extern std::vector<double> a_fuel;
+        extern std::vector<double> a_clad;
+        extern std::vector<std::vector<double>> area;
+        extern std::vector<std::vector<double>> geo_left;
+        extern std::vector<std::vector<double>> geo_right;
 
-namespace cv_distribution {
-    extern std::vector<std::vector<double>> cvd;
-}
+        void initialisation();
+    }
 
-namespace density1 {
-    extern double ro_output;
-    extern std::vector<double> ro_input;
-    extern std::vector<std::vector<double>> ro;
-}
+    namespace rod_temperature {
+        extern std::vector<std::vector<std::vector<std::vector<double>>>> t_rod;
 
-namespace pressure {
-    extern double p_output;
-    extern double p_input;
-    extern std::vector<std::vector<double>> p;
-}
+        void initialisation();
+    }
 
-namespace capacity {
-    extern double Cp_input;
-    extern double Cp_output;
-    extern std::vector<std::vector<double>> C_p;
-    extern std::vector<std::vector<double>> OLD_C_p;
-}
+    namespace Rod_property {
+        extern double clad_l;
+        extern double clad_rc;
+        extern std::vector<std::vector<std::vector<double>>> fuel_l;
+        extern std::vector<std::vector<std::vector<double>>> fuel_rc;
 
-namespace velocity {
-    extern std::vector<std::vector<double>> V_z;
-    extern std::vector<std::vector<double>> V_n;
-    extern std::vector<std::vector<std::vector<double>>> V_full;
-}
+        void initialisation();
+    }
 
-namespace nodes {
-    extern std::vector<std::vector<int>> crd;
-}
+    namespace bundles {
+        extern std::vector<std::vector<double>> bundle;
 
-namespace bondaries {
-    extern std::vector<std::vector<double>> bonds;
-    extern std::vector<std::vector<double>> onds;
-}
+        void initialisation();
+    }
 
-namespace blockages {
-    extern double BlockadePorousity;
-    extern std::vector<int> blockade;
-}
+    namespace contact_resistance {
+        extern double R_contact;
+    }
 
-namespace errors {
-    extern double PVTerror;
-    extern double Disbalance;
-}
+    namespace cv_distribution {
+        extern std::vector<std::vector<double>> cvd;
 
-namespace boundary_temperature {
-    extern double h_HeatExchangerOutput;
-    extern double h_CoreInput;
-    extern double h_CoreOutput;
-    extern double t_HeatExchangerOutput;
-    extern double t_CoreInput;
-    extern double t_CoreOutput;
-    extern std::vector<double> h_HeatExchangerOutput_new;
-}
+        void initialisation();
+    }
 
-namespace core_geometry {
-    extern double D_tube;
-    extern double dz;
-    extern double dr;
-    extern double fz;
-    extern double fr;
-    extern double vf;
-    extern double fr_vf;
-    extern double fz_vf;
-    extern std::vector<int> n_RodsInTBC;
-}
+    namespace Density {
+        extern double ro_output;
+        extern std::vector<double> ro_input;
+        extern std::vector<std::vector<double>> ro;
 
-namespace loop {
-    extern int iterations;
-}
+        void initialisation();
+    }
 
-namespace info {
-    extern std::string HydroStr;
-    extern std::string HeatStr;
-    extern std::string RodStr;
-    extern std::string HeatStr1;
-}
+    namespace pressure {
+        extern double p_output;
+        extern double p_input;
+        extern std::vector<std::vector<double>> p;
 
-namespace mat {
-    extern std::vector<double> Mat_A;
-    extern std::vector<double> Vect_X;
-    extern std::vector<double> Vect_X1;
-    extern std::vector<double> Vect_B;
-    extern std::vector<int> NC;
-    extern std::vector<int> NE;
-}
+        void initialisation();
+    }
 
-extern std::vector<std::vector<std::vector<std::vector<double>>>> OLDt_rod;
-extern std::vector<double> aa, bb, cc, dd;
-extern std::vector<std::vector<double>> effL, OLDt_f, alfa;
-extern std::vector<double> a, b, c, d, aPV, bPV, cPV, dPV, ePV, fPV;
-extern std::vector<std::vector<double>> effM, effK_r, effK_z, oldV_z, oldV_n, source, dp_dz, dp_dn, OLD_ro, OLDh_f, h_f;
-extern std::vector<double> V_nMap;
+    namespace capacity {
+        extern double Cp_input;
+        extern double Cp_output;
+        extern std::vector<std::vector<double>> C_p;
+        extern std::vector<std::vector<double>> OLD_C_p;
 
-extern std::vector<double> transposed_OLDt_rod;
-extern std::vector<double> transposed_t_rod;
-extern std::vector<double> transposed_geo_left;
-extern std::vector<double> transposed_geo_right;
-extern std::vector<double> transposed_bundle;
+        void initialisation();
+    }
 
-using namespace capacity;
+    namespace velocity {
+        extern std::vector<std::vector<double>> V_z;
+        extern std::vector<std::vector<double>> V_n;
+        extern std::vector<std::vector<std::vector<double>>> V_full;
+
+        void initialisation();
+    }
+
+    namespace nodes {
+        extern std::vector<std::vector<int>> crd;
+
+        void initialisation();
+    }
+
+    namespace bondaries {
+        extern std::vector<std::vector<double>> bonds;
+        extern std::vector<std::vector<double>> onds;
+
+        void initialisation();
+    }
+
+    namespace blockages {
+        extern double BlockadePorousity;
+        extern std::vector<int> blockade;
+
+        void initialisation();
+    }
+
+    namespace errors {
+        extern double PVTerror;
+        extern double Disbalance;
+    }
+
+    namespace boundary_temperature {
+        extern double h_HeatExchangerOutput;
+        extern double h_CoreInput;
+        extern double h_CoreOutput;
+        extern double t_HeatExchangerOutput;
+        extern double t_CoreInput;
+        extern double t_CoreOutput;
+        extern std::vector<double> h_HeatExchangerOutput_new;
+
+        void initialisation();
+    }
+
+    namespace core_geometry {
+        extern double D_tube;
+        extern double dz;
+        extern double dr;
+        extern double fz;
+        extern double fr;
+        extern double vf;
+        extern double fr_vf;
+        extern double fz_vf;
+        extern std::vector<int> n_RodsInTBC;
+
+        void initialisation();
+    }
+
+    namespace loop {
+        extern int iterations;
+    }
+
+    namespace info {
+        extern std::string HydroStr;
+        extern std::string HeatStr;
+        extern std::string RodStr;
+        extern std::string HeatStr1;
+    }
+
+    namespace mat {
+        extern std::vector<double> Mat_A;
+        extern std::vector<double> Vect_X;
+        extern std::vector<double> Vect_X1;
+        extern std::vector<double> Vect_B;
+        extern std::vector<int> NC;
+        extern std::vector<int> NE;
+
+        void initialisation();
+    }
+
+    namespace supporting_var {
+        extern std::vector<std::vector<std::vector<std::vector<double>>>> OLDt_rod;
+        extern std::vector<std::vector<double>> OLDt_f, oldV_z, oldV_n, OLD_ro, OLDh_f, h_f;
+
+        extern std::vector<std::vector<double>> effL, effM, effK_r, effK_z, alfa;
+
+        extern std::vector<double> aa, bb, cc, dd;
+        extern std::vector<double> a, b, c, d;
+        extern std::vector<double> aPV, bPV, cPV, dPV, ePV, fPV;
+
+        extern std::vector<std::vector<double>> source, dp_dz, dp_dn;
+        extern std::vector<double> V_nMap;
+
+        extern std::vector<std::vector<double>> bes;
+        extern std::vector<double> xx;
+        extern std::vector<double> yy;
+        extern std::vector<double> z;
+
+        void initialisation();
+    }
+
+    namespace transosed_matrix_elem {
+        extern std::vector<double> transposed_OLDt_rod;
+        extern std::vector<double> transposed_t_rod;
+        extern std::vector<double> transposed_geo_left;
+        extern std::vector<double> transposed_geo_right;
+        extern std::vector<double> transposed_bundle;
+
+        void initialisation();
+    }
+
+    using namespace capacity;
     using namespace loop;
     using namespace temperature;
-    using namespace density1;
+    using namespace Density;
     using namespace Power_per_TBC;
     using namespace temperature;
     using namespace rod_geometry;
     using namespace rod_temperature;
-    using namespace rod_property1;
+    using namespace Rod_property;
     using namespace bundles;
     using namespace contact_resistance;
     using namespace cv_distribution;
@@ -181,5 +236,12 @@ using namespace capacity;
     using namespace core_geometry;
     using namespace info;
     using namespace mat;
+    using namespace transosed_matrix_elem;
+    using namespace supporting_var;
+
+    void Initialisation();
+}
+
+using namespace GlobalVariables;
 
 #endif 

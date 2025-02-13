@@ -10,37 +10,35 @@
 #include "headers/Hydro.hpp"
 #include "headers/NamelistReader.hpp"
 
-
 int main() {
-
-    double icall = 0.0;
-    std::vector<std::vector<double>> bes(mf, std::vector<double>(n));
-    std::vector<double> xx(mf);
-    std::vector<double> yy(mf);
-    std::vector<double> z(31);
-
-    double p_r, t_r, h_r, v_r;
-
-    //дописать код, использующий namelist 
 
     NLReader::NamelistReader nlr("THEHYCO.INI");
 
-    // заполнение HEATandHYDROlist
     nlr.use_namelist("HEATandHYDROlist");
-    dr = nlr.get<double>("dr", 1);
-    dz = nlr.get<double>("dz", 1);
-    D_tube = nlr.get<double>("D_tube", 1);
-    t_HeatExchangerOutput = nlr.get<double>("t_HeatExchangerOutput", 1);
-    Disbalance = nlr.get<double>("Disbalance", 1);
-    PVTerror = nlr.get<double>("PVTerror", 1);
-    BlockadePorousity = nlr.get<int>("BlockadePorousity", 1);
-    p_input = nlr.get<double>("p_input", 1);
-    p_output = nlr.get<double>("p_output", 1);
-    iterations = nlr.get<int>("iterations", 1);
+
+    dr =                            nlr.get<double>("dr", 1);
+    dz =                            nlr.get<double>("dz", 1);
+    D_tube =                        nlr.get<double>("D_tube", 1);
+    t_HeatExchangerOutput =         nlr.get<double>("t_HeatExchangerOutput", 1);
+    Disbalance =                    nlr.get<double>("Disbalance", 1);
+    PVTerror =                      nlr.get<double>("PVTerror", 1);
+    BlockadePorousity =             nlr.get<int>("BlockadePorousity", 1);
+    p_input =                       nlr.get<double>("p_input", 1);
+    p_output =                      nlr.get<double>("p_output", 1);
+    iterations =                    nlr.get<int>("iterations", 1);
 
     for (int i = 0; i < type; ++i) {
         n_RodsInTBC[i] = nlr.get<int>("n_RodsInTBC", 1.0, i);
     }
+
+    nlr.use_namelist("PartitionList");
+
+    mf =                            nlr.get<int>("mf", 1);
+    mV_n =                          nlr.get<int>("mV_n", 1);
+    n =                             nlr.get<int>("n", 1);
+    n_rod =                         nlr.get<int>("n_rod", 1);
+    type =                          nlr.get<int>("type", 1);
+    nbf =                           nlr.get<int>("nbf", 1);
 
     crd = 
     {
@@ -80,6 +78,11 @@ int main() {
         }
     };
 
+    GlobalVariables::Initialisation();
+
+    double icall = 0.0;
+    double p_r, t_r, h_r, v_r;
+
     p_r = p_input;
 
     std::ifstream file_in("T_in.txt");
@@ -118,7 +121,6 @@ int main() {
             VAU = v_r;
         }
 
-        
         for (int i = 0; i < n + 1; ++i) {
             V_z[i][j] = 5.0;
         }
@@ -196,6 +198,7 @@ int main() {
         if (k % 20 == 0) {
             write_all();
         }
+        std::cout << "\n";
         std::cout << "                                    " << k << " of " << kk << std::endl;
 
         for (int i = 0; i < 100; ++i) {
