@@ -84,41 +84,8 @@ double thehyco(double dt) {
     return thehyco;
 }
 
-//реализация с помощью namelist программа не умеет корректно считыать массив, значени которого раскиданы по строкам
-//следует написать новую функцию, которая будет считыать одномерный и двумерный массив, раскиданный по строкам
 void HeatHydroOnce() {
     static int manager = 0;
-
-    // std::vector<std::string> varName = {"n_RodsInTBC", "crd", "D_tube", "dr", "dz", "p_input", "p_output", 
-    //                                     "BlockadePorousity", "t_HeatExchangerOutput", "blockade", "PVTerror", 
-    //                                     "Disbalance", "iterations"};
-    // namelist HEATandHYDROlist("HEATandHYDROlist", varName, n_RodsInTBC, crd, D_tube, dr, dz, p_input, p_output, 
-    //                                                 BlockadePorousity, t_HeatExchangerOutput, blockade, PVTerror, 
-    //                                                 Disbalance, iterations);
-    
-    NLReader::NamelistReader nlr("THEHYCO.INI");
-
-    // заполнение HEATandHYDROlist
-    nlr.use_namelist("HEATandHYDROlist");
-    dr = nlr.get<double>("dr", 1);
-    dz = nlr.get<double>("dz", 1);
-    D_tube = nlr.get<double>("D_tube", 1);
-    t_HeatExchangerOutput = nlr.get<double>("t_HeatExchangerOutput", 1);
-    Disbalance = nlr.get<double>("Disbalance", 1);
-    PVTerror = nlr.get<double>("PVTerror", 1);
-    BlockadePorousity = nlr.get<int>("BlockadePorousity", 1);
-    p_input = nlr.get<double>("p_input", 1);
-    p_output = nlr.get<double>("p_output", 1);
-    iterations = nlr.get<int>("iterations", 1);
-    
-    for (int i = 0; i < type; ++i) {
-        n_RodsInTBC[i] = nlr.get<int>("n_RodsInTBC", 1.0, i);
-    }
-
-
-    for (auto& var : blockade) {
-        var = 0;
-    }
 
     if (manager != 1) {
         CrossConnection();
@@ -207,10 +174,8 @@ void CrossConnection() {
     }
 
     if (k + 1 != mV_n) {
-        std::cout << "Для данного mf неправильно указано mV_n!" << std::endl;
-        std::cout << "mV_n должно быть: " << k + 1 << std::endl;
-        std::cout << "Error in BONDS; aborting..." << std::endl;
-        exit(1);
+        mV_n = k + 1;
+        GlobalVariables::Resizing();
     }
 
     // Заполнение 

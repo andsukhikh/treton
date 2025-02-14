@@ -567,7 +567,6 @@ double HeatTransfer(double Ux, double Uy, double Uz, double x, double d_hyd, dou
     double t_r = 0.0, v_r = 0.0;
     double A_r, pr_temp;
     constexpr double H2O_l = 0.58;
-
     
     SodiumTV(pvod, ent, t_r, v_r);
 

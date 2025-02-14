@@ -221,6 +221,7 @@ namespace GlobalVariables {
         std::string HeatStr;
         std::string RodStr;
         std::string HeatStr1;
+        std::string coolantName;
     }
 
     namespace mat {
@@ -317,7 +318,7 @@ namespace GlobalVariables {
         }
     }
 
-    void Initialisation() {
+    void Resizing() {
         Power_per_TBC::             initialisation();
         temperature::               initialisation();
         rod_geometry::              initialisation();

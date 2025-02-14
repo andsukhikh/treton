@@ -14,6 +14,16 @@ int main() {
 
     NLReader::NamelistReader nlr("THEHYCO.INI");
 
+    nlr.use_namelist("PartitionList");
+
+    mf =                            nlr.get<int>("mf", 1);
+    n =                             nlr.get<int>("n", 1);
+    n_rod =                         nlr.get<int>("n_rod", 1);
+    type =                          nlr.get<int>("type", 1);
+    nbf =                           nlr.get<int>("nbf", 1);
+
+    GlobalVariables::Resizing();
+
     nlr.use_namelist("HEATandHYDROlist");
 
     dr =                            nlr.get<double>("dr", 1);
@@ -26,59 +36,19 @@ int main() {
     p_input =                       nlr.get<double>("p_input", 1);
     p_output =                      nlr.get<double>("p_output", 1);
     iterations =                    nlr.get<int>("iterations", 1);
+    coolantName =                   nlr.get<std::string>("coolant", "non-existent");
 
     for (int i = 0; i < type; ++i) {
         n_RodsInTBC[i] = nlr.get<int>("n_RodsInTBC", 1.0, i);
     }
 
-    nlr.use_namelist("PartitionList");
+    for (int i = 0; i < 163; ++i) {
+        blockade[i] = nlr.get<int>("blockade", 1.0, i);
+    }
 
-    mf =                            nlr.get<int>("mf", 1);
-    mV_n =                          nlr.get<int>("mV_n", 1);
-    n =                             nlr.get<int>("n", 1);
-    n_rod =                         nlr.get<int>("n_rod", 1);
-    type =                          nlr.get<int>("type", 1);
-    nbf =                           nlr.get<int>("nbf", 1);
-
-    crd = 
-    {
-        {
-            -5, -3, -1, 1, 3, 5,
-            -8, -6, -4, -2, 0, 2, 4, 6, 8,
-            -9, -7, -5, -3, -1, 1, 3, 5, 7, 9, 
-            -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10,
-            -11, -9, -7, -5, -3, -1, 1, 3, 5, 7, 9, 11, 
-            -12, -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10, 12, 
-            -13, -11, -9, -7, -5, -3, -1, 1, 3, 5, 7, 9, 11, 13, 
-            -12, -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10, 12,
-            -13, -11, -9, -7, -5, -3, -1, 1, 3, 5, 7, 9, 11, 13, 
-            -12, -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10, 12,
-            -11, -9, -7, -5, -3, -1, 1, 3, 5, 7, 9, 11, 
-            -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10, 
-            -9, -7, -5, -3, -1, 1, 3, 5, 7, 9,  
-            -8, -6, -4, -2, 0, 2, 4, 6, 8, 
-            -5, -3, -1, 1, 3, 5
-        },
-        {
-            7, 7, 7, 7, 7, 7, 
-            6, 6, 6, 6, 6, 6, 6, 6, 6,
-            5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 
-            4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
-            3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 
-            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-            -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-            -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, 
-            -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, 
-            -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, 
-            -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, 
-            -6, -6, -6, -6, -6, -6, -6, -6, -6, 
-            -7, -7, -7, -7, -7, -7
-        }
-    };
-
-    GlobalVariables::Initialisation();
+    for (size_t i = 0; i < 2 * mf; ++i) {
+        crd[i % 2][i / 2] = nlr.get<int>("crd", 0.0, i);
+    }
 
     double icall = 0.0;
     double p_r, t_r, h_r, v_r;
