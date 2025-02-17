@@ -170,6 +170,7 @@ namespace GlobalVariables {
         extern std::string HeatStr;
         extern std::string RodStr;
         extern std::string HeatStr1;
+        extern std::string coolantName;
     }
 
     namespace mat {
@@ -239,7 +240,7 @@ namespace GlobalVariables {
     using namespace transosed_matrix_elem;
     using namespace supporting_var;
 
-    void Initialisation();
+    void Resizing();
 }
 
 using namespace GlobalVariables;

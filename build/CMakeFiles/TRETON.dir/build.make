@@ -86,71 +86,11 @@ CMakeFiles/TRETON.dir/Main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TRETON.dir/Main.cpp.s"
 	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\learning\diploma\TRETON\TRETON_CMAKE\Main.cpp -o CMakeFiles\TRETON.dir\Main.cpp.s
 
-CMakeFiles/TRETON.dir/AMUV.cpp.obj: CMakeFiles/TRETON.dir/flags.make
-CMakeFiles/TRETON.dir/AMUV.cpp.obj: CMakeFiles/TRETON.dir/includes_CXX.rsp
-CMakeFiles/TRETON.dir/AMUV.cpp.obj: E:/learning/diploma/TRETON/TRETON_CMAKE/AMUV.cpp
-CMakeFiles/TRETON.dir/AMUV.cpp.obj: CMakeFiles/TRETON.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\learning\diploma\TRETON\TRETON_CMAKE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/TRETON.dir/AMUV.cpp.obj"
-	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TRETON.dir/AMUV.cpp.obj -MF CMakeFiles\TRETON.dir\AMUV.cpp.obj.d -o CMakeFiles\TRETON.dir\AMUV.cpp.obj -c E:\learning\diploma\TRETON\TRETON_CMAKE\AMUV.cpp
-
-CMakeFiles/TRETON.dir/AMUV.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TRETON.dir/AMUV.cpp.i"
-	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\learning\diploma\TRETON\TRETON_CMAKE\AMUV.cpp > CMakeFiles\TRETON.dir\AMUV.cpp.i
-
-CMakeFiles/TRETON.dir/AMUV.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TRETON.dir/AMUV.cpp.s"
-	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\learning\diploma\TRETON\TRETON_CMAKE\AMUV.cpp -o CMakeFiles\TRETON.dir\AMUV.cpp.s
-
-CMakeFiles/TRETON.dir/ANU.cpp.obj: CMakeFiles/TRETON.dir/flags.make
-CMakeFiles/TRETON.dir/ANU.cpp.obj: CMakeFiles/TRETON.dir/includes_CXX.rsp
-CMakeFiles/TRETON.dir/ANU.cpp.obj: E:/learning/diploma/TRETON/TRETON_CMAKE/ANU.cpp
-CMakeFiles/TRETON.dir/ANU.cpp.obj: CMakeFiles/TRETON.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\learning\diploma\TRETON\TRETON_CMAKE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/TRETON.dir/ANU.cpp.obj"
-	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TRETON.dir/ANU.cpp.obj -MF CMakeFiles\TRETON.dir\ANU.cpp.obj.d -o CMakeFiles\TRETON.dir\ANU.cpp.obj -c E:\learning\diploma\TRETON\TRETON_CMAKE\ANU.cpp
-
-CMakeFiles/TRETON.dir/ANU.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TRETON.dir/ANU.cpp.i"
-	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\learning\diploma\TRETON\TRETON_CMAKE\ANU.cpp > CMakeFiles\TRETON.dir\ANU.cpp.i
-
-CMakeFiles/TRETON.dir/ANU.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TRETON.dir/ANU.cpp.s"
-	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\learning\diploma\TRETON\TRETON_CMAKE\ANU.cpp -o CMakeFiles\TRETON.dir\ANU.cpp.s
-
-CMakeFiles/TRETON.dir/CpSodium.cpp.obj: CMakeFiles/TRETON.dir/flags.make
-CMakeFiles/TRETON.dir/CpSodium.cpp.obj: CMakeFiles/TRETON.dir/includes_CXX.rsp
-CMakeFiles/TRETON.dir/CpSodium.cpp.obj: E:/learning/diploma/TRETON/TRETON_CMAKE/CpSodium.cpp
-CMakeFiles/TRETON.dir/CpSodium.cpp.obj: CMakeFiles/TRETON.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\learning\diploma\TRETON\TRETON_CMAKE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/TRETON.dir/CpSodium.cpp.obj"
-	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TRETON.dir/CpSodium.cpp.obj -MF CMakeFiles\TRETON.dir\CpSodium.cpp.obj.d -o CMakeFiles\TRETON.dir\CpSodium.cpp.obj -c E:\learning\diploma\TRETON\TRETON_CMAKE\CpSodium.cpp
-
-CMakeFiles/TRETON.dir/CpSodium.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TRETON.dir/CpSodium.cpp.i"
-	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\learning\diploma\TRETON\TRETON_CMAKE\CpSodium.cpp > CMakeFiles\TRETON.dir\CpSodium.cpp.i
-
-CMakeFiles/TRETON.dir/CpSodium.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TRETON.dir/CpSodium.cpp.s"
-	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\learning\diploma\TRETON\TRETON_CMAKE\CpSodium.cpp -o CMakeFiles\TRETON.dir\CpSodium.cpp.s
-
-CMakeFiles/TRETON.dir/EntV.cpp.obj: CMakeFiles/TRETON.dir/flags.make
-CMakeFiles/TRETON.dir/EntV.cpp.obj: CMakeFiles/TRETON.dir/includes_CXX.rsp
-CMakeFiles/TRETON.dir/EntV.cpp.obj: E:/learning/diploma/TRETON/TRETON_CMAKE/EntV.cpp
-CMakeFiles/TRETON.dir/EntV.cpp.obj: CMakeFiles/TRETON.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\learning\diploma\TRETON\TRETON_CMAKE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/TRETON.dir/EntV.cpp.obj"
-	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TRETON.dir/EntV.cpp.obj -MF CMakeFiles\TRETON.dir\EntV.cpp.obj.d -o CMakeFiles\TRETON.dir\EntV.cpp.obj -c E:\learning\diploma\TRETON\TRETON_CMAKE\EntV.cpp
-
-CMakeFiles/TRETON.dir/EntV.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TRETON.dir/EntV.cpp.i"
-	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\learning\diploma\TRETON\TRETON_CMAKE\EntV.cpp > CMakeFiles\TRETON.dir\EntV.cpp.i
-
-CMakeFiles/TRETON.dir/EntV.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TRETON.dir/EntV.cpp.s"
-	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\learning\diploma\TRETON\TRETON_CMAKE\EntV.cpp -o CMakeFiles\TRETON.dir\EntV.cpp.s
-
 CMakeFiles/TRETON.dir/Heat.cpp.obj: CMakeFiles/TRETON.dir/flags.make
 CMakeFiles/TRETON.dir/Heat.cpp.obj: CMakeFiles/TRETON.dir/includes_CXX.rsp
 CMakeFiles/TRETON.dir/Heat.cpp.obj: E:/learning/diploma/TRETON/TRETON_CMAKE/Heat.cpp
 CMakeFiles/TRETON.dir/Heat.cpp.obj: CMakeFiles/TRETON.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\learning\diploma\TRETON\TRETON_CMAKE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/TRETON.dir/Heat.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\learning\diploma\TRETON\TRETON_CMAKE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/TRETON.dir/Heat.cpp.obj"
 	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TRETON.dir/Heat.cpp.obj -MF CMakeFiles\TRETON.dir\Heat.cpp.obj.d -o CMakeFiles\TRETON.dir\Heat.cpp.obj -c E:\learning\diploma\TRETON\TRETON_CMAKE\Heat.cpp
 
 CMakeFiles/TRETON.dir/Heat.cpp.i: cmake_force
@@ -165,7 +105,7 @@ CMakeFiles/TRETON.dir/Hydro.cpp.obj: CMakeFiles/TRETON.dir/flags.make
 CMakeFiles/TRETON.dir/Hydro.cpp.obj: CMakeFiles/TRETON.dir/includes_CXX.rsp
 CMakeFiles/TRETON.dir/Hydro.cpp.obj: E:/learning/diploma/TRETON/TRETON_CMAKE/Hydro.cpp
 CMakeFiles/TRETON.dir/Hydro.cpp.obj: CMakeFiles/TRETON.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\learning\diploma\TRETON\TRETON_CMAKE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/TRETON.dir/Hydro.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\learning\diploma\TRETON\TRETON_CMAKE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/TRETON.dir/Hydro.cpp.obj"
 	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TRETON.dir/Hydro.cpp.obj -MF CMakeFiles\TRETON.dir\Hydro.cpp.obj.d -o CMakeFiles\TRETON.dir\Hydro.cpp.obj -c E:\learning\diploma\TRETON\TRETON_CMAKE\Hydro.cpp
 
 CMakeFiles/TRETON.dir/Hydro.cpp.i: cmake_force
@@ -180,7 +120,7 @@ CMakeFiles/TRETON.dir/Matrix.cpp.obj: CMakeFiles/TRETON.dir/flags.make
 CMakeFiles/TRETON.dir/Matrix.cpp.obj: CMakeFiles/TRETON.dir/includes_CXX.rsp
 CMakeFiles/TRETON.dir/Matrix.cpp.obj: E:/learning/diploma/TRETON/TRETON_CMAKE/Matrix.cpp
 CMakeFiles/TRETON.dir/Matrix.cpp.obj: CMakeFiles/TRETON.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\learning\diploma\TRETON\TRETON_CMAKE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/TRETON.dir/Matrix.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\learning\diploma\TRETON\TRETON_CMAKE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/TRETON.dir/Matrix.cpp.obj"
 	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TRETON.dir/Matrix.cpp.obj -MF CMakeFiles\TRETON.dir\Matrix.cpp.obj.d -o CMakeFiles\TRETON.dir\Matrix.cpp.obj -c E:\learning\diploma\TRETON\TRETON_CMAKE\Matrix.cpp
 
 CMakeFiles/TRETON.dir/Matrix.cpp.i: cmake_force
@@ -191,41 +131,11 @@ CMakeFiles/TRETON.dir/Matrix.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TRETON.dir/Matrix.cpp.s"
 	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\learning\diploma\TRETON\TRETON_CMAKE\Matrix.cpp -o CMakeFiles\TRETON.dir\Matrix.cpp.s
 
-CMakeFiles/TRETON.dir/PRV.cpp.obj: CMakeFiles/TRETON.dir/flags.make
-CMakeFiles/TRETON.dir/PRV.cpp.obj: CMakeFiles/TRETON.dir/includes_CXX.rsp
-CMakeFiles/TRETON.dir/PRV.cpp.obj: E:/learning/diploma/TRETON/TRETON_CMAKE/PRV.cpp
-CMakeFiles/TRETON.dir/PRV.cpp.obj: CMakeFiles/TRETON.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\learning\diploma\TRETON\TRETON_CMAKE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/TRETON.dir/PRV.cpp.obj"
-	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TRETON.dir/PRV.cpp.obj -MF CMakeFiles\TRETON.dir\PRV.cpp.obj.d -o CMakeFiles\TRETON.dir\PRV.cpp.obj -c E:\learning\diploma\TRETON\TRETON_CMAKE\PRV.cpp
-
-CMakeFiles/TRETON.dir/PRV.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TRETON.dir/PRV.cpp.i"
-	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\learning\diploma\TRETON\TRETON_CMAKE\PRV.cpp > CMakeFiles\TRETON.dir\PRV.cpp.i
-
-CMakeFiles/TRETON.dir/PRV.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TRETON.dir/PRV.cpp.s"
-	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\learning\diploma\TRETON\TRETON_CMAKE\PRV.cpp -o CMakeFiles\TRETON.dir\PRV.cpp.s
-
-CMakeFiles/TRETON.dir/SodiumProp.cpp.obj: CMakeFiles/TRETON.dir/flags.make
-CMakeFiles/TRETON.dir/SodiumProp.cpp.obj: CMakeFiles/TRETON.dir/includes_CXX.rsp
-CMakeFiles/TRETON.dir/SodiumProp.cpp.obj: E:/learning/diploma/TRETON/TRETON_CMAKE/SodiumProp.cpp
-CMakeFiles/TRETON.dir/SodiumProp.cpp.obj: CMakeFiles/TRETON.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\learning\diploma\TRETON\TRETON_CMAKE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/TRETON.dir/SodiumProp.cpp.obj"
-	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TRETON.dir/SodiumProp.cpp.obj -MF CMakeFiles\TRETON.dir\SodiumProp.cpp.obj.d -o CMakeFiles\TRETON.dir\SodiumProp.cpp.obj -c E:\learning\diploma\TRETON\TRETON_CMAKE\SodiumProp.cpp
-
-CMakeFiles/TRETON.dir/SodiumProp.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TRETON.dir/SodiumProp.cpp.i"
-	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\learning\diploma\TRETON\TRETON_CMAKE\SodiumProp.cpp > CMakeFiles\TRETON.dir\SodiumProp.cpp.i
-
-CMakeFiles/TRETON.dir/SodiumProp.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TRETON.dir/SodiumProp.cpp.s"
-	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\learning\diploma\TRETON\TRETON_CMAKE\SodiumProp.cpp -o CMakeFiles\TRETON.dir\SodiumProp.cpp.s
-
 CMakeFiles/TRETON.dir/Thechyco.cpp.obj: CMakeFiles/TRETON.dir/flags.make
 CMakeFiles/TRETON.dir/Thechyco.cpp.obj: CMakeFiles/TRETON.dir/includes_CXX.rsp
 CMakeFiles/TRETON.dir/Thechyco.cpp.obj: E:/learning/diploma/TRETON/TRETON_CMAKE/Thechyco.cpp
 CMakeFiles/TRETON.dir/Thechyco.cpp.obj: CMakeFiles/TRETON.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\learning\diploma\TRETON\TRETON_CMAKE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/TRETON.dir/Thechyco.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\learning\diploma\TRETON\TRETON_CMAKE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/TRETON.dir/Thechyco.cpp.obj"
 	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TRETON.dir/Thechyco.cpp.obj -MF CMakeFiles\TRETON.dir\Thechyco.cpp.obj.d -o CMakeFiles\TRETON.dir\Thechyco.cpp.obj -c E:\learning\diploma\TRETON\TRETON_CMAKE\Thechyco.cpp
 
 CMakeFiles/TRETON.dir/Thechyco.cpp.i: cmake_force
@@ -240,7 +150,7 @@ CMakeFiles/TRETON.dir/ThechycoGlobalVar.cpp.obj: CMakeFiles/TRETON.dir/flags.mak
 CMakeFiles/TRETON.dir/ThechycoGlobalVar.cpp.obj: CMakeFiles/TRETON.dir/includes_CXX.rsp
 CMakeFiles/TRETON.dir/ThechycoGlobalVar.cpp.obj: E:/learning/diploma/TRETON/TRETON_CMAKE/ThechycoGlobalVar.cpp
 CMakeFiles/TRETON.dir/ThechycoGlobalVar.cpp.obj: CMakeFiles/TRETON.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\learning\diploma\TRETON\TRETON_CMAKE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/TRETON.dir/ThechycoGlobalVar.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\learning\diploma\TRETON\TRETON_CMAKE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/TRETON.dir/ThechycoGlobalVar.cpp.obj"
 	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TRETON.dir/ThechycoGlobalVar.cpp.obj -MF CMakeFiles\TRETON.dir\ThechycoGlobalVar.cpp.obj.d -o CMakeFiles\TRETON.dir\ThechycoGlobalVar.cpp.obj -c E:\learning\diploma\TRETON\TRETON_CMAKE\ThechycoGlobalVar.cpp
 
 CMakeFiles/TRETON.dir/ThechycoGlobalVar.cpp.i: cmake_force
@@ -251,41 +161,46 @@ CMakeFiles/TRETON.dir/ThechycoGlobalVar.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TRETON.dir/ThechycoGlobalVar.cpp.s"
 	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\learning\diploma\TRETON\TRETON_CMAKE\ThechycoGlobalVar.cpp -o CMakeFiles\TRETON.dir\ThechycoGlobalVar.cpp.s
 
+CMakeFiles/TRETON.dir/CoolantMaterials.cpp.obj: CMakeFiles/TRETON.dir/flags.make
+CMakeFiles/TRETON.dir/CoolantMaterials.cpp.obj: CMakeFiles/TRETON.dir/includes_CXX.rsp
+CMakeFiles/TRETON.dir/CoolantMaterials.cpp.obj: E:/learning/diploma/TRETON/TRETON_CMAKE/CoolantMaterials.cpp
+CMakeFiles/TRETON.dir/CoolantMaterials.cpp.obj: CMakeFiles/TRETON.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\learning\diploma\TRETON\TRETON_CMAKE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/TRETON.dir/CoolantMaterials.cpp.obj"
+	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TRETON.dir/CoolantMaterials.cpp.obj -MF CMakeFiles\TRETON.dir\CoolantMaterials.cpp.obj.d -o CMakeFiles\TRETON.dir\CoolantMaterials.cpp.obj -c E:\learning\diploma\TRETON\TRETON_CMAKE\CoolantMaterials.cpp
+
+CMakeFiles/TRETON.dir/CoolantMaterials.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TRETON.dir/CoolantMaterials.cpp.i"
+	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\learning\diploma\TRETON\TRETON_CMAKE\CoolantMaterials.cpp > CMakeFiles\TRETON.dir\CoolantMaterials.cpp.i
+
+CMakeFiles/TRETON.dir/CoolantMaterials.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TRETON.dir/CoolantMaterials.cpp.s"
+	C:\Users\andrey\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\learning\diploma\TRETON\TRETON_CMAKE\CoolantMaterials.cpp -o CMakeFiles\TRETON.dir\CoolantMaterials.cpp.s
+
 # Object files for target TRETON
 TRETON_OBJECTS = \
 "CMakeFiles/TRETON.dir/Main.cpp.obj" \
-"CMakeFiles/TRETON.dir/AMUV.cpp.obj" \
-"CMakeFiles/TRETON.dir/ANU.cpp.obj" \
-"CMakeFiles/TRETON.dir/CpSodium.cpp.obj" \
-"CMakeFiles/TRETON.dir/EntV.cpp.obj" \
 "CMakeFiles/TRETON.dir/Heat.cpp.obj" \
 "CMakeFiles/TRETON.dir/Hydro.cpp.obj" \
 "CMakeFiles/TRETON.dir/Matrix.cpp.obj" \
-"CMakeFiles/TRETON.dir/PRV.cpp.obj" \
-"CMakeFiles/TRETON.dir/SodiumProp.cpp.obj" \
 "CMakeFiles/TRETON.dir/Thechyco.cpp.obj" \
-"CMakeFiles/TRETON.dir/ThechycoGlobalVar.cpp.obj"
+"CMakeFiles/TRETON.dir/ThechycoGlobalVar.cpp.obj" \
+"CMakeFiles/TRETON.dir/CoolantMaterials.cpp.obj"
 
 # External object files for target TRETON
 TRETON_EXTERNAL_OBJECTS =
 
 TRETON.exe: CMakeFiles/TRETON.dir/Main.cpp.obj
-TRETON.exe: CMakeFiles/TRETON.dir/AMUV.cpp.obj
-TRETON.exe: CMakeFiles/TRETON.dir/ANU.cpp.obj
-TRETON.exe: CMakeFiles/TRETON.dir/CpSodium.cpp.obj
-TRETON.exe: CMakeFiles/TRETON.dir/EntV.cpp.obj
 TRETON.exe: CMakeFiles/TRETON.dir/Heat.cpp.obj
 TRETON.exe: CMakeFiles/TRETON.dir/Hydro.cpp.obj
 TRETON.exe: CMakeFiles/TRETON.dir/Matrix.cpp.obj
-TRETON.exe: CMakeFiles/TRETON.dir/PRV.cpp.obj
-TRETON.exe: CMakeFiles/TRETON.dir/SodiumProp.cpp.obj
 TRETON.exe: CMakeFiles/TRETON.dir/Thechyco.cpp.obj
 TRETON.exe: CMakeFiles/TRETON.dir/ThechycoGlobalVar.cpp.obj
+TRETON.exe: CMakeFiles/TRETON.dir/CoolantMaterials.cpp.obj
 TRETON.exe: CMakeFiles/TRETON.dir/build.make
 TRETON.exe: CMakeFiles/TRETON.dir/linkLibs.rsp
 TRETON.exe: CMakeFiles/TRETON.dir/objects1.rsp
 TRETON.exe: CMakeFiles/TRETON.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=E:\learning\diploma\TRETON\TRETON_CMAKE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable TRETON.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=E:\learning\diploma\TRETON\TRETON_CMAKE\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable TRETON.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\TRETON.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -4,17 +4,18 @@
 #include <cmath>
 #include <numbers>
 
-#include "headers/SodiumProp.hpp"
 #include "headers/ThechycoGlobalVar.hpp"
 #include "headers/NamelistReader.hpp"
 #include "headers/Hydro.hpp"
 #include "headers/Heat.hpp"
-#include "headers/CpSodium.hpp"
-#include "headers/AMUV.hpp"
 #include "headers/Thechyco.hpp"
+#include "headers/CoolantMaterials.h"
 
 
-double thehyco(double dt) {
+template double thehyco(double dt, const Coolant<double>& coolant);
+
+template<typename T>
+T thehyco(T dt, const Coolant<T>& coolant) {
     double MassDisb;
 
     for (int j = 0; j != mf; ++j) {
@@ -49,8 +50,8 @@ double thehyco(double dt) {
     for (int i = 0; i < iterations; ++i) {
         bool disbalanceSatisfied = false;
         for (int j = 0; j < 50; ++j) {
-            KinViscosity();
-            FormFriction();
+            KinViscosity(coolant);
+            FormFriction(coolant);
             Viter(dt);
             pes(dt);
             piter();
@@ -66,10 +67,10 @@ double thehyco(double dt) {
             std::cout << "MassDisbalance = " << MassDisb << std::endl;
         }
 
-        alf();
-        HeatConduction();
-        heat(dt);
-        density();
+        alf(coolant);
+        HeatConduction(coolant);
+        heat(dt, coolant);
+        density(coolant);
     }
 
     double thehyco = 0.0;
@@ -84,13 +85,16 @@ double thehyco(double dt) {
     return thehyco;
 }
 
-void HeatHydroOnce() {
+template void HeatHydroOnce(const Coolant<double>& coolant);
+
+template<typename T>
+void HeatHydroOnce(const Coolant<T>& coolant) {
     static int manager = 0;
 
     if (manager != 1) {
         CrossConnection();
         HeatHydroGeometry();
-        density();
+        density(coolant);
 
         rod_property();
     
@@ -260,38 +264,21 @@ void normal(int n, double &x, double &y) {
 }
 
 
-double Sodium_KinVis(double pvod, double ent) {
-    double t_r = 0.0, v_r = 0.0;
-    
-    SodiumTV(pvod, ent, t_r, v_r);
-    return AMUV(t_r) * v_r;
-}
+template void density(const Coolant<double>& coolant);
 
+template<typename T>
+void density(const Coolant<T>& coolant) {
+    InOut_f(coolant);
 
-
-double Sodium_Density(double pvod, double ent) {
-
-    double t_r = 0.0, v_r = 0.0;
-    
-    SodiumTV(pvod, ent, t_r, v_r);
-    double ro = 1 / v_r;
-
-    return ro;
-}
-
-
-void density() {
-    InOut_f();
-
-    Cp_input = CpSodium(t_CoreInput);
-    ro_output = Sodium_Density(p_output, h_CoreOutput);
-    Cp_output = CpSodium(t_CoreOutput);
+    Cp_input = coolant.Cp(t_CoreInput);
+    ro_output = coolant.density(coolant.Temperature(h_CoreOutput));
+    Cp_output = coolant.Cp(t_CoreOutput);
 
     for (int j = 0; j < mf; ++j) {
-        ro_input[j] = Sodium_Density(p_input, h_HeatExchangerOutput_new[j]);
+        ro_input[j] = coolant.density(coolant.Temperature(h_HeatExchangerOutput_new[j]));
         for (int i = 0; i < n; ++i) {
-            ro[i][j] = Sodium_Density(p[i][j], h_f[i][j]);
-            C_p[i][j] = CpSodium(t_f[i][j]);
+            ro[i][j] = coolant.density(coolant.Temperature(h_f[i][j]));
+            C_p[i][j] = coolant.Cp(t_f[i][j]);
         }
     }
 }
@@ -328,8 +315,10 @@ int is(int iarg) {
     }
 }
 
+template void InOut_f(const Coolant<double>& coolant);
 
-void InOut_f() {
+template<typename T>
+void InOut_f(const Coolant<T>& coolant) {
     double tmp1 = 0.0;
     double tmp2 = 0.0;
     double tmp3 = 0.0;
@@ -339,27 +328,28 @@ void InOut_f() {
     for (int j = 0; j < mf; ++j) {
         double V_down = V_z[0][j];
 
-        tmp1 += h_HeatExchangerOutput_new[j] *  Sodium_Density(p_input, h_HeatExchangerOutput_new[j]) * V_down;
+        tmp1 += h_HeatExchangerOutput_new[j] * coolant.density(coolant.Temperature(h_HeatExchangerOutput_new[j])) * V_down;
 
         if (V_down < 0) {
-            tmp1 -= h_f[0][j] * Sodium_Density(p_input, h_f[0][j]) * V_down;
+            tmp1 -= h_f[0][j] * coolant.density(coolant.Temperature(h_f[0][j])) * V_down;
 
         } else {
-            tmp2 += Sodium_Density(p_input, h_HeatExchangerOutput_new[j]) * V_down;
+            tmp2 += coolant.density(coolant.Temperature(h_HeatExchangerOutput_new[j])) * V_down;
+
         }
 
         double V_up = V_z[n][j];
         if (V_up > 0) {
-            tmp3 += h_f[n - 1][j] * Sodium_Density(p_output, h_f[n - 1][j]) * V_up;
+            tmp3 += h_f[n - 1][j] * coolant.density(coolant.Temperature(h_f[n - 1][j])) * V_up;
 
-            tmp4 += Sodium_Density(p_output, h_f[n - 1][j]) * V_up;
-            
+            tmp4 += coolant.density(coolant.Temperature(h_f[n - 1][j])) * V_up;
+
         }
     }
 
     if (tmp2 != 0) {
         h_CoreInput = tmp1 / tmp2;
-        SodiumTV(p_input, h_CoreInput, t_CoreInput, VAU);
+        t_CoreInput = coolant.Temperature(h_CoreInput);
 
     } else {
         std::cerr << "Global reverse flow on the bottom" << std::endl;
@@ -368,7 +358,7 @@ void InOut_f() {
 
     if (tmp4 != 0) {
         h_CoreOutput = tmp3 / tmp4;
-        SodiumTV(p_output, h_CoreOutput, t_CoreOutput, VAU);
+        t_CoreOutput = coolant.Temperature(h_CoreOutput);
 
     } else {
         std::cerr << "Global reverse flow on the top" << std::endl;

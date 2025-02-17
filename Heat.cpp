@@ -3,15 +3,12 @@
 #include <numbers>
 #include <iomanip>
 
-#include "headers/SodiumProp.hpp"
 #include "headers/ThechycoGlobalVar.hpp"
 #include "headers/NamelistReader.hpp"
 #include "headers/Thechyco.hpp"
 #include "headers/Matrix.hpp"
-#include "headers/ANU.hpp"
-#include "headers/AMUV.hpp"
-#include "headers/PRV.hpp"
 #include "headers/Heat.hpp"
+#include "headers/CoolantMaterials.h"
 
 
 void RodOnce() {
@@ -258,9 +255,10 @@ void swapOnNewValue(std::vector<double>& arrayValue, std::vector<std::vector<std
     }
 }
 
+template void heat(double dt, const Coolant<double>& coolant);
 
-
-void heat(double dt) {
+template<typename T>
+void heat(T dt, const Coolant<T>& coolant) {
     double tmp1 = 0.0;
     double error = 0.0;
     int iii = 0;
@@ -275,7 +273,7 @@ void heat(double dt) {
         Mat_A[k] = 0;
     }
 
-    InOut_f();
+    InOut_f(coolant);
 
     for (int j = 0; j < mf; ++j) {
         for (int i = 0; i < n; ++i) {
@@ -283,12 +281,7 @@ void heat(double dt) {
             double alfadz_vf = alfa[i][j] * dz / vf;
             double tmp2 = 0.0;
 
-            p_r = p[i][j];
-            h_r = h_f[i][j];
-
-            SodiumTV(p_r, h_r, t_r, v_r);
-
-            t_f[i][j] = t_r;
+            t_f[i][j] = coolant.Temperature(h_f[i][j]);
             Vect_X[kk] = h_f[i][j];
 
             for (int k = 0; k < type; ++k) {
@@ -388,10 +381,8 @@ void heat(double dt) {
         for (int i = 0; i < n; ++i) {
             int kk = j * n + i;
             h_f[i][j] = Vect_X1[kk];
-            p_r = p[i][j];
-            h_r = h_f[i][j];
-            SodiumTV(p_r, h_r, t_r, v_r);
-            t_f[i][j] = t_r;
+
+            t_f[i][j] = coolant.Temperature(h_f[i][j]);
         }
     }
 
@@ -496,14 +487,16 @@ double EnerFluiDisbalance() {
     return EnerFluiDisbalance;
 }
 
+template void HeatConduction(const Coolant<double>& coolant);
 
-void HeatConduction() {
+template<typename T>
+void HeatConduction(const Coolant<T>& coolant) {
     double const_val = 2.0 * d_mesh * std::pow(x_mesh, 2) / std::numbers::pi * (2.0 + 0.115 / (x_mesh - 1.0)) * (x_mesh - 1.0);
 
     for (int j = 0; j < mf; ++j) {
         for (int i = 0; i < n; ++i) {
             double vel = std::abs(V_z[i][j]);
-            double viscosity = Sodium_KinVis(p[i][j], h_f[i][j]);
+            double viscosity = coolant.KinVis(h_f[i][j]);
             double re = vel * d_mesh / viscosity;
 
             if (vel != 0) {
@@ -515,14 +508,16 @@ void HeatConduction() {
     }
 }
 
+template void alf(const Coolant<double>& coolant);
 
-void alf() {
+template<typename T>
+void alf(const Coolant<T>& coolant) {
     for (int j = 0; j < mf; ++j) {
         for (int i = 0; i < n; ++i) {
             double Uz = (V_z[i][j] + V_z[i + 1][j]) / 2.0;
             double Ux = 0.0;
             double Uy = 0.0;
-            alfa[i][j] = HeatTransfer(Ux, Uy, Uz, x_mesh, d_mesh, h_f[i][j], p[i][j]);
+            alfa[i][j] = HeatTransfer(Ux, Uy, Uz, x_mesh, d_mesh, h_f[i][j], coolant);
         }
     }
 }
@@ -563,22 +558,24 @@ double EnerCoreDisbalance() {
 }
 
 
-double HeatTransfer(double Ux, double Uy, double Uz, double x, double d_hyd, double ent, double pvod) {
-    double t_r = 0.0, v_r = 0.0;
-    double A_r, pr_temp;
-    constexpr double H2O_l = 0.58;
-    
-    SodiumTV(pvod, ent, t_r, v_r);
+template double HeatTransfer(double Ux, double Uy, double Uz, double x, double d_hyd, double ent, const Coolant<double>& coolant);
 
+template<typename T>
+T HeatTransfer(T Ux, T Uy, T Uz, T x, T d_hyd, T ent, const Coolant<T>& coolant) {
+    double t_r, v_r;
+    double H2O_l = 0.58;
+    
+    t_r = coolant.Temperature(ent);
+    v_r = coolant.Volume(t_r);
 
     double d_hydro = d_hyd * (1.103 * std::pow(x_mesh, 2) - 1.0);
-    double ro_Sodium = Sodium_Density(pvod, ent);
+    double ro_Sodium = coolant.density(coolant.Temperature(ent));
 
     double absU = std::sqrt(Ux * Ux + Uy * Uy + Uz * Uz);
 
-    double Re = absU * d_hydro * ro_Sodium / AMUV(t_r);
+    double Re = absU * d_hydro * ro_Sodium / coolant.DynVisc(t_r);
 
-    pr_temp = PRV(t_r);
+    double Pr = coolant.Pr(t_r);
     
     // double Pe_along = absU * d_hydro / a_Pb;
     // double NU_along = NUl(x) + (0.041 / std::pow(x, 2)) * std::pow(Pe_along, 0.56 + 0.19 * x);
@@ -601,6 +598,7 @@ double HeatTransfer(double Ux, double Uy, double Uz, double x, double d_hyd, dou
     //     return cross;
     // }
 
-    return ANU(Re, pr_temp, A_r) * H2O_l / d_hydro;
+    return coolant.Nu(Re, Pr) * H2O_l / d_hydro;
+
 }
 

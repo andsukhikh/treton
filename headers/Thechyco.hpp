@@ -2,8 +2,14 @@
 #define THECHYCO_HPP
 #include <vector>
 
-double thehyco(double);
-void HeatHydroOnce();
+#include "CoolantMaterials.h"
+
+template<typename T>
+T thehyco(T dt, const Coolant<T>& coolant);
+
+template<typename T>
+void HeatHydroOnce(const Coolant<T>& coolant);
+
 void CrossConnection();
 void HeatHydroGeometry();
 void normal();
@@ -11,10 +17,16 @@ double Sodium_KinVis(double, double);
 double Sodium_Density(double, double);
 double Lead_KinVis();
 double Lead_Density(double, double );
-void density();
+
+template<typename T>
+void density(const Coolant<T>& coolant);
+
 void sy(std::vector<double>& , std::vector<double>& , std::vector<double>& , std::vector<double>& , int , int );
 int is(int);
-void InOut_f();
+
+template<typename T>
+void InOut_f(const Coolant<T>& coolant);
+
 void write_all();
 void read_all();
 double V_r(int , int );

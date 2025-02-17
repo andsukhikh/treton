@@ -8,16 +8,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "E:/learning/diploma/TRETON/TRETON_CMAKE/AMUV.cpp" "CMakeFiles/TRETON.dir/AMUV.cpp.obj" "gcc" "CMakeFiles/TRETON.dir/AMUV.cpp.obj.d"
-  "E:/learning/diploma/TRETON/TRETON_CMAKE/ANU.cpp" "CMakeFiles/TRETON.dir/ANU.cpp.obj" "gcc" "CMakeFiles/TRETON.dir/ANU.cpp.obj.d"
-  "E:/learning/diploma/TRETON/TRETON_CMAKE/CpSodium.cpp" "CMakeFiles/TRETON.dir/CpSodium.cpp.obj" "gcc" "CMakeFiles/TRETON.dir/CpSodium.cpp.obj.d"
-  "E:/learning/diploma/TRETON/TRETON_CMAKE/EntV.cpp" "CMakeFiles/TRETON.dir/EntV.cpp.obj" "gcc" "CMakeFiles/TRETON.dir/EntV.cpp.obj.d"
+  "E:/learning/diploma/TRETON/TRETON_CMAKE/CoolantMaterials.cpp" "CMakeFiles/TRETON.dir/CoolantMaterials.cpp.obj" "gcc" "CMakeFiles/TRETON.dir/CoolantMaterials.cpp.obj.d"
   "E:/learning/diploma/TRETON/TRETON_CMAKE/Heat.cpp" "CMakeFiles/TRETON.dir/Heat.cpp.obj" "gcc" "CMakeFiles/TRETON.dir/Heat.cpp.obj.d"
   "E:/learning/diploma/TRETON/TRETON_CMAKE/Hydro.cpp" "CMakeFiles/TRETON.dir/Hydro.cpp.obj" "gcc" "CMakeFiles/TRETON.dir/Hydro.cpp.obj.d"
   "E:/learning/diploma/TRETON/TRETON_CMAKE/Main.cpp" "CMakeFiles/TRETON.dir/Main.cpp.obj" "gcc" "CMakeFiles/TRETON.dir/Main.cpp.obj.d"
   "E:/learning/diploma/TRETON/TRETON_CMAKE/Matrix.cpp" "CMakeFiles/TRETON.dir/Matrix.cpp.obj" "gcc" "CMakeFiles/TRETON.dir/Matrix.cpp.obj.d"
-  "E:/learning/diploma/TRETON/TRETON_CMAKE/PRV.cpp" "CMakeFiles/TRETON.dir/PRV.cpp.obj" "gcc" "CMakeFiles/TRETON.dir/PRV.cpp.obj.d"
-  "E:/learning/diploma/TRETON/TRETON_CMAKE/SodiumProp.cpp" "CMakeFiles/TRETON.dir/SodiumProp.cpp.obj" "gcc" "CMakeFiles/TRETON.dir/SodiumProp.cpp.obj.d"
   "E:/learning/diploma/TRETON/TRETON_CMAKE/Thechyco.cpp" "CMakeFiles/TRETON.dir/Thechyco.cpp.obj" "gcc" "CMakeFiles/TRETON.dir/Thechyco.cpp.obj.d"
   "E:/learning/diploma/TRETON/TRETON_CMAKE/ThechycoGlobalVar.cpp" "CMakeFiles/TRETON.dir/ThechycoGlobalVar.cpp.obj" "gcc" "CMakeFiles/TRETON.dir/ThechycoGlobalVar.cpp.obj.d"
   )

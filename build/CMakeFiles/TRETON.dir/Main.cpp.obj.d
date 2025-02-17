@@ -17,23 +17,26 @@ CMakeFiles/TRETON.dir/Main.cpp.obj: \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/version.h \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/move.h \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/utility.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/compare \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/concepts \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/stl_iterator_base_types.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/iterator_concepts.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/ptr_traits.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/ranges_cmp.h \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/stl_iterator_base_funcs.h \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/concept_check.h \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/debug/assertions.h \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/stl_iterator.h \
- C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/ptr_traits.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/new \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/exception.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/stl_construct.h \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/debug/debug.h \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/predefined_ops.h \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bit \
- C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/concepts \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/allocator.h \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/x86_64-w64-mingw32/bits/c++allocator.h \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/new_allocator.h \
- C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/new \
- C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/exception.h \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/memoryfwd.h \
- C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/stl_construct.h \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/stl_uninitialized.h \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/ext/alloc_traits.h \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/alloc_traits.h \
@@ -62,6 +65,10 @@ CMakeFiles/TRETON.dir/Main.cpp.obj: \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/uses_allocator.h \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/uses_allocator_args.h \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/tuple \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/ranges_util.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/ranges_base.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/max_size_type.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/numbers \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/fstream \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/istream \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/ios \
@@ -182,8 +189,32 @@ CMakeFiles/TRETON.dir/Main.cpp.obj: \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/tr1/poly_laguerre.tcc \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/tr1/riemann_zeta.tcc \
  E:\learning\diploma\TRETON\TRETON_CMAKE\headers/ThechycoGlobalVar.hpp \
- E:\learning\diploma\TRETON\TRETON_CMAKE\headers/SodiumProp.hpp \
  E:\learning\diploma\TRETON\TRETON_CMAKE\headers/Heat.hpp \
+ E:\learning\diploma\TRETON\TRETON_CMAKE\headers/CoolantMaterials.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/memory \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/stl_tempbuf.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/stl_raw_storage_iter.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/align.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdint.h \
+ C:/Users/andrey/mingw64/x86_64-w64-mingw32/include/stdint.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/unique_ptr.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/shared_ptr.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/shared_ptr_base.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/allocated_ptr.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/ext/aligned_buffer.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/ext/concurrence.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/shared_ptr_atomic.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/atomic_base.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/atomic_lockfree_defines.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/atomic_wait.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/cstdint \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/std_mutex.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/backward/auto_ptr.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/ranges_uninitialized.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/ranges_algobase.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/pstl/glue_memory_defs.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/pstl/execution_defs.h \
+ E:\learning\diploma\TRETON\TRETON_CMAKE\headers/Coolant.h \
  E:\learning\diploma\TRETON\TRETON_CMAKE\headers/Thechyco.hpp \
  E:\learning\diploma\TRETON\TRETON_CMAKE\headers/Hydro.hpp \
  E:\learning\diploma\TRETON\TRETON_CMAKE\headers/NamelistReader.hpp \
@@ -192,6 +223,6 @@ CMakeFiles/TRETON.dir/Main.cpp.obj: \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/algorithmfwd.h \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/stl_heap.h \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/uniform_int_dist.h \
- C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/stl_tempbuf.h \
+ C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/bits/ranges_algo.h \
  C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/pstl/glue_algorithm_defs.h \
- C:/Users/andrey/mingw64/lib/gcc/x86_64-w64-mingw32/14.2.0/include/c++/pstl/execution_defs.h
+ E:\learning\diploma\TRETON\TRETON_CMAKE\headers/CoolantMaterials.h

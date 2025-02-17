@@ -128,101 +128,29 @@ TRETON/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/build
 .PHONY : TRETON/fast
 
-AMUV.obj: AMUV.cpp.obj
-.PHONY : AMUV.obj
+CoolantMaterials.obj: CoolantMaterials.cpp.obj
+.PHONY : CoolantMaterials.obj
 
 # target to build an object file
-AMUV.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/AMUV.cpp.obj
-.PHONY : AMUV.cpp.obj
+CoolantMaterials.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/CoolantMaterials.cpp.obj
+.PHONY : CoolantMaterials.cpp.obj
 
-AMUV.i: AMUV.cpp.i
-.PHONY : AMUV.i
-
-# target to preprocess a source file
-AMUV.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/AMUV.cpp.i
-.PHONY : AMUV.cpp.i
-
-AMUV.s: AMUV.cpp.s
-.PHONY : AMUV.s
-
-# target to generate assembly for a file
-AMUV.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/AMUV.cpp.s
-.PHONY : AMUV.cpp.s
-
-ANU.obj: ANU.cpp.obj
-.PHONY : ANU.obj
-
-# target to build an object file
-ANU.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/ANU.cpp.obj
-.PHONY : ANU.cpp.obj
-
-ANU.i: ANU.cpp.i
-.PHONY : ANU.i
+CoolantMaterials.i: CoolantMaterials.cpp.i
+.PHONY : CoolantMaterials.i
 
 # target to preprocess a source file
-ANU.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/ANU.cpp.i
-.PHONY : ANU.cpp.i
+CoolantMaterials.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/CoolantMaterials.cpp.i
+.PHONY : CoolantMaterials.cpp.i
 
-ANU.s: ANU.cpp.s
-.PHONY : ANU.s
-
-# target to generate assembly for a file
-ANU.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/ANU.cpp.s
-.PHONY : ANU.cpp.s
-
-CpSodium.obj: CpSodium.cpp.obj
-.PHONY : CpSodium.obj
-
-# target to build an object file
-CpSodium.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/CpSodium.cpp.obj
-.PHONY : CpSodium.cpp.obj
-
-CpSodium.i: CpSodium.cpp.i
-.PHONY : CpSodium.i
-
-# target to preprocess a source file
-CpSodium.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/CpSodium.cpp.i
-.PHONY : CpSodium.cpp.i
-
-CpSodium.s: CpSodium.cpp.s
-.PHONY : CpSodium.s
+CoolantMaterials.s: CoolantMaterials.cpp.s
+.PHONY : CoolantMaterials.s
 
 # target to generate assembly for a file
-CpSodium.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/CpSodium.cpp.s
-.PHONY : CpSodium.cpp.s
-
-EntV.obj: EntV.cpp.obj
-.PHONY : EntV.obj
-
-# target to build an object file
-EntV.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/EntV.cpp.obj
-.PHONY : EntV.cpp.obj
-
-EntV.i: EntV.cpp.i
-.PHONY : EntV.i
-
-# target to preprocess a source file
-EntV.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/EntV.cpp.i
-.PHONY : EntV.cpp.i
-
-EntV.s: EntV.cpp.s
-.PHONY : EntV.s
-
-# target to generate assembly for a file
-EntV.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/EntV.cpp.s
-.PHONY : EntV.cpp.s
+CoolantMaterials.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/CoolantMaterials.cpp.s
+.PHONY : CoolantMaterials.cpp.s
 
 Heat.obj: Heat.cpp.obj
 .PHONY : Heat.obj
@@ -320,54 +248,6 @@ Matrix.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/Matrix.cpp.s
 .PHONY : Matrix.cpp.s
 
-PRV.obj: PRV.cpp.obj
-.PHONY : PRV.obj
-
-# target to build an object file
-PRV.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/PRV.cpp.obj
-.PHONY : PRV.cpp.obj
-
-PRV.i: PRV.cpp.i
-.PHONY : PRV.i
-
-# target to preprocess a source file
-PRV.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/PRV.cpp.i
-.PHONY : PRV.cpp.i
-
-PRV.s: PRV.cpp.s
-.PHONY : PRV.s
-
-# target to generate assembly for a file
-PRV.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/PRV.cpp.s
-.PHONY : PRV.cpp.s
-
-SodiumProp.obj: SodiumProp.cpp.obj
-.PHONY : SodiumProp.obj
-
-# target to build an object file
-SodiumProp.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/SodiumProp.cpp.obj
-.PHONY : SodiumProp.cpp.obj
-
-SodiumProp.i: SodiumProp.cpp.i
-.PHONY : SodiumProp.i
-
-# target to preprocess a source file
-SodiumProp.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/SodiumProp.cpp.i
-.PHONY : SodiumProp.cpp.i
-
-SodiumProp.s: SodiumProp.cpp.s
-.PHONY : SodiumProp.s
-
-# target to generate assembly for a file
-SodiumProp.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TRETON.dir\build.make CMakeFiles/TRETON.dir/SodiumProp.cpp.s
-.PHONY : SodiumProp.cpp.s
-
 Thechyco.obj: Thechyco.cpp.obj
 .PHONY : Thechyco.obj
 
@@ -425,18 +305,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... TRETON
-	@echo ... AMUV.obj
-	@echo ... AMUV.i
-	@echo ... AMUV.s
-	@echo ... ANU.obj
-	@echo ... ANU.i
-	@echo ... ANU.s
-	@echo ... CpSodium.obj
-	@echo ... CpSodium.i
-	@echo ... CpSodium.s
-	@echo ... EntV.obj
-	@echo ... EntV.i
-	@echo ... EntV.s
+	@echo ... CoolantMaterials.obj
+	@echo ... CoolantMaterials.i
+	@echo ... CoolantMaterials.s
 	@echo ... Heat.obj
 	@echo ... Heat.i
 	@echo ... Heat.s
@@ -449,12 +320,6 @@ help:
 	@echo ... Matrix.obj
 	@echo ... Matrix.i
 	@echo ... Matrix.s
-	@echo ... PRV.obj
-	@echo ... PRV.i
-	@echo ... PRV.s
-	@echo ... SodiumProp.obj
-	@echo ... SodiumProp.i
-	@echo ... SodiumProp.s
 	@echo ... Thechyco.obj
 	@echo ... Thechyco.i
 	@echo ... Thechyco.s

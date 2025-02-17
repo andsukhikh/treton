@@ -7,6 +7,8 @@
 
 #include "headers/Thechyco.hpp"
 #include "headers/ThechycoGlobalVar.hpp"
+#include "headers/CoolantMaterials.h"
+#include "headers/Hydro.hpp"
 
 
 double V_nz(int i, int j, int jf, int jV_n) {
@@ -1428,8 +1430,10 @@ void piter() {
     }
 }
 
+template void KinViscosity(const Coolant<double>& coolant);
 
-void KinViscosity() {
+template<typename T>
+void KinViscosity(const Coolant<T>& coolant) {
     double const_term = 2.0 * d_mesh * std::pow(x_mesh, 2) / std::numbers::pi * (2.0 + 0.115 / (x_mesh - 1.0)) * (x_mesh - 1.0);
     
     for (int j = 0; j < mf; ++j) {
@@ -1448,23 +1452,23 @@ void KinViscosity() {
                 pression = (p[i - 1][j] + p[i][j]) / 2.0;
             }
 
-            double viscosity = Sodium_KinVis(pression, temperature);
+            double viscosity = coolant.KinVis(temperature);
 
             double re = vel * d_mesh / viscosity;
 
             if (vel != 0.0) {
-                effM[i][j] = Sodium_Density(pression, temperature) * const_term * vel / std::pow(re, 0.1);
+                effM[i][j] = coolant.KinVis(temperature) * const_term * vel / std::pow(re, 0.1);
             } else {
-                effM[i][j] = Sodium_Density(pression, temperature) * viscosity;
+                effM[i][j] = coolant.KinVis(temperature) * viscosity;
             }
         }
     }
-
-    double effmm = effM[n][mf - 1];  
 }
 
+template void FormFriction(const Coolant<double>& coolant);
 
-void FormFriction() {
+template<typename T>
+void FormFriction(const Coolant<T>& coolant) {
     double a_mesh = 0.58 + 9.2 * (x_mesh - 1.0);   
     double formula = 0.57 + 0.18 * (x_mesh - 1.0) + 0.53 * (1.0 - exp(-a_mesh));
     double rows = dr / (0.6830127 * d_mesh * x_mesh);
@@ -1495,7 +1499,7 @@ void FormFriction() {
                     pression = (p[i - 1][j] + p[i][j]) / 2.0;
                 }
 
-                double viscosity = Sodium_KinVis(pression, temperature);
+                double viscosity = coolant.KinVis(temperature);
                 double re = vel * d_hydraulic / viscosity;
 
                 if (std::fmod(i + 1, 2) == 0) {
@@ -1518,8 +1522,7 @@ void FormFriction() {
                     if (vel == 0.0) {
                         effK_r[i][jV_n] = 0.0;
                     } else {
-                        double re = vel * d_mesh / Sodium_KinVis((p[i][j] + p[i][jf]) / 2.0,
-                                                              (h_f[i][j] + h_f[i][jf]) / 2.0);
+                        double re = vel * d_mesh / coolant.KinVis((h_f[i][j] + h_f[i][jf]) / 2.0);
                         effK_r[i][jV_n] = Constant * (rows + 1.0) * std::pow(re, -0.27) / (2.0 * dr);
                     }
                 }

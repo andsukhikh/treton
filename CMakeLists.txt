@@ -10,17 +10,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Указать исходные файлы (в корневой папке)
 set(SOURCES
     Main.cpp
-    AMUV.cpp
-	ANU.cpp
-    CpSodium.cpp
-	EntV.cpp
 	Heat.cpp
 	Hydro.cpp
 	Matrix.cpp
-	PRV.cpp
-	SodiumProp.cpp
 	Thechyco.cpp
 	ThechycoGlobalVar.cpp
+	CoolantMaterials.cpp
 )
 
 

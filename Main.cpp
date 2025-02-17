@@ -3,12 +3,14 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+
 #include "headers/ThechycoGlobalVar.hpp"
-#include "headers/SodiumProp.hpp"
 #include "headers/Heat.hpp"
 #include "headers/Thechyco.hpp"
 #include "headers/Hydro.hpp"
 #include "headers/NamelistReader.hpp"
+#include "headers/CoolantMaterials.h"
+
 
 int main() {
 
@@ -51,9 +53,8 @@ int main() {
     }
 
     double icall = 0.0;
-    double p_r, t_r, h_r, v_r;
-
-    p_r = p_input;
+	std::unique_ptr<Coolant<double>> coolant;
+    define_coolant(coolant, coolantName);
 
     std::ifstream file_in("T_in.txt");
     if(file_in.is_open()) {
@@ -61,34 +62,16 @@ int main() {
             for(int i = 0; i < 1; ++i) {
                 file_in >> bes[j][0];
             }
-
-            t_r = bes[j][0];
-            SodiumEV(p_r, h_r, t_r, v_r);
-            // WODAT(p_r, h_r, t_r, v_r);
-            // h_HeatExchangerOutput_new[j] = h_r - h_HeatExchangerOutput2;
-            h_HeatExchangerOutput_new[j] = h_r;
-
+            h_HeatExchangerOutput_new[j] = (*coolant).Entalpy(bes[j][0]);
         }
         file_in.close();
     } 
 
-    double VAU = v_r;
-
     for (int j = 0; j < mf; ++j) {
         for (int i = 0; i < n; ++i) {
             p[i][j] = p_input - (p_input - p_output) * (i + 0.5) / n;
-            t_f[i][j] = bes[j][0]; 
-            
-            p_r =p[i][j];
-            t_r = t_f[i][j];
-      
-            // WODAT(p_r, h_r, t_r, v_r);
-            SodiumEV(p_r, h_r, t_r, v_r);
-        
-            // h_f[i][j] = h_r - h_HeatExchangerOutput2;
-            h_f[i][j] = h_r;
-
-            VAU = v_r;
+            t_f[i][j] = bes[j][0];
+            h_f[i][j] = (*coolant).Entalpy(t_f[i][j]);
         }
 
         for (int i = 0; i < n + 1; ++i) {
@@ -154,7 +137,7 @@ int main() {
     }
 
     RodOnce();
-    HeatHydroOnce();
+    HeatHydroOnce(*coolant);
     V_zBlockade();
 
     double time = 0.0;
@@ -172,7 +155,7 @@ int main() {
         std::cout << "                                    " << k << " of " << kk << std::endl;
 
         for (int i = 0; i < 100; ++i) {
-            icall = thehyco(dt);
+            icall = thehyco(dt, *coolant);
             if (icall < 1) break;
             time += dt;
         }
