@@ -502,7 +502,7 @@ void HeatConduction(const Coolant<T>& coolant) {
             if (vel != 0) {
                 effL[i][j] = C_p[i][j] * ro[i][j] * const_val * vel / std::pow(re, 0.1);
             } else {
-                effL[i][j] = 0.6;
+                effL[i][j] = coolant.HeatCond(coolant.Temperature(h_f[i][j]));
             }
         }
     }
@@ -562,14 +562,11 @@ template double HeatTransfer(double Ux, double Uy, double Uz, double x, double d
 
 template<typename T>
 T HeatTransfer(T Ux, T Uy, T Uz, T x, T d_hyd, T ent, const Coolant<T>& coolant) {
-    double t_r, v_r;
-    double H2O_l = 0.58;
+    double t_r = coolant.Temperature(ent);
+    double heat_cond = coolant.HeatCond(t_r);
     
-    t_r = coolant.Temperature(ent);
-    v_r = coolant.Volume(t_r);
-
     double d_hydro = d_hyd * (1.103 * std::pow(x_mesh, 2) - 1.0);
-    double ro_Sodium = coolant.density(coolant.Temperature(ent));
+    double ro_Sodium = coolant.density(t_r);
 
     double absU = std::sqrt(Ux * Ux + Uy * Uy + Uz * Uz);
 
@@ -598,7 +595,7 @@ T HeatTransfer(T Ux, T Uy, T Uz, T x, T d_hyd, T ent, const Coolant<T>& coolant)
     //     return cross;
     // }
 
-    return coolant.Nu(Re, Pr) * H2O_l / d_hydro;
+    return coolant.Nu(Re, Pr) * heat_cond / d_hydro;
 
 }
 
