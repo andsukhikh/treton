@@ -1,8 +1,0 @@
-G = 3.6344
-G1 = 3.6392
-Q = 2999999399.0000
-t_CoreOutput 394.6857
-t_CoreInput = 390.5549
-(t_CoreOutput - t_CoreInput) = 4.1308
-ro_input[76] = 859.2369
-ro_output = 858.2590

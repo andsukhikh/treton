@@ -186,7 +186,6 @@ namespace GlobalVariables {
         double h_HeatExchangerOutput;
         double h_CoreInput;
         double h_CoreOutput;
-        double t_HeatExchangerOutput;
         double t_CoreInput;
         double t_CoreOutput;
         std::vector<double> h_HeatExchangerOutput_new;

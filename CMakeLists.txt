@@ -16,6 +16,7 @@ set(SOURCES
 	Thechyco.cpp
 	ThechycoGlobalVar.cpp
 	CoolantMaterials.cpp
+	CRD_test.cpp
 )
 
 

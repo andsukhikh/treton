@@ -2,31 +2,32 @@
 #include <cmath>
 #include <memory>
 #include <iostream>
+#include <string_view>
+#include <exception>
 
 #include "headers/CoolantMaterials.h"
 
 template class Sodium<double>;
-//template class Sodium<int>;
+template class Sodium<int>;
 
 template class Lead<double>;
-//template class Lead<int>;
+template class Lead<int>;
 
-template void define_coolant(std::unique_ptr<Coolant<double>>&, const std::string);
-//template void define_coolant(std::unique_ptr<Coolant<int>>&, const std::string);
+template void define_coolant(std::unique_ptr<Coolant<double>>& coolant, std::string_view coolantName);
+template void define_coolant(std::unique_ptr<Coolant<int>>& coolant, std::string_view coolantName);
 
 template<typename T>
-void define_coolant(std::unique_ptr<Coolant<T>>& coolant, std::string coolantName) {
-	if (coolantName == "Lead")				coolant = std::make_unique<Lead<T>>();
-	if (coolantName == "Sodium")			coolant = std::make_unique<Sodium<T>>();
+void define_coolant(std::unique_ptr<Coolant<T>>& coolant, std::string_view coolantName) {
+	if (coolantName == "Lead")					coolant = std::make_unique<Lead<T>>();
+	else if (coolantName == "Sodium")			coolant = std::make_unique<Sodium<T>>();
 
-	if (coolantName == "non-existent") { std::cout << "This coolant is not in the database" << std::endl;  exit(1); }
+	else { throw std::invalid_argument("This coolant is not in the database"); }
 }
+
 
 template<typename T>
 T Sodium<T>::Entalpy(const T temperature) const {
-	//double ent = -140954 + 1437 * temperature - 0.29 * std::pow(temperature, 2) + 1.54 * 1E-04 * std::pow(temperature, 3);
 	return -140954 + 1437 * temperature - 0.29 * std::pow(temperature, 2) + 1.54 * 1E-04 * std::pow(temperature, 3);
-	//return ent;
 }
 
 template<typename T>
@@ -92,12 +93,12 @@ T Sodium<T>::Nu(const T Re, const T Pr) const {
 template<typename T>
 T Lead<T>::Entalpy(const T temperature) const {
 	double temperature_in_kelvin = temperature + 273;
-	return 7.02 * (temperature_in_kelvin)-0.025 * pow(temperature_in_kelvin, 2) + 4e-4 * pow(temperature_in_kelvin, 3) - 2.95 * 1e-7 * pow(temperature_in_kelvin, 4);
+	return 7.02 * (temperature_in_kelvin)-0.025 * std::pow(temperature_in_kelvin, 2) + 4e-4 * std::pow(temperature_in_kelvin, 3) - 2.95 * 1e-7 * std::pow(temperature_in_kelvin, 4);
 }
 
 template<typename T>
 T Lead<T>::Volume(const T temperature) const {
-	return 1 / ((11.42 - 12.42 * 1e-4 * (temperature + 273)) * 1e3);
+	return 1 / density(temperature);
 }
 
 template<typename T>
@@ -120,6 +121,7 @@ T Lead<T>::KinVis(const T entalpy) const {
 	T temperature = Temperature(entalpy);
 	T volume = Volume(temperature);
 	return DynVisc(temperature) * volume;
+	//return std::pow((43.8 - 7.57 * 1e-2 * temperature + 0.467 * 1e-4 * temperature), 2) * 1e-8;
 }
 
 template<typename T>

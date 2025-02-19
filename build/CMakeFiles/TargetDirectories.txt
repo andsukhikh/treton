@@ -1,3 +1,0 @@
-E:/learning/diploma/TRETON/TRETON_CMAKE/build/CMakeFiles/TRETON.dir
-E:/learning/diploma/TRETON/TRETON_CMAKE/build/CMakeFiles/edit_cache.dir
-E:/learning/diploma/TRETON/TRETON_CMAKE/build/CMakeFiles/rebuild_cache.dir
