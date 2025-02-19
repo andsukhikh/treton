@@ -9,7 +9,6 @@ inline void testCRD() {
     for (size_t i = 0; i < 2 * mf; ++i) {
         next_line = crd[1][i / 2];
         if (i % 2 == 0 && (next_line - current_line) == 0) {
-            auto sdfsd = crd[i % 2][i / 2] - crd[i % 2][i / 2 - 1];
             std::cout << "current_line = " << current_line << "  " << i / 2 - count << "    " << crd[i % 2][i / 2] - crd[i % 2][i / 2 - 1] << std::endl;
         }
         if ((next_line - current_line) != 0) { std::cout << "/********************/" << std::endl; count = i / 2; }

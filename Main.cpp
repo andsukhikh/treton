@@ -3,10 +3,13 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+#include <numbers>
 #include <exception>
 #include <memory>
 #include <unordered_map>
 #include <filesystem>
+#include <algorithm>
+
 
 #include "headers/ThechycoGlobalVar.hpp"
 #include "headers/Heat.hpp"
@@ -39,7 +42,7 @@
 
 int main() {
 
-    NLReader::NamelistReader nlr("THEHYCO.INI");
+    NLReader::NamelistReader nlr("..//THEHYCO.INI");
 
     nlr.use_namelist("PartitionList");
 
@@ -55,6 +58,7 @@ int main() {
 
     dr =                            nlr.get<double>("dr", 1);
     dz =                            nlr.get<double>("dz", 1);
+    H_eff =                         nlr.get<double>("H_eff", 1);
     D_tube =                        nlr.get<double>("D_tube", 1);
     Disbalance =                    nlr.get<double>("Disbalance", 1);
     PVTerror =                      nlr.get<double>("PVTerror", 1);
@@ -68,8 +72,6 @@ int main() {
         n_RodsInTBC[i] = nlr.get<int>("n_RodsInTBC", 1.0, i);
     }
 
-    size_t counter = 0;
-
     for (int i = 0; i < mf; ++i) {
         blockade[i] = nlr.get<int>("blockade", 1.0, i);
     }
@@ -78,8 +80,10 @@ int main() {
         crd[i % 2][i / 2] = nlr.get<int>("crd", 0.0, i);
     }
 	
-    //testCRD();
 
+    #ifdef TEST_CRD
+        testCRD();
+    #endif // TEST_CRD
 
     double icall = 0.0;
 	std::unique_ptr<Coolant<double>> coolant;
@@ -92,7 +96,7 @@ int main() {
         std::exit(EXIT_FAILURE);
     }
 
-    std::ifstream file_in("T_in.txt");
+    std::ifstream file_in("..//T_in.txt");
     if(file_in.is_open()) {
         for(int j = 0; j < mf; ++j) {
             for(int i = 0; i < 1; ++i) {
@@ -144,14 +148,27 @@ int main() {
         xx[j] = crd[0][j] * dr / 2;
     }
 
+#ifdef FI0
+    double FHI0 = 3'047'718;
 
- //   for (int j = 0; j < mf; ++j) {
- //       for (int i = 0; i < n; ++i) {
- //           bes[j][i] = Q6;
- //       }
- //   }
-	
-    std::ifstream Q6_file("Q6.txt");
+    auto R = *(std::max_element(xx.begin(), xx.end()));
+
+    for (int j = 0; j < mf; ++j) {
+        for (int i = 0; i < n; ++i) {
+            auto r = std::sqrt(std::pow(xx[j], 2) * std::pow(yy[j], 2));
+            bes[j][i] = FHI0 * std::cyl_bessel_j(0, 2.41 * r / R) * std::cos(std::numbers::pi * z[i] / H_eff);
+        }
+    }
+    //std::ofstream ff("bes.txt");
+    //for (auto&& val1 : bes) {
+    //    for (auto&& val2 : val1) {
+    //        ff << std::setw(8) << std::right << std::fixed << std::setprecision(0) << val2;
+    //    }
+    //    ff << "\n";
+    //}
+    //ff.close();
+#else
+    std::ifstream Q6_file("..//Q6.txt");
     if (Q6_file.is_open()) {
         for (int j = 0; j < mf; ++j) {
             for (int i = 0; i < n; ++i) {
@@ -161,6 +178,7 @@ int main() {
         Q6_file.close();
     }
 
+#endif
 
     double Q = 0.0;
 

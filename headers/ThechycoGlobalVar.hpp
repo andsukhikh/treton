@@ -149,6 +149,7 @@ namespace GlobalVariables {
     namespace core_geometry {
         extern double D_tube;
         extern double dz;
+        extern double H_eff;
         extern double dr;
         extern double fz;
         extern double fr;

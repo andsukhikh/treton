@@ -1502,12 +1502,7 @@ void FormFriction(const Coolant<T>& coolant) {
                 double viscosity = coolant.KinVis(temperature);
                 double re = vel * d_hydraulic / viscosity;
 
-                if (std::fmod(i + 1, 2) == 0) {
-                    effK_z[i][j] = zKoeff1 * formula * std::pow(100 * re, -0.25) / (2.0 * d_hydraulic);
-
-                } else {
-                    effK_z[i][j] = zKoeff2 * formula * std::pow(100 * re, -0.25) / (2.0 * d_hydraulic);
-                }
+                effK_z[i][j] = zKoeff1 * formula * std::pow(100 * re, -0.25) / (2.0 * d_hydraulic);
             }
         }
 
