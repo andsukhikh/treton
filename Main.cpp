@@ -148,9 +148,8 @@ int main() {
         xx[j] = crd[0][j] * dr / 2;
     }
 
-#ifdef FI0
-    double FHI0 = 3'047'718;
-
+#ifdef FHI0
+    std::cout << "***********bessel function mode is turned on***********" << std::endl;
     auto R = *(std::max_element(xx.begin(), xx.end()));
 
     for (int j = 0; j < mf; ++j) {
@@ -159,14 +158,14 @@ int main() {
             bes[j][i] = FHI0 * std::cyl_bessel_j(0, 2.41 * r / R) * std::cos(std::numbers::pi * z[i] / H_eff);
         }
     }
-    //std::ofstream ff("bes.txt");
-    //for (auto&& val1 : bes) {
-    //    for (auto&& val2 : val1) {
-    //        ff << std::setw(8) << std::right << std::fixed << std::setprecision(0) << val2;
-    //    }
-    //    ff << "\n";
-    //}
-    //ff.close();
+    std::ofstream ff("bes.txt");
+    for (auto&& val1 : bes) {
+        for (auto&& val2 : val1) {
+            ff << std::setw(8) << std::right << std::fixed << std::setprecision(0) << val2;
+        }
+        ff << "\n";
+    }
+    ff.close();
 #else
     std::ifstream Q6_file("..//Q6.txt");
     if (Q6_file.is_open()) {
@@ -177,7 +176,6 @@ int main() {
         }
         Q6_file.close();
     }
-
 #endif
 
     double Q = 0.0;

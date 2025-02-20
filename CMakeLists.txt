@@ -19,9 +19,6 @@ set(SOURCES
 	CRD_test.cpp
 )
 
-#set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -march=native")
-#set(CMAKE_BUILD_TYPE Release)
-
 # Создание исполняемого файла
 add_executable(${PROJECT_NAME} ${SOURCES})
 
@@ -33,8 +30,8 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
 endif()
 
 
-if(DEFINED Q6)
-    target_compile_definitions(TRETON PRIVATE Q6=${Q6})
+if(DEFINED FHI0)
+    target_compile_definitions(TRETON PRIVATE FHI0=${FHI0})
 endif()
 
 

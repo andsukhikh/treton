@@ -1475,7 +1475,9 @@ void FormFriction(const Coolant<T>& coolant) {
     double Constant = 3.586;
     double zKoeff1 = 3.0;
     double zKoeff2 = 1.5;
-    double d_hydraulic = 0.01;
+    //double d_hydraulic = 0.01;            //in origin treton
+    double d_hydraulic = d_mesh * (1.103 * std::pow(x_mesh, 2) - 1.0);
+
 
     for (int jV_n = 0; jV_n < mV_n; ++jV_n) {
         V_nMap[jV_n] = 0;

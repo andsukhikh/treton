@@ -16,7 +16,7 @@ void RodOnce() {
 
     if (manager) {
 
-        // заполнение RodList
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ RodList
         NLReader::NamelistReader nlr("..//THEHYCO.INI");
 
         nlr.use_namelist("RodList");
@@ -24,6 +24,9 @@ void RodOnce() {
         s_mesh =            nlr.get<double>("s_mesh", 1);
         d_mesh =            nlr.get<double>("d_mesh", 1);
         R_contact =         nlr.get<double>("R_contact", 1);
+        clad_rc =           nlr.get<double>("clad_rc", 1);
+        clad_l =            nlr.get<double>("clad_l", 1);
+
 
         for (int i = 0; i < 4; ++i)
         {
@@ -91,8 +94,6 @@ void RodGeometry() {
 
 void rod_property() {
     // CLADDING
-    clad_rc = 1.89E+6;    // 6510.[kg/m**3] * 290.[J/(kg*K)]
-    clad_l = 20.5;        // ~Zr lamda
 
     for (int k = 0; k < type; ++k) {
         for (int j = 0; j < mf; ++j) {
@@ -121,8 +122,8 @@ void rod_property() {
 }
 
 
-// Здесь потенциально может быть ошибка в алшоритме из-за хранения многомерного массива по строкам
-// проблема решается транпонированием матрицы или циклическое переопредлени индексов
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
  
 double Rod(double dt, std::vector<double>& old, std::vector<double>& New, double alf, 
            double tf, double Q_v, std::vector<double>& g_left, std::vector<double>& g_right, 
@@ -578,7 +579,7 @@ T HeatTransfer(T Ux, T Uy, T Uz, T x, T d_hyd, T ent, const Coolant<T>& coolant)
     // double NU_along = NUl(x) + (0.041 / std::pow(x, 2)) * std::pow(Pe_along, 0.56 + 0.19 * x);
     // double along = NU_along * l_Pb / d_hydro;
 
-    // // Поперечное обтекание
+    // // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     // double sinfi = std::sqrt(Ux * Ux + Uy * Uy) / absU;
     // double Pe_cross = absU * d / a_Pb;
     // double cross = 0.0;
@@ -588,7 +589,7 @@ T HeatTransfer(T Ux, T Uy, T Uz, T x, T d_hyd, T ent, const Coolant<T>& coolant)
     //     cross = NUfi * l_Pb / d;
     // }
 
-    // // Сравнение продольного и поперечного обтекания
+    // // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     // if (along > cross) {
     //     return along;
     // } else {
