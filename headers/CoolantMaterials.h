@@ -4,58 +4,37 @@
 #include <memory>
 #include <string_view>
 
-template<typename T>
-class Coolant {
+#include "headers/Coolant.h"
+
+class Sodium : public Coolant {
 public:
-	using type = T;
-
-	virtual T Entalpy(const T temperature) const = 0;
-	virtual T Volume(const T temperature) const = 0;
-	virtual T Temperature(const T enthalpy) const = 0;
-	virtual T Pr(const T temperature) const = 0;
-	virtual T KinVis(const T enthalpy) const = 0;
-	virtual T DynVisc(const T temperature) const = 0;
-	virtual T density(const T temperature) const = 0;
-	virtual T Cp(const T temperature) const = 0;
-	virtual T HeatCond(const T temperature) const = 0;
-	virtual T Nu(const T Re, const T Pr) const = 0;
-
-	virtual ~Coolant() = default;
+	double Entalpy (const double temperature)			const override;
+	double Volume (const double temperature)			const override;
+	double Temperature (const double enthalpy)			const override;
+	double Pr (const double temperature)				const override;
+	double density (const double temperature)			const override;
+	double KinVis (const double entalpy)				const override;
+	double DynVisc (const double temperature)			const override;
+	double Cp (const double temperature)				const override;
+	double HeatCond(const double temperature)			const override;
+	double Nu(const double Re, const double Pr)			const override;
 };
 
-template<typename T>
-class Sodium : public Coolant<T> {
+class Lead : public Coolant {
 public:
-	using type = T;
-	T Entalpy (const T temperature)			const override;
-	T Volume (const T temperature)			const override;
-	T Temperature (const T enthalpy)		const override;
-	T Pr (const T temperature)				const override;
-	T density (const T temperature)			const override;
-	T KinVis (const T entalpy)				const override;
-	T DynVisc (const T temperature)			const override;
-	T Cp (const T temperature)				const override;
-	T HeatCond(const T temperature)			const override;
-	T Nu(const T Re, const T Pr)			const override;
+	using type = double;
+	double Entalpy (const double temperature)			const override;
+	double Volume (const double temperature)			const override;
+	double Temperature (const double enthalpy)			const override;
+	double Pr (const double temperature)				const override;
+	double density (const double temperature)			const override;
+	double KinVis (const double entalpy)				const override;
+	double DynVisc (const double temperature)			const override;
+	double Cp (const double temperature)				const override;
+	double HeatCond(const double temperature)			const override;
+	double Nu(const double Re, const double Pr)			const override;
 };
 
-template<typename T>
-class Lead : public Coolant<T> {
-public:
-	using type = T;
-	T Entalpy (const T temperature)			const override;
-	T Volume (const T temperature)			const override;
-	T Temperature (const T enthalpy)		const override;
-	T Pr (const T temperature)				const override;
-	T density (const T temperature)			const override;
-	T KinVis (const T entalpy)				const override;
-	T DynVisc (const T temperature)			const override;
-	T Cp (const T temperature)				const override;
-	T HeatCond(const T temperature)			const override;
-	T Nu(const T Re, const T Pr)			const override;
-};
-
-template<typename T>
-extern void define_coolant(std::unique_ptr<Coolant<T>>& coolant, std::string_view coolantName);
+extern void define_coolant(std::unique_ptr<Coolant>& coolant, std::string_view coolantName);
 
 #endif 

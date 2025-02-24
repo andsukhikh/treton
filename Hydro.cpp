@@ -1430,10 +1430,8 @@ void piter() {
     }
 }
 
-template void KinViscosity(const Coolant<double>& coolant);
 
-template<typename T>
-void KinViscosity(const Coolant<T>& coolant) {
+void KinViscosity(const Coolant& coolant) {
     double const_term = 2.0 * d_mesh * std::pow(x_mesh, 2) / std::numbers::pi * (2.0 + 0.115 / (x_mesh - 1.0)) * (x_mesh - 1.0);
     
     for (int j = 0; j < mf; ++j) {
@@ -1465,10 +1463,8 @@ void KinViscosity(const Coolant<T>& coolant) {
     }
 }
 
-template void FormFriction(const Coolant<double>& coolant);
 
-template<typename T>
-void FormFriction(const Coolant<T>& coolant) {
+void FormFriction(const Coolant& coolant) {
     double a_mesh = 0.58 + 9.2 * (x_mesh - 1.0);   
     double formula = 0.57 + 0.18 * (x_mesh - 1.0) + 0.53 * (1.0 - exp(-a_mesh));
     double rows = dr / (0.6830127 * d_mesh * x_mesh);

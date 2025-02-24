@@ -3,6 +3,7 @@
 #include <vector>
 #include <cmath>
 #include <numbers>
+#include <type_traits>
 
 #include "headers/ThechycoGlobalVar.hpp"
 #include "headers/NamelistReader.hpp"
@@ -12,10 +13,7 @@
 #include "headers/CoolantMaterials.h"
 
 
-template double thehyco(double dt, const Coolant<double>& coolant);
-
-template<typename T>
-T thehyco(T dt, const Coolant<T>& coolant) {
+double thehyco(double dt, const Coolant& coolant) {
     double MassDisb;
 
     for (int j = 0; j != mf; ++j) {
@@ -85,10 +83,8 @@ T thehyco(T dt, const Coolant<T>& coolant) {
     return thehyco;
 }
 
-template void HeatHydroOnce(const Coolant<double>& coolant);
 
-template<typename T>
-void HeatHydroOnce(const Coolant<T>& coolant) {
+void HeatHydroOnce(const Coolant& coolant) {
     static int manager = 0;
 
     if (manager != 1) {
@@ -171,7 +167,7 @@ void CrossConnection() {
                     onds[i][j] = onds[i_f][jf];
                 } else {
                     std::cout << "Error in BONDS; aborting..." << std::endl;
-                    exit(1);
+                    std::exit(EXIT_FAILURE);
                 }
             }
         }
@@ -264,10 +260,7 @@ void normal(int n, double &x, double &y) {
 }
 
 
-template void density(const Coolant<double>& coolant);
-
-template<typename T>
-void density(const Coolant<T>& coolant) {
+void density(const Coolant& coolant) {
     InOut_f(coolant);
 
     Cp_input = coolant.Cp(t_CoreInput);
@@ -315,10 +308,8 @@ int is(int iarg) {
     }
 }
 
-template void InOut_f(const Coolant<double>& coolant);
 
-template<typename T>
-void InOut_f(const Coolant<T>& coolant) {
+void InOut_f(const Coolant& coolant) {
     double tmp1 = 0.0;
     double tmp2 = 0.0;
     double tmp3 = 0.0;
@@ -353,7 +344,7 @@ void InOut_f(const Coolant<T>& coolant) {
 
     } else {
         std::cerr << "Global reverse flow on the bottom" << std::endl;
-        exit(1);
+        std::exit(EXIT_FAILURE);
     }
 
     if (tmp4 != 0) {
@@ -362,44 +353,7 @@ void InOut_f(const Coolant<T>& coolant) {
 
     } else {
         std::cerr << "Global reverse flow on the top" << std::endl;
-        exit(EXIT_FAILURE);
-    }
-}
-
-
-void write_all() {
-    std::ofstream file("THEHYCO.DAT", std::ios::binary);
-    if (file.is_open()) {
-        file.write(reinterpret_cast<char*>(&p), sizeof(p));
-        file.write(reinterpret_cast<char*>(&V_z), sizeof(V_z));
-        file.write(reinterpret_cast<char*>(&V_n), sizeof(V_n));
-        file.write(reinterpret_cast<char*>(&h_f), sizeof(h_f));
-        file.write(reinterpret_cast<char*>(&t_f), sizeof(t_f));
-        file.write(reinterpret_cast<char*>(&t_rod), sizeof(t_rod));
-        file.write(reinterpret_cast<char*>(&t_fuel), sizeof(t_fuel));
-        file.write(reinterpret_cast<char*>(&t_clad), sizeof(t_clad));
-        file.close();
-    } else {
-        std::cout << "Error in opening THEHYCO.DAT" << std::endl;
-    }
-}
-
-
-void read_all() {
-    std::ifstream file("THEHYCO.DAT", std::ios::binary);
-
-    if (!file.eof()){
-        file.read(reinterpret_cast<char*>(&p), sizeof(p));
-        file.read(reinterpret_cast<char*>(&V_z), sizeof(V_z));
-        file.read(reinterpret_cast<char*>(&V_n), sizeof(V_n));
-        file.read(reinterpret_cast<char*>(&h_f), sizeof(h_f));
-        file.read(reinterpret_cast<char*>(&t_f), sizeof(t_f));
-        file.read(reinterpret_cast<char*>(&t_rod), sizeof(t_rod));
-        file.read(reinterpret_cast<char*>(&t_fuel), sizeof(t_fuel));
-        file.read(reinterpret_cast<char*>(&t_clad), sizeof(t_clad));
-        file.close();
-    } else { 
-        std::cout << "THEHYCO.DAT is empty" << std::endl;
+        std::exit(EXIT_FAILURE);
     }
 }
 

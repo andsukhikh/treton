@@ -11,10 +11,8 @@ void Viter(double dt);
 void pes(double dt);
 void piter();
 
-template<typename T>
-void KinViscosity(const Coolant<T>& coolant);
+void KinViscosity(const Coolant& coolant);
 
-template<typename T>
-void FormFriction(const Coolant<T>& coolant);
+void FormFriction(const Coolant& coolant);
 
 #endif

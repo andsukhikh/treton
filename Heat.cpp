@@ -256,10 +256,8 @@ void swapOnNewValue(std::vector<double>& arrayValue, std::vector<std::vector<std
     }
 }
 
-template void heat(double dt, const Coolant<double>& coolant);
 
-template<typename T>
-void heat(T dt, const Coolant<T>& coolant) {
+void heat(double dt, const Coolant& coolant) {
     double tmp1 = 0.0;
     double error = 0.0;
     int iii = 0;
@@ -488,10 +486,8 @@ double EnerFluiDisbalance() {
     return EnerFluiDisbalance;
 }
 
-template void HeatConduction(const Coolant<double>& coolant);
 
-template<typename T>
-void HeatConduction(const Coolant<T>& coolant) {
+void HeatConduction(const Coolant& coolant) {
     double const_val = 2.0 * d_mesh * std::pow(x_mesh, 2) / std::numbers::pi * (2.0 + 0.115 / (x_mesh - 1.0)) * (x_mesh - 1.0);
 
     for (int j = 0; j < mf; ++j) {
@@ -509,10 +505,8 @@ void HeatConduction(const Coolant<T>& coolant) {
     }
 }
 
-template void alf(const Coolant<double>& coolant);
 
-template<typename T>
-void alf(const Coolant<T>& coolant) {
+void alf(const Coolant& coolant) {
     for (int j = 0; j < mf; ++j) {
         for (int i = 0; i < n; ++i) {
             double Uz = (V_z[i][j] + V_z[i + 1][j]) / 2.0;
@@ -559,10 +553,7 @@ double EnerCoreDisbalance() {
 }
 
 
-template double HeatTransfer(double Ux, double Uy, double Uz, double x, double d_hyd, double ent, const Coolant<double>& coolant);
-
-template<typename T>
-T HeatTransfer(T Ux, T Uy, T Uz, T x, T d_hyd, T ent, const Coolant<T>& coolant) {
+double HeatTransfer(double Ux, double Uy, double Uz, double x, double d_hyd, double ent, const Coolant& coolant) {
     double t_r = coolant.Temperature(ent);
     double heat_cond = coolant.HeatCond(t_r);
     

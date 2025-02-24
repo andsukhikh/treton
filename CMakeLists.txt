@@ -26,7 +26,7 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/headers")
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    target_compile_options(TRETON PRIVATE -O3 -march=native)
+    target_compile_options(TRETON PRIVATE -O3 -ffast-math -march=native -flto)
 endif()
 
 

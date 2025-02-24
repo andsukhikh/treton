@@ -9,19 +9,18 @@ double Rod(double dt, std::vector<double>& old, std::vector<double>& New, double
 void rod_average();
 double EneRoDisbalance();
 
-template<typename T>
-void heat(T dt, const Coolant<T>& coolant);
+void heat(double dt, const Coolant& coolant);
 
 double EnerFluiDisbalance();
 
-template<typename T>
-void HeatConduction(const Coolant<T>& coolant);
 
-template<typename T>
-void alf(const Coolant<T>& coolant);
+void HeatConduction(const Coolant& coolant);
 
-template<typename T>
-T HeatTransfer(T Ux, T Uy, T Uz, T x, T d_hyd, T ent, const Coolant<T>& coolant);
+
+void alf(const Coolant& coolant);
+
+
+double HeatTransfer(double Ux, double Uy, double Uz, double x, double d_hyd, double ent, const Coolant& coolant);
 
 
 double EnerCoreDisbalance();

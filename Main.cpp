@@ -9,7 +9,7 @@
 #include <unordered_map>
 #include <filesystem>
 #include <algorithm>
-
+#include <chrono>
 
 #include "headers/ThechycoGlobalVar.hpp"
 #include "headers/Heat.hpp"
@@ -17,6 +17,7 @@
 #include "headers/Hydro.hpp"
 #include "headers/NamelistReader.hpp"
 #include "headers/CoolantMaterials.h"
+#include "headers/BinFileTools.hpp"
 
 #include "CRD_test.cpp"
 
@@ -41,6 +42,8 @@
 
 
 int main() {
+
+
 
     NLReader::NamelistReader nlr("..//THEHYCO.INI");
 
@@ -86,7 +89,7 @@ int main() {
     #endif // TEST_CRD
 
     double icall = 0.0;
-	std::unique_ptr<Coolant<double>> coolant;
+	std::unique_ptr<Coolant> coolant;
 
     try {
         define_coolant(coolant, coolantName);
@@ -144,12 +147,15 @@ int main() {
     }
 
     for (int j = 0; j < mf; ++j) {
-        yy[j] = crd[1][j] * dr * 0.5 * sqrt(3.0);
+        yy[j] = crd[1][j] * dr * 0.5 * std::sqrt(3.0);
         xx[j] = crd[0][j] * dr / 2;
     }
 
+
 #ifdef FHI0
-    std::cout << "***********bessel function mode is turned on***********" << std::endl;
+    std::cout << std::endl;
+    std::cout << "***********analitic energy distribution function mode is turned on***********" << std::endl;
+    std::cout << "                        ***********FHI0 = " << static_cast<int> (FHI0) <<  " ***********              " << "\n" << std::endl;
     auto R = *(std::max_element(xx.begin(), xx.end()));
 
     for (int j = 0; j < mf; ++j) {
@@ -158,7 +164,7 @@ int main() {
             bes[j][i] = FHI0 * std::cyl_bessel_j(0, 2.41 * r / R) * std::cos(std::numbers::pi * z[i] / H_eff);
         }
     }
-    std::ofstream ff("bes.txt");
+    std::ofstream ff("Q6.txt");
     for (auto&& val1 : bes) {
         for (auto&& val2 : val1) {
             ff << std::setw(8) << std::right << std::fixed << std::setprecision(0) << val2;
@@ -192,8 +198,7 @@ int main() {
      std::cin >> icont_key;
 
     if (icont_key == 1) {
-        read_all();
-        std::cout << "Main.cpp function read_all have completed successfully, maby)))" << std::endl;
+        Reader(std::ifstream("data.dat", std::ios::binary)).read(p, V_z, V_n, h_f, t_f, t_rod, t_fuel, t_clad);
     }
 
     RodOnce();
@@ -201,16 +206,16 @@ int main() {
     V_zBlockade();
 
     double time = 0.0;
-
     double dt;
     std::cout << "Enter dt = ";
     std::cin >> dt;
     int kk = 100;
 
+    auto start = std::chrono::high_resolution_clock::now();
 
     for (int k = 1; k <= kk; ++k) {
         if (k % 20 == 0) {
-            write_all();
+            Writer(std::ofstream("data.dat", std::ios::binary)).write(p, V_z, V_n, h_f, t_f, t_rod, t_fuel, t_clad);
         }
         std::cout << "\n";
         std::cout << "                                    " << k << " of " << kk << std::endl;
@@ -370,7 +375,6 @@ int main() {
             G_file << std::setw(12) << xx[j]
                    << std::setw(12) << yy[j];
             for (int ii = 0; ii < n + 1; ++ii) {
-
                 G_file << std::setw(12) << V_z[ii][j] * fz;
             }
             G_file << std::endl;
@@ -731,13 +735,19 @@ int main() {
     
         if (icall < 1) {
             std::cout << "icall < 1 ==> exit(1)" << std::endl;
-            exit(1);
+            std::exit(EXIT_FAILURE);
         }
     }
 
-    write_all();
+    Writer(std::ofstream("data.dat", std::ios::binary)).write(p, V_z, V_n, h_f, t_f, t_rod, t_fuel, t_clad);
+
+
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> duration = end - start;
 
     std::cout << "End of program" << std::endl;
+    std::cout << "Time = " << std::chrono::duration_cast<std::chrono::minutes>(end - start).count() << " min" << std::endl;
+    std::cin.get();
     std::cin.get();
 
     return 0;
