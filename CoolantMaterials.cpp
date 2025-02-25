@@ -8,11 +8,20 @@
 #include "headers/CoolantMaterials.h"
 
 
-void define_coolant(std::unique_ptr<Coolant>& coolant, std::string_view coolantName) {
-	if (coolantName == "Lead")					coolant = std::make_unique<Lead>();
-	else if (coolantName == "Sodium")			coolant = std::make_unique<Sodium>();
+CoolantDecriptor::CoolantDecriptor(std::string_view coolantName) {
+	if (coolantName == "Lead") {
+		coolant_ = std::make_unique<Lead>();
 
-	else { throw std::invalid_argument("This coolant is not in the database"); }
+	} else if (coolantName == "Sodium") {
+		coolant_ = std::make_unique<Sodium>();
+
+	} else {
+		throw std::invalid_argument("This coolant is not in the database");
+	}
+}
+
+Coolant& CoolantDecriptor::getCoolant() {
+	return *coolant_;
 }
 
 

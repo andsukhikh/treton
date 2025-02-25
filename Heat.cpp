@@ -16,7 +16,6 @@ void RodOnce() {
 
     if (manager) {
 
-        // ���������� RodList
         NLReader::NamelistReader nlr("..//THEHYCO.INI");
 
         nlr.use_namelist("RodList");

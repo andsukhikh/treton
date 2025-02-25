@@ -89,15 +89,17 @@ int main() {
     #endif // TEST_CRD
 
     double icall = 0.0;
-	std::unique_ptr<Coolant> coolant;
-
+    
     try {
-        define_coolant(coolant, coolantName);
-    }
-    catch (std::exception& exception) { 
+        CoolantDecriptor decript(coolantName);
+        Coolant& coolant = decript.getCoolant();
+    } catch (std::exception& exception) {
         std::cout << "Program was terminated due to: " << exception.what() << std::endl;
         std::exit(EXIT_FAILURE);
     }
+
+    CoolantDecriptor decript(coolantName);
+    Coolant& coolant = decript.getCoolant();
 
     std::ifstream file_in("..//T_in.txt");
     if(file_in.is_open()) {
@@ -105,7 +107,7 @@ int main() {
             for(int i = 0; i < 1; ++i) {
                 file_in >> bes[j][0];
             }
-            h_HeatExchangerOutput_new[j] = (*coolant).Entalpy(bes[j][0]);
+            h_HeatExchangerOutput_new[j] = (coolant).Entalpy(bes[j][0]);
         }
         file_in.close();
     } 
@@ -114,7 +116,7 @@ int main() {
         for (int i = 0; i < n; ++i) {
             p[i][j] = p_input - (p_input - p_output) * (i + 0.5) / n;
             t_f[i][j] = bes[j][0];
-            h_f[i][j] = (*coolant).Entalpy(t_f[i][j]);
+            h_f[i][j] = (coolant).Entalpy(t_f[i][j]);
         }
 
         for (int i = 0; i < n + 1; ++i) {
@@ -202,7 +204,7 @@ int main() {
     }
 
     RodOnce();
-    HeatHydroOnce(*coolant);
+    HeatHydroOnce(coolant);
     V_zBlockade();
 
     double time = 0.0;
@@ -221,7 +223,7 @@ int main() {
         std::cout << "                                    " << k << " of " << kk << std::endl;
 
         for (int i = 0; i < 100; ++i) {
-            icall = thehyco(dt, *coolant);
+            icall = thehyco(dt, coolant);
             if (icall < 1) break;
             time += dt;
         }

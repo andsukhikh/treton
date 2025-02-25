@@ -6,6 +6,7 @@
 
 #include "headers/Coolant.h"
 
+
 class Sodium : public Coolant {
 public:
 	double Entalpy (const double temperature)			const override;
@@ -18,11 +19,11 @@ public:
 	double Cp (const double temperature)				const override;
 	double HeatCond(const double temperature)			const override;
 	double Nu(const double Re, const double Pr)			const override;
+
 };
 
 class Lead : public Coolant {
 public:
-	using type = double;
 	double Entalpy (const double temperature)			const override;
 	double Volume (const double temperature)			const override;
 	double Temperature (const double enthalpy)			const override;
@@ -35,6 +36,13 @@ public:
 	double Nu(const double Re, const double Pr)			const override;
 };
 
-extern void define_coolant(std::unique_ptr<Coolant>& coolant, std::string_view coolantName);
+class CoolantDecriptor {
+	std::unique_ptr<Coolant> coolant_;
+public:
+	CoolantDecriptor(std::string_view coolantName);
+	CoolantDecriptor() = delete;
+
+	Coolant& getCoolant();
+};
 
 #endif 
