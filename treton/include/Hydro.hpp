@@ -1,6 +1,6 @@
 #ifndef HYDRO_H
 #define HYDRO_H
-#include "CoolantMaterials.h"
+#include "CoolantMaterials.hpp"
 
 double V_nz(int i, int j, int jf, int jV_n);
 double MassDisbalance(double dt);

@@ -2,7 +2,7 @@
 #define THECHYCO_HPP
 #include <vector>
 
-#include "CoolantMaterials.h"
+#include "CoolantMaterials.hpp"
 
 
 double thehyco(double dt, const Coolant& coolant);

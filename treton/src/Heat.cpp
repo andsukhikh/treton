@@ -3,12 +3,12 @@
 #include <numbers>
 #include <iomanip>
 
-#include "headers/ThechycoGlobalVar.hpp"
-#include "headers/NamelistReader.hpp"
-#include "headers/Thechyco.hpp"
-#include "headers/Matrix.hpp"
-#include "headers/Heat.hpp"
-#include "headers/CoolantMaterials.h"
+#include "GlobalVar.hpp"
+#include "NamelistReader.hpp"
+#include "Thechyco.hpp"
+#include "Matrix.hpp"
+#include "Heat.hpp"
+#include "CoolantMaterials.hpp"
 
 
 void RodOnce() {
@@ -16,7 +16,7 @@ void RodOnce() {
 
     if (manager) {
 
-        NLReader::NamelistReader nlr("..//THEHYCO.INI");
+        NLReader::NamelistReader nlr(input_dir + "//THEHYCO.INI");
 
         nlr.use_namelist("RodList");
 

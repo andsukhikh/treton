@@ -5,12 +5,12 @@
 #include <numbers>
 #include <type_traits>
 
-#include "headers/ThechycoGlobalVar.hpp"
-#include "headers/NamelistReader.hpp"
-#include "headers/Hydro.hpp"
-#include "headers/Heat.hpp"
-#include "headers/Thechyco.hpp"
-#include "headers/CoolantMaterials.h"
+#include "GlobalVar.hpp"
+#include "NamelistReader.hpp"
+#include "Hydro.hpp"
+#include "Heat.hpp"
+#include "Thechyco.hpp"
+#include "CoolantMaterials.hpp"
 
 
 double thehyco(double dt, const Coolant& coolant) {

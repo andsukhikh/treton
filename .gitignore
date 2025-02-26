@@ -1,9 +1,7 @@
 .vscode
 output/
 build/
-TRETON/
-input_data_bn/
-input_data_vver/
+treton_VS
 
 
 ## Ignore Visual Studio temporary files, build results, and

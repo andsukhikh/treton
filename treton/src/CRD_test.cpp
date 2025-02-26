@@ -1,5 +1,5 @@
 #include <iostream>
-#include "headers/ThechycoGlobalVar.hpp"
+#include "GlobalVar.hpp"
 
 
 inline void testCRD() {

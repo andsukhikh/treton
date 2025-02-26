@@ -1,6 +1,6 @@
 #ifndef HEAT_H
 #define HEAT_H
-#include "CoolantMaterials.h"
+#include "CoolantMaterials.hpp"
 
 void RodOnce();
 void RodGeometry();

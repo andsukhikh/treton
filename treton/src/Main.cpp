@@ -11,13 +11,16 @@
 #include <algorithm>
 #include <chrono>
 
-#include "headers/ThechycoGlobalVar.hpp"
-#include "headers/Heat.hpp"
-#include "headers/Thechyco.hpp"
-#include "headers/Hydro.hpp"
-#include "headers/NamelistReader.hpp"
-#include "headers/CoolantMaterials.h"
-#include "headers/BinFileTools.hpp"
+#include "GlobalVar.hpp"
+#include "Heat.hpp"
+#include "Heat.hpp"
+
+
+#include "Thechyco.hpp"
+#include "Hydro.hpp"
+#include "NamelistReader.hpp"
+#include "CoolantMaterials.hpp"
+#include "BinFileTools.hpp"
 
 #include "CRD_test.cpp"
 
@@ -43,9 +46,13 @@
 
 int main() {
 
+    input_dir = "..//input";
+    if (!std::filesystem::exists(input_dir)) {
+        std::filesystem::create_directories(input_dir);
+    }
 
 
-    NLReader::NamelistReader nlr("..//THEHYCO.INI");
+    NLReader::NamelistReader nlr(input_dir + "//THEHYCO.INI");
 
     nlr.use_namelist("PartitionList");
 
@@ -101,7 +108,7 @@ int main() {
     CoolantDecriptor decript(coolantName);
     Coolant& coolant = decript.getCoolant();
 
-    std::ifstream file_in("..//T_in.txt");
+    std::ifstream file_in( input_dir + "//T_in.txt");
     if(file_in.is_open()) {
         for(int j = 0; j < mf; ++j) {
             for(int i = 0; i < 1; ++i) {
@@ -166,16 +173,16 @@ int main() {
             bes[j][i] = FHI0 * std::cyl_bessel_j(0, 2.41 * r / R) * std::cos(std::numbers::pi * z[i] / H_eff);
         }
     }
-    std::ofstream ff("Q6.txt");
+    std::ofstream Q6(input_dir + "//Q6.txt");
     for (auto&& val1 : bes) {
         for (auto&& val2 : val1) {
-            ff << std::setw(8) << std::right << std::fixed << std::setprecision(0) << val2;
+            Q6 << std::setw(8) << std::right << std::fixed << std::setprecision(0) << val2;
         }
-        ff << "\n";
+        Q6 << "\n";
     }
-    ff.close();
+    Q6.close();
 #else
-    std::ifstream Q6_file("..//Q6.txt");
+    std::ifstream Q6_file(input_dir + "//Q6.txt");
     if (Q6_file.is_open()) {
         for (int j = 0; j < mf; ++j) {
             for (int i = 0; i < n; ++i) {
@@ -200,7 +207,7 @@ int main() {
      std::cin >> icont_key;
 
     if (icont_key == 1) {
-        Reader(std::ifstream("data.dat", std::ios::binary)).read(p, V_z, V_n, h_f, t_f, t_rod, t_fuel, t_clad);
+        Reader(std::ifstream(input_dir + "//data.dat", std::ios::binary)).read(p, V_z, V_n, h_f, t_f, t_rod, t_fuel, t_clad);
     }
 
     RodOnce();
@@ -217,7 +224,7 @@ int main() {
 
     for (int k = 1; k <= kk; ++k) {
         if (k % 20 == 0) {
-            Writer(std::ofstream("data.dat", std::ios::binary)).write(p, V_z, V_n, h_f, t_f, t_rod, t_fuel, t_clad);
+            Writer(std::ofstream(input_dir + "//data.dat", std::ios::binary)).write(p, V_z, V_n, h_f, t_f, t_rod, t_fuel, t_clad);
         }
         std::cout << "\n";
         std::cout << "                                    " << k << " of " << kk << std::endl;
@@ -238,14 +245,14 @@ int main() {
         V_full_calc();
 
 
-        std::string dir_path = "../output";
-        if (!std::filesystem::exists(dir_path)) {
-            std::filesystem::create_directories(dir_path);
+        output_dir = "..//output";
+        if (!std::filesystem::exists(output_dir)) {
+            std::filesystem::create_directories(output_dir);
         }
 
 
 
-        std::ofstream VxVy_z_file(dir_path + "//VxVy_z.dat");
+        std::ofstream VxVy_z_file(output_dir + "//VxVy_z.dat");
         for (int ii = 0; ii < n + 1; ++ii) {
             for (int j = 0; j < mf; ++j) {
                 double Vr_nm;
@@ -263,7 +270,7 @@ int main() {
         }
         VxVy_z_file.close();
 
-        std::ofstream VxVz_file(dir_path + "//VxVz.dat");
+        std::ofstream VxVz_file(output_dir + "//VxVz.dat");
         for (int j = 75; j < 88; ++j) {
             for (int ii = 0; ii < n + 1; ++ii) {
                 double Vr_nm;
@@ -282,7 +289,7 @@ int main() {
         VxVz_file.close();
 
         // roVz_xz.dat
-        std::ofstream roVz_xz_file(dir_path + "//roVz_xz.dat");
+        std::ofstream roVz_xz_file(output_dir + "//roVz_xz.dat");
         for (int j = 75; j < 88; ++j) {
 
             roVz_xz_file.setf(std::ios::scientific | std::ios::right);
@@ -305,7 +312,7 @@ int main() {
         roVz_xz_file.close();
 
         // T_xz.dat
-        std::ofstream T_xz_file(dir_path + "//T_xz.dat");
+        std::ofstream T_xz_file(output_dir + "//T_xz.dat");
         for (int j = 75; j < 88; ++j) {
             for (int ii = 0; ii < n; ++ii) {
 
@@ -320,7 +327,7 @@ int main() {
         T_xz_file.close();
 
         // Vz77.dat
-        std::ofstream Vz77_file(dir_path + "//Vz77.dat");
+        std::ofstream Vz77_file(output_dir + "//Vz77.dat");
         for (int ii = 0; ii < n + 1; ++ii) {
             Vz77_file << std::setw(5) << std::right << ii + 1 << " "
                       << std::setw(8) << std::setprecision(6) << V_z[ii][77] << std::endl;
@@ -328,7 +335,7 @@ int main() {
         Vz77_file.close();
 
         // Kord.dat
-        std::ofstream Kord_file(dir_path + "//Kord.dat");
+        std::ofstream Kord_file(output_dir + "//Kord.dat");
         for (int j = 0; j < mf; ++j) {
             Kord_file.setf(std::ios::fixed);
 
@@ -339,7 +346,7 @@ int main() {
         Kord_file.close();
 
         // V_n.dat
-        std::ofstream V_n_file(dir_path + "//V_n.dat");
+        std::ofstream V_n_file(output_dir + "//V_n.dat");
         for (int j = 0; j < mf; ++j) {
             for (int ii = 0; ii < n + 1; ++ii) {
 
@@ -354,7 +361,7 @@ int main() {
         V_n_file.close();
 
         // Vz.dat
-        std::ofstream Vz_file(dir_path + "//Vz.dat");
+        std::ofstream Vz_file(output_dir + "//Vz.dat");
         for (int j = 0; j < mf; ++j) {
             Vz_file.precision(6);
             Vz_file.setf(std::ios::fixed);
@@ -370,7 +377,7 @@ int main() {
         Vz_file.close();
 
         // G.dat
-        std::ofstream G_file(dir_path + "//G.dat");
+        std::ofstream G_file(output_dir + "//G.dat");
         for (int j = 0; j < mf; ++j) {
             G_file.precision(6);
             G_file.setf(std::ios::fixed);
@@ -384,7 +391,7 @@ int main() {
         G_file.close();
 
         //G_inp.dat
-        std::ofstream file(dir_path + "//G_inp.dat");
+        std::ofstream file(output_dir + "//G_inp.dat");
         for (int j = 0; j < mf; ++j) {
             file.precision(6);
             file.setf(std::ios::fixed);
@@ -396,7 +403,7 @@ int main() {
         file.close();
 
         // G_out.dat
-        file.open(dir_path + "//G_out.dat");
+        file.open(output_dir + "//G_out.dat");
         for (int j = 0; j < mf; ++j) {
             file.precision(6);
             file.setf(std::ios::fixed);
@@ -408,7 +415,7 @@ int main() {
         file.close();
 
         // p_tepl.dat
-        file.open(dir_path + "//p_tepl.dat");
+        file.open(output_dir + "//p_tepl.dat");
         for (int j = 0; j < mf; ++j) {
             file.precision(4);
             file.setf(std::ios::fixed);
@@ -424,7 +431,7 @@ int main() {
         file.close();
 
         // ro_tepl.dat
-        file.open(dir_path + "//ro_tepl.dat");
+        file.open(output_dir + "//ro_tepl.dat");
         for (int j = 0; j < mf; ++j) {
             file.setf(std::ios::fixed);
             file.precision(4);
@@ -440,7 +447,7 @@ int main() {
         file.close();
 
         // p_tepl_poln.dat
-        file.open(dir_path + "//p_tepl_poln.dat");
+        file.open(output_dir + "//p_tepl_poln.dat");
         for (int j = 0; j < mf; ++j) {
             file.setf(std::ios::fixed);
             file.precision(4);
@@ -457,7 +464,7 @@ int main() {
 
 
         // t_tepl.dat
-        file.open(dir_path + "//t_tepl.dat");
+        file.open(output_dir + "//t_tepl.dat");
         for (int j = 0; j < mf; ++j) {
             file.setf(std::ios::fixed);
             file.precision(4);
@@ -473,7 +480,7 @@ int main() {
         file.close();
 
         // h_tepl.dat
-        file.open(dir_path + "//h_tepl.dat");
+        file.open(output_dir + "//h_tepl.dat");
         for (int j = 0; j < mf; ++j) {
             file.setf(std::ios::fixed);
             file.precision(4);
@@ -489,7 +496,7 @@ int main() {
         file.close();
 
         // alfa.dat
-        file.open(dir_path + "//alfa.dat");
+        file.open(output_dir + "//alfa.dat");
         for (int j = 0; j < mf; ++j) {
             file.setf(std::ios::fixed);
             file.precision(2);
@@ -505,7 +512,7 @@ int main() {
         file.close();
 
         // t_clad.dat
-        file.open(dir_path + "//t_clad.dat");
+        file.open(output_dir + "//t_clad.dat");
         for (int j = 0; j < mf; ++j) {
             file.setf(std::ios::fixed);
             file.precision(2);
@@ -521,7 +528,7 @@ int main() {
         file.close();
 
         // t_fuel.dat
-        file.open(dir_path + "//t_fuel.dat");
+        file.open(output_dir + "//t_fuel.dat");
         for (int j = 0; j < mf; ++j) {
             file.setf(std::ios::fixed);
             file.precision(2);
@@ -538,7 +545,7 @@ int main() {
         file.close();
 
         // n_rod.dat
-        file.open(dir_path + "//n_rod.dat");
+        file.open(output_dir + "//n_rod.dat");
         for (int ii = 0; ii < n_rod + 2; ++ii) {
             file.setf(std::ios::fixed);
             file.precision(4);
@@ -548,7 +555,7 @@ int main() {
         file.close();
 
         // Q.dat
-        file.open(dir_path + "//Q.dat");
+        file.open(output_dir + "//Q.dat");
         for (int j = 0; j < mf; ++j) {
             file.setf(std::ios::fixed);
             file.precision(4);
@@ -564,7 +571,7 @@ int main() {
         file.close();
 
         // t_r77.dat
-        file.open(dir_path + "//t_r77.dat");
+        file.open(output_dir + "//t_r77.dat");
         for (int ii = 0; ii < n; ++ii) {
             file.setf(std::ios::fixed);
             file.precision(4);
@@ -577,7 +584,7 @@ int main() {
         file.close();
 
         // t_r_centr.dat
-        file.open(dir_path + "//t_r_centr.dat");
+        file.open(output_dir + "//t_r_centr.dat");
         for (int j = 0; j < mf; ++j) {
             file.setf(std::ios::fixed);
             file.precision(4);
@@ -622,7 +629,7 @@ int main() {
             }
         }
 
-        std::ofstream XXX_file(dir_path + "//XXX.dat");
+        std::ofstream XXX_file(output_dir + "//XXX.dat");
         XXX_file << "Max T topl: " << tmax << "\n"
                  << "V kassete # " << jjmax + 1 << "\n"
                  << "V el-te # " << iimax + 1<< "\n"
@@ -635,7 +642,7 @@ int main() {
         XXX_file.close();
 
         // 1. t_rXXX.dat
-        file.open(dir_path + "//t_rXXX.dat");
+        file.open(output_dir + "//t_rXXX.dat");
         for (int ii = 0; ii < n; ++ii) {
             for (int l = 0; l < n_rod + 2; ++l) {
                 file.setf(std::ios::fixed);
@@ -648,7 +655,7 @@ int main() {
         file.close();
 
         // 2. t_r_obl_vnutr.dat
-        file.open(dir_path + "//t_r_obl_vnutr.dat");
+        file.open(output_dir + "//t_r_obl_vnutr.dat");
         for (int j = 0; j < mf; ++j) {
 
             file.setf(std::ios::fixed);
@@ -665,7 +672,7 @@ int main() {
         file.close();
 
         // 3. t_r_obl_naruj.dat
-        file.open(dir_path + "//t_r_obl_naruj.dat");
+        file.open(output_dir + "//t_r_obl_naruj.dat");
         for (int j = 0; j < mf; ++j) {
 
             file.setf(std::ios::fixed);
@@ -682,7 +689,7 @@ int main() {
         file.close();
 
         // 4. koeff_z.dat
-        file.open(dir_path + "//koeff_z.dat");
+        file.open(output_dir + "//koeff_z.dat");
         for (int j = 0; j < mf; ++j) {
             file.setf(std::ios::fixed);
             file.precision(4);
@@ -697,7 +704,7 @@ int main() {
         file.close();
 
         // 5. Cp.dat
-        file.open(dir_path + "//Cp.dat");
+        file.open(output_dir + "//Cp.dat");
         file.setf(std::ios::fixed);
         file.precision(4);
 
@@ -718,7 +725,7 @@ int main() {
         double G = 0;
         double G1 = 0;
 
-        file.open(dir_path + "//GQT.dat");
+        file.open(output_dir + "//GQT.dat");
         for (int j = 0; j < mf; ++j) {
             G += V_z[0][j] * fz; 
             G1 += V_z[n][j] * fz;

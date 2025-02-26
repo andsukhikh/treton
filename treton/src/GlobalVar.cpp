@@ -222,6 +222,8 @@ namespace GlobalVariables {
         std::string RodStr;
         std::string HeatStr1;
         std::string coolantName;
+        std::string input_dir;
+        std::string output_dir;
     }
 
     namespace mat {
