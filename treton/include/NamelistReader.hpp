@@ -375,7 +375,7 @@ namespace NLReader {
             if (it != namelists[namelist_index].params.end())
                 param_index = distance(namelists[namelist_index].params.begin(), it);
             else {
-                cout << "Error getting value" << endl;
+                cout << "Error in obtaining or absence of value of " << "\"" << param << "\"" << endl;
                 std::exit(EXIT_FAILURE);;
                 return default_val;
             }

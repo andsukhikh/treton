@@ -149,13 +149,14 @@ namespace GlobalVariables {
     namespace core_geometry {
         extern double D_tube;
         extern double dz;
-        extern double H_eff;
+        extern double Height;
         extern double dr;
         extern double fz;
         extern double fr;
         extern double vf;
         extern double fr_vf;
         extern double fz_vf;
+
         extern std::vector<int> n_RodsInTBC;
 
         void initialisation();

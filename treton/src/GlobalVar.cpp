@@ -107,6 +107,7 @@ namespace GlobalVariables {
 
     namespace Density {
         double ro_output;
+
         std::vector<double> ro_input;
         std::vector<std::vector<double>> ro;
 
@@ -198,13 +199,14 @@ namespace GlobalVariables {
     namespace core_geometry {
         double D_tube;
         double dz;
-        double H_eff;
+        double Height;
         double dr;
         double fz;
         double fr;
         double vf;
         double fr_vf;
         double fz_vf;
+
         std::vector<int> n_RodsInTBC;
 
         void initialisation() {

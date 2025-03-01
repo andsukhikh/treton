@@ -16,8 +16,8 @@ if(CMAKE_BUILD_TYPE STREQUAL "Release")
 endif()
 
 
-if(DEFINED FHI0)
-    target_compile_definitions(${PROJECT_NAME} PUBLIC FHI0=${FHI0})
+if(DEFINED ANALYTICS)
+    target_compile_definitions(${PROJECT_NAME} PUBLIC ANALYTICS=${ANALYTICS})
 endif()
 
 

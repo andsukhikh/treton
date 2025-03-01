@@ -14,34 +14,14 @@
 #include "GlobalVar.hpp"
 #include "Heat.hpp"
 #include "Heat.hpp"
-
-
 #include "Thechyco.hpp"
 #include "Hydro.hpp"
 #include "NamelistReader.hpp"
 #include "CoolantMaterials.hpp"
 #include "BinFileTools.hpp"
+#include "SolverHeff.hpp"
 
 #include "CRD_test.cpp"
-
-
-//enum class coolant {
-//    Lead,
-//    Sodium
-//};
-//
-//coolant stringToColor(const std::string& str) {
-//    static const std::unordered_map<std::string, coolant> coolantMap = {
-//        {"Lead", coolant::Lead},
-//        {"Sodium", coolant::Sodium}
-//    };
-//
-//    auto it = coolantMap.find(str);
-//    if (it != coolantMap.end()) {
-//        return it->second;
-//    }
-//    throw std::invalid_argument("Неизвестный цвет: " + str);
-//}
 
 
 int main() {
@@ -67,8 +47,7 @@ int main() {
     nlr.use_namelist("HEATandHYDROlist");
 
     dr =                            nlr.get<double>("dr", 1);
-    dz =                            nlr.get<double>("dz", 1);
-    H_eff =                         nlr.get<double>("H_eff", 1);
+    Height =                        nlr.get<double>("Height", 1);
     D_tube =                        nlr.get<double>("D_tube", 1);
     Disbalance =                    nlr.get<double>("Disbalance", 1);
     PVTerror =                      nlr.get<double>("PVTerror", 1);
@@ -77,6 +56,7 @@ int main() {
     p_output =                      nlr.get<double>("p_output", 1);
     iterations =                    nlr.get<int>("iterations", 1);
     coolantName =                   nlr.get<std::string>("coolant", "non-existent");
+
 
     for (int i = 0; i < type; ++i) {
         n_RodsInTBC[i] = nlr.get<int>("n_RodsInTBC", 1.0, i);
@@ -90,6 +70,7 @@ int main() {
         crd[i % 2][i / 2] = nlr.get<int>("crd", 0.0, i);
     }
 	
+    dz = Height / n;
 
     #ifdef TEST_CRD
         testCRD();
@@ -107,6 +88,7 @@ int main() {
 
     CoolantDecriptor decript(coolantName);
     Coolant& coolant = decript.getCoolant();
+
 
     std::ifstream file_in( input_dir + "//T_in.txt");
     if(file_in.is_open()) {
@@ -161,16 +143,25 @@ int main() {
     }
 
 
-#ifdef FHI0
+#ifdef ANALYTICS
     std::cout << std::endl;
     std::cout << "***********analitic energy distribution function mode is turned on***********" << std::endl;
-    std::cout << "                        ***********FHI0 = " << static_cast<int> (FHI0) <<  " ***********              " << "\n" << std::endl;
+
+    double K_z =                nlr.get<double>("K_z", 1);
+    double K_r =                nlr.get<double>("K_r", 1);
+    double Power =              nlr.get<double>("Power", 1);
+
+    double H_eff = EquationSolver(K_z, Height).solve();
+
+    std::cout << "                        ***********Power = " << Power << " ***********              " << "\n" << std::endl;
+    
+    auto PowerInCentre = Power * K_z * K_r / (1e-6 * n * mf);
     auto R = *(std::max_element(xx.begin(), xx.end()));
 
     for (int j = 0; j < mf; ++j) {
         for (int i = 0; i < n; ++i) {
             auto r = std::sqrt(std::pow(xx[j], 2) * std::pow(yy[j], 2));
-            bes[j][i] = FHI0 * std::cyl_bessel_j(0, 2.41 * r / R) * std::cos(std::numbers::pi * z[i] / H_eff);
+            bes[j][i] = PowerInCentre * std::cyl_bessel_j(0, 2.41 * r / R) * std::cos(std::numbers::pi * z[i] / H_eff);
         }
     }
     std::ofstream Q6(input_dir + "//Q6.txt");
@@ -735,7 +726,7 @@ int main() {
         file << "G = " << G << "\n"
              << "G1 = " << G1 << "\n"
              << "Q = " << Q << "\n"
-             << "t_CoreOutput " << t_CoreOutput << "\n"
+             << "t_CoreOutput = " << t_CoreOutput << "\n"
              << "t_CoreInput = " << t_CoreInput << "\n"
              << "(t_CoreOutput - t_CoreInput) = " << (t_CoreOutput - t_CoreInput) << "\n"
              << "ro_input[76] = " << ro_input[76] << "\n"

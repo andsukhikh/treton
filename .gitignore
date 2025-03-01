@@ -1,7 +1,8 @@
 .vscode
 output/
 build/
-treton_VS
+treton_C
+treton_C++
 
 
 ## Ignore Visual Studio temporary files, build results, and
