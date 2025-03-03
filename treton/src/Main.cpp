@@ -209,7 +209,7 @@ int main() {
     double dt;
     std::cout << "Enter dt = ";
     std::cin >> dt;
-    int kk = 100;
+    int kk = 200;
 
     auto start = std::chrono::high_resolution_clock::now();
 

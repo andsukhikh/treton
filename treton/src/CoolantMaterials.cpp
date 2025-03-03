@@ -34,7 +34,7 @@ double Sodium::Volume(const double temperature) const {
 }
 
 double Sodium::Temperature(const double enthalpy) const {
-	return 0.00079 * enthalpy + 123.35;
+	return 85.033 + 0.0008 * enthalpy - 2e-11 * std::pow(enthalpy, 2);
 }
 
 double Sodium::Pr(const double temperature) const {
@@ -69,12 +69,10 @@ double Sodium::Nu(const double Re, const double Pr) const {
 	if (Re <= 2300.0) {
 		return 3.66;
 	}
-	else if (Re > 10000.0) {
+	if (Re > 10000.0) {
 		return 0.012 * std::pow(Pr, 0.33) * std::pow(Re, 0.87);
 	}
-	else {
-		return 4.82 + 0.0185 * std::pow(Pr, 0.33) * std::pow(Re, 0.8);
-	}
+	return 4.82 + 0.0185 * std::pow(Pr, 0.33) * std::pow(Re, 0.8);
 }
 
 
@@ -105,7 +103,6 @@ double Lead::KinVis(const double entalpy) const {
 	double temperature = Temperature(entalpy);
 	double volume = Volume(temperature);
 	return DynVisc(temperature) * volume;
-	//return std::pow((43.8 - 7.57 * 1e-2 * temperature + 0.467 * 1e-4 * temperature), 2) * 1e-8;
 }
 
 double Lead::DynVisc(const double temperature) const {
@@ -124,11 +121,9 @@ double Lead::Nu(const double Re, const double Pr) const {
 	if (Re <= 2300.0) {
 		return 3.66;
 	}
-	else if (Re > 10000.0) {
+	if (Re > 10000.0) {
 		return 0.012 * std::pow(Pr, 0.33) * std::pow(Re, 0.87);
 	}
-	else {
-		return 4.82 + 0.0185 * std::pow(Pr, 0.33) * std::pow(Re, 0.8);
-	}
+	return 4.82 + 0.0185 * std::pow(Pr, 0.33) * std::pow(Re, 0.8);
 }
 

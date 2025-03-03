@@ -188,17 +188,14 @@ void CrossConnection() {
             // нумерация по высоте
             if (i == 0) {
                 NC[k] = 1;
-                //NC[k] = 0;
                 NE[kk] = i + 1 + j * n; 
                 ++kk;
             } else if (i == n - 1) {
                 NC[k] = 1;
-                //NC[k] = 0;
                 NE[kk] = i - 1 + j * n;
                 ++kk;
             } else {
                 NC[k] = 2;
-                //NC[k] = 1;
                 NE[kk] = i - 1 + j * n; 
                 ++kk;
                 NE[kk] = i + 1 + j * n; 
@@ -218,10 +215,7 @@ void CrossConnection() {
     }
 
     k = NC[0];
-    //NC[0] = 1;
     NC[0] = 0;
-    //k = NC[0] + 1;
-    //NC[0] = 1;
 
     for (int i = 1; i < ( n * mf + 1 ); ++i) {
         int j = NC[i];
@@ -431,18 +425,12 @@ void V_full_calc() {
 
 
 double absV(int i, int j) {
-    double result;
-    
+
     if (i == 0) {
-        result = std::sqrt(V_z[i][j] * V_z[i][j] + V_r(i, j) * V_r(i, j));
+        return std::sqrt(V_z[i][j] * V_z[i][j] + V_r(i, j) * V_r(i, j));
     }
-    else if (i == n) {
-        result = std::sqrt(V_z[i][j] * V_z[i][j] + V_r(i - 1, j) * V_r(i - 1, j));
+    if (i == n) {
+        return std::sqrt(V_z[i][j] * V_z[i][j] + V_r(i - 1, j) * V_r(i - 1, j));
     }
-    else {
-        result = std::sqrt(V_z[i][j] * V_z[i][j] + 0.25 * std::pow(V_r(i - 1, j) + V_r(i, j), 2));
-    }
-
-
-    return result;
+    return std::sqrt(V_z[i][j] * V_z[i][j] + 0.25 * std::pow(V_r(i - 1, j) + V_r(i, j), 2));
 }
