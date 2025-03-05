@@ -1469,9 +1469,7 @@ void FormFriction(const Coolant& coolant) {
     double formula = 0.57 + 0.18 * (x_mesh - 1.0) + 0.53 * (1.0 - exp(-a_mesh));
     double rows = dr / (0.6830127 * d_mesh * x_mesh);
     double Constant = 3.586;
-    double zKoeff1 = 3.0;
-    double zKoeff2 = 1.5;
-    //double d_hydraulic = 0.01;            //in origin treton
+    double zKoeff = 3.0;
     double d_hydraulic = d_mesh * (1.103 * std::pow(x_mesh, 2) - 1.0);
 
 
@@ -1500,7 +1498,7 @@ void FormFriction(const Coolant& coolant) {
                 double viscosity = coolant.KinVis(temperature);
                 double re = vel * d_hydraulic / viscosity;
 
-                effK_z[i][j] = zKoeff1 * formula * std::pow(100 * re, -0.25) / (2.0 * d_hydraulic);
+                effK_z[i][j] = zKoeff * formula * std::pow(100 * re, -0.25) / (2.0 * d_hydraulic);
             }
         }
 

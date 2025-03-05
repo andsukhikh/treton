@@ -105,7 +105,7 @@ void rod_property() {
                         std::cout << "ATTENTION! At (" << i + 1 << "," << j + 1 << ") UO2 fuel is melting." << std::endl;
                     }
                     double density = 10200.0;          // ~ 7200-10620 [kg/m**3]
-                    double heatcap = 328.0;            // Heat capacity
+                    double heatcap = 410.0;            // Heat capacity
                     fuel_rc[i][j][k] = density * heatcap;
                     fuel_l[i][j][k] = 2.8;             // Conductivity
                 } else if (k == 1) {

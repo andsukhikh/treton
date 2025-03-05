@@ -14,7 +14,7 @@ set(src_obj "${src_treton_dir}/CoolantMaterials.cpp"
 			"${src_treton_dir}/Matrix.cpp"
 			"${src_treton_dir}/Thechyco.cpp"
 			"${src_treton_dir}/GlobalVar.cpp"
-			"${src_treton_dir}/SolverHeff.cpp"
+			"${src_treton_dir}/SolverEffCoef.cpp"
 )
 
 

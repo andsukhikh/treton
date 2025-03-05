@@ -19,7 +19,7 @@
 #include "NamelistReader.hpp"
 #include "CoolantMaterials.hpp"
 #include "BinFileTools.hpp"
-#include "SolverHeff.hpp"
+#include "SolverEffCoef.hpp"
 
 #include "CRD_test.cpp"
 
@@ -70,7 +70,7 @@ int main() {
         crd[i % 2][i / 2] = nlr.get<int>("crd", 0.0, i);
     }
 	
-    dz = Height / n;
+    dz = static_cast<double>(Height / n);
 
     #ifdef TEST_CRD
         testCRD();
@@ -131,7 +131,7 @@ int main() {
         }
     }
 
-    z[0] = -dz * n / 2;
+    z[0] = -dz * static_cast<double>(n / 2);
 
      for (int i = 0; i < n; ++i) {
         z[i + 1] = z[i] + dz;
@@ -147,27 +147,45 @@ int main() {
     std::cout << std::endl;
     std::cout << "***********analitic energy distribution function mode is turned on***********" << std::endl;
 
-    double K_z =                nlr.get<double>("K_z", 1);
-    double K_r =                nlr.get<double>("K_r", 1);
-    double Power =              nlr.get<double>("Power", 1);
+    double sum_Q = 0.0;
 
-    double H_eff = EquationSolver(K_z, Height).solve();
+    double K_z = nlr.get<double>("K_z", 1);
+    double K_r = nlr.get<double>("K_r", 1);
+    double Power = nlr.get<double>("Power", 1);
+    auto PowerInCentre = Power * K_z * K_r / (1e-6 * n * mf);
+
+    auto Radius = *(std::max_element(xx.begin(), xx.end()));
+
+    double H_eff = EquationSolver(K_z, Height, EquationSolver::EquationType::Height).solve();
+    double R_eff = EquationSolver(K_r, Radius, EquationSolver::EquationType::Radius).solve();
 
     std::cout << "                        ***********Power = " << Power << " ***********              " << "\n" << std::endl;
-    
-    auto PowerInCentre = Power * K_z * K_r / (1e-6 * n * mf);
-    auto R = *(std::max_element(xx.begin(), xx.end()));
 
-    for (int j = 0; j < mf; ++j) {
-        for (int i = 0; i < n; ++i) {
-            auto r = std::sqrt(std::pow(xx[j], 2) * std::pow(yy[j], 2));
-            bes[j][i] = PowerInCentre * std::cyl_bessel_j(0, 2.41 * r / R) * std::cos(std::numbers::pi * z[i] / H_eff);
-        }
+    auto analitic_distr = [&](double norm_coeff = 1.0)
+        {
+            sum_Q = 0.0;
+
+            for (int j = 0; j < mf; ++j) {
+                for (int i = 0; i < n; ++i) {
+                    auto r = std::sqrt(std::pow(xx[j], 2) + std::pow(yy[j], 2));
+                    bes[j][i] = norm_coeff * PowerInCentre * std::cyl_bessel_j(0, 2.41 * r / R_eff) * std::cos(std::numbers::pi * z[i] / H_eff);
+                    sum_Q += bes[j][i];
+                }
+            }
+        };
+
+    analitic_distr();
+    double eps = sum_Q * 1e-6 - Power;
+    while (std::abs(eps) > 0.01)
+    {
+        analitic_distr(Power/(sum_Q * 1e-6));
+        eps = sum_Q * 1e-6 - Power;
     }
+
     std::ofstream Q6(input_dir + "//Q6.txt");
     for (auto&& val1 : bes) {
         for (auto&& val2 : val1) {
-            Q6 << std::setw(8) << std::right << std::fixed << std::setprecision(0) << val2;
+            Q6 << std::setw(10) << std::right << std::fixed << std::setprecision(0) << val2;
         }
         Q6 << "\n";
     }
