@@ -75,12 +75,10 @@ template<typename T>
 void BinaryWriter::writeVector(T& vec) {
     if (file.is_open()) {
         if constexpr (!std::is_scalar_v<T>) {
-            if constexpr (std::is_same_v<T, std::vector<typename T::value_type>>) {
-                size_t size = vec.size();
-                file.write(reinterpret_cast<char*>(&size), sizeof(size));
-                for (auto&& val : vec) {
-                    writeVector(val);
-                }
+            size_t size = vec.size();
+            file.write(reinterpret_cast<char*>(&size), sizeof(size));
+            for (auto&& val : vec) {
+                writeVector(val);
             }
         }
         else {
@@ -94,13 +92,11 @@ template<typename T>
 void BinaryReader::readVector(T& vec) {
     if (file.is_open()) {
         if constexpr (!std::is_scalar_v<T>) {
-            if constexpr (std::is_same_v<T, std::vector<typename T::value_type>>) {
-                size_t size;
-                file.read(reinterpret_cast<char*>(&size), sizeof(size));
-                vec.resize(size);
-                for (auto&& val : vec) {
-                    readVector(val);
-                }
+            size_t size;
+            file.read(reinterpret_cast<char*>(&size), sizeof(size));
+            vec.resize(size);
+            for (auto&& val : vec) {
+                readVector(val);
             }
         }
         else {

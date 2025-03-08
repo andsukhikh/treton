@@ -230,6 +230,7 @@ namespace GlobalVariables {
         std::string coolantName;
         std::string input_dir;
         std::string output_dir;
+        double time_;
     }
 
     namespace mat {

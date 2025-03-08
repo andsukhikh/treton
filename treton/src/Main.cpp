@@ -56,7 +56,7 @@ int main() {
     p_output =                      nlr.get<double>("p_output", 1);
     iterations =                    nlr.get<int>("iterations", 1);
     coolantName =                   nlr.get<std::string>("coolant", "non-existent");
-
+    //resist_multiplier =             nlr.get<double>("resist_multiplier", 1);
 
     for (int i = 0; i < type; ++i) {
         n_RodsInTBC[i] = nlr.get<int>("n_RodsInTBC", 1.0, i);
@@ -65,6 +65,10 @@ int main() {
     for (int i = 0; i < mf; ++i) {
         blockade[i] = nlr.get<int>("blockade", 1.0, i);
     }
+
+    //for (size_t i = 0; i < 2 * mf * (n + 1); ++i) {
+    //    blockade_coord[i % 2][i / 2] = nlr.get<int>("blockade_coord", 0.0, i);
+    //}
 
     for (size_t i = 0; i < 2 * mf; ++i) {
         crd[i % 2][i / 2] = nlr.get<int>("crd", 0.0, i);
@@ -216,33 +220,35 @@ int main() {
      std::cin >> icont_key;
 
     if (icont_key == 1) {
-        Reader(std::ifstream(input_dir + "//data.dat", std::ios::binary)).read(p, V_z, V_n, h_f, t_f, t_rod, t_fuel, t_clad);
+        Reader(std::ifstream(input_dir + "//data.dat", std::ios::binary)).read(p, V_z, V_n, h_f, t_f, t_rod, t_fuel, t_clad, time_);
     }
 
     RodOnce();
     HeatHydroOnce(coolant);
     V_zBlockade();
 
-    double time = 0.0;
     double dt;
     std::cout << "Enter dt = ";
     std::cin >> dt;
-    int kk = 200;
+    int k = 0;
 
     auto start = std::chrono::high_resolution_clock::now();
 
-    for (int k = 1; k <= kk; ++k) {
+    while (true) {
+        ++k;
         if (k % 20 == 0) {
-            Writer(std::ofstream(input_dir + "//data.dat", std::ios::binary)).write(p, V_z, V_n, h_f, t_f, t_rod, t_fuel, t_clad);
+            Writer(std::ofstream(input_dir + "//data.dat", std::ios::binary)).write(p, V_z, V_n, h_f, t_f, t_rod, t_fuel, t_clad, time_);
         }
         std::cout << "\n";
-        std::cout << "                                    " << k << " of " << kk << std::endl;
+        std::cout << "                                    loop - " << k << std::endl;
 
         for (int i = 0; i < 100; ++i) {
             icall = thehyco(dt, coolant);
             if (icall < 1) break;
-            time += dt;
+            time_ += dt;
         }
+
+        std::cout << "Reactor time = " << time_ << std::endl;
 
         double av = 0.0;
         for (int j = 0; j < mf; ++j) {
@@ -752,20 +758,30 @@ int main() {
         file.close();
     
         if (icall < 1) {
-            std::cout << "icall < 1 ==> exit(1)" << std::endl;
+            std::cout << "****//no calculation is required since the imbalance is less than the specified error//****" << std::endl;
+
+            auto end = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double> duration = end - start;
+
+            std::cout << "\n";
+            std::cout << "Ñalculation time = " << std::chrono::duration_cast<std::chrono::minutes>(end - start).count() << " min" << std::endl;
+            std::cout << "Steady state time = " << time_ << std::endl;
+
+            std::cin.get();
             std::exit(EXIT_FAILURE);
         }
     }
 
-    Writer(std::ofstream("data.dat", std::ios::binary)).write(p, V_z, V_n, h_f, t_f, t_rod, t_fuel, t_clad);
+    Writer(std::ofstream("data.dat", std::ios::binary)).write(p, V_z, V_n, h_f, t_f, t_rod, t_fuel, t_clad, time_);
 
 
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration = end - start;
 
-    std::cout << "End of program" << std::endl;
-    std::cout << "Time = " << std::chrono::duration_cast<std::chrono::minutes>(end - start).count() << " min" << std::endl;
-    std::cin.get();
+    std::cout << "\n";
+    std::cout << " steady state time = " << time_ << std::endl;
+    std::cout << " calculation time = " << std::chrono::duration_cast<std::chrono::minutes>(end - start).count() << " min" << std::endl;
+    std::cout << "\n" << "End of program" << std::endl;
     std::cin.get();
 
     return 0;

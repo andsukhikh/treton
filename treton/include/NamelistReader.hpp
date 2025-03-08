@@ -376,7 +376,7 @@ namespace NLReader {
                 param_index = distance(namelists[namelist_index].params.begin(), it);
             else {
                 cout << "Error in obtaining or absence of value of " << "\"" << param << "\"" << endl;
-                std::exit(EXIT_FAILURE);;
+                //std::exit(EXIT_FAILURE);
                 return default_val;
             }
 
@@ -388,7 +388,7 @@ namespace NLReader {
             }
             else {
                 printf("\nParameter '%s' in namelist '%s' didn't have enough values!", param.c_str(), namelists[namelist_index].name.c_str());
-                std::exit(EXIT_FAILURE);
+                //std::exit(EXIT_FAILURE);
                 return default_val;
             }
         }

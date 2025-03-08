@@ -177,6 +177,7 @@ namespace GlobalVariables {
         extern std::string coolantName;
         extern std::string input_dir;
         extern std::string output_dir;
+        extern double time_;
     }
 
     namespace mat {
