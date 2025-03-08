@@ -97,23 +97,32 @@ void rod_property() {
     for (int k = 0; k < type; ++k) {
         for (int j = 0; j < mf; ++j) {
             for (int i = 0; i < n; ++i) {
-                double t = t_fuel[i][j][k];
+                double t = t_fuel[i][j][k] + 273;
 
                 if (k == 0) {
                     // UO2
-                    if (t > 2850) {
+                    if (t > (2850 + 273)) {
                         std::cout << "ATTENTION! At (" << i + 1 << "," << j + 1 << ") UO2 fuel is melting." << std::endl;
                     }
-                    double density = 10200.0;          // ~ 7200-10620 [kg/m**3]
-                    double heatcap = 410.0;            // Heat capacity
+                    double tau = t / 1000.0;
+
+                    double density = 10960 * (0.99672 + 1.179 * 1e-5 * t - 2.429 * 1e-9 * std::pow(t, 2) + 1.219 * 1e-12 * std::pow(t, 3));          // ~ 7200-10620 [kg/m**3]
+                    double heatcap_in_mol = 52.17 + 87.95 * tau - 84.24 * std::pow(tau, 2) + 31.54 * std::pow(tau, 3)
+                                        - 2.63 * std::pow(tau, 4) + 0.71 * std::pow(tau, -2);            // Heat capacity
+
+                    double heatcap = heatcap_in_mol / 0.270;
+                    double conductivity = (100.0 / (7.5408 + 17.692 * tau + 3.6142 * tau * tau) +
+                        (6400.0 / std::pow(t, 2.5)) * std::exp(-16.35 / tau));
+
                     fuel_rc[i][j][k] = density * heatcap;
-                    fuel_l[i][j][k] = 2.8;             // Conductivity
+                    fuel_l[i][j][k] = conductivity;             // Conductivity
+
                 } else if (k == 1) {
                     // UC
                     double density = 10200.0;          // ~[kg/m**3]
-                    double heatcap = 80.076 + 0.4202 * t - 0.000307 * t * t;  // Heat capacity
+                    double heatcap = 80.076 + 0.4202 * (t - 273) - 0.000307 * (t - 273) * (t - 273);  // Heat capacity
                     fuel_rc[i][j][k] = density * heatcap;
-                    fuel_l[i][j][k] = 22.0 * cosh(1.0 - t / 750.0);           // Conductivity
+                    fuel_l[i][j][k] = 22.0 * cosh(1.0 - (t - 273) / 750.0);           // Conductivity
                 }
             }
         }

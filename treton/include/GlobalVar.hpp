@@ -124,7 +124,10 @@ namespace GlobalVariables {
     }
 
     namespace blockages {
+        extern double resist_multiplier;
         extern double BlockadePorousity;
+
+        extern std::vector<std::vector<int>> blockade_coord;
         extern std::vector<int> blockade;
 
         void initialisation();
