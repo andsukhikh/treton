@@ -127,10 +127,10 @@ int main() {
         for (int j = 0; j < mf; ++j) {
             for (int i = 0; i < n; ++i) {
                 for (int l = 0; l < n_rod + 2; ++l) {
-                    t_rod[l][i][j][k] = 1400.0 - 7.5 * std::pow(l + 1, 2);
+                    t_rod[l][i][j][k] = bes[j][0];
                 }
-                t_fuel[i][j][k] = 1100.0;
-                t_clad[i][j][k] = 340.0;
+                t_fuel[i][j][k] = bes[j][0];
+                t_clad[i][j][k] = bes[j][0];
             }
         }
     }
@@ -233,6 +233,7 @@ int main() {
     int k = 0;
 
     auto start = std::chrono::high_resolution_clock::now();
+    auto end = std::chrono::high_resolution_clock::now();
 
     while (true) {
         ++k;
@@ -248,7 +249,10 @@ int main() {
             time_ += dt;
         }
 
-        std::cout << "Reactor time = " << time_ << std::endl;
+        end = std::chrono::high_resolution_clock::now();
+
+        std::cout << "Calculation time = " << std::chrono::duration_cast<std::chrono::minutes>(end - start).count() << " min" << std::endl;
+        std::cout << "Reactor time = " << time_ << " sec" << std::endl;
 
         double av = 0.0;
         for (int j = 0; j < mf; ++j) {
@@ -760,12 +764,11 @@ int main() {
         if (icall < 1) {
             std::cout << "****//no calculation is required since the imbalance is less than the specified error//****" << std::endl;
 
-            auto end = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<double> duration = end - start;
+            end = std::chrono::high_resolution_clock::now();
 
             std::cout << "\n";
-            std::cout << "Ñalculation time = " << std::chrono::duration_cast<std::chrono::minutes>(end - start).count() << " min" << std::endl;
-            std::cout << "Steady state time = " << time_ << std::endl;
+            std::cout << "Calculation time = " << std::chrono::duration_cast<std::chrono::minutes>(end - start).count() << " min" << std::endl;
+            std::cout << "Steady state time = " << time_ << " sec" << std::endl;
 
             std::cin.get();
             std::exit(EXIT_FAILURE);
@@ -775,12 +778,11 @@ int main() {
     Writer(std::ofstream("data.dat", std::ios::binary)).write(p, V_z, V_n, h_f, t_f, t_rod, t_fuel, t_clad, time_);
 
 
-    auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> duration = end - start;
+    end = std::chrono::high_resolution_clock::now();
 
     std::cout << "\n";
-    std::cout << " steady state time = " << time_ << std::endl;
-    std::cout << " calculation time = " << std::chrono::duration_cast<std::chrono::minutes>(end - start).count() << " min" << std::endl;
+    std::cout << "Steady state time = " << time_ << " sec" << std::endl;
+    std::cout << "Calculation time = " << std::chrono::duration_cast<std::chrono::minutes>(end - start).count() << " min" << std::endl;
     std::cout << "\n" << "End of program" << std::endl;
     std::cin.get();
 
