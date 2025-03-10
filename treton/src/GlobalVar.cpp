@@ -178,7 +178,7 @@ namespace GlobalVariables {
 
         void initialisation() {
             resize_vector(blockade, mf);
-            resize_vector(blockade_coord, 2, mf * (n + 1));
+            resize_vector(blockade_coord, 2, mf);
         }
     }
 

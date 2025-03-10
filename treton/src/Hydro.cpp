@@ -1509,8 +1509,8 @@ void FormFriction(const Coolant& coolant) {
 
                 effK_z[i][j] = formula * 0.316 * std::pow(re, -0.25) / (2.0 * d_hydraulic);
                 
-                double height_elem = blockade_coord[0][j * (n + 1) + i];
-                double TBC_number = blockade_coord[1][j * (n + 1) + i];
+                double height_elem = blockade_coord[0][j];
+                double TBC_number = blockade_coord[1][j];
 
                 if (height_elem != 0 && TBC_number != 0) {
                     effK_z[i][j] *= resist_multiplier;
