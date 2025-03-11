@@ -12,6 +12,7 @@ template<typename Material>
 class Cladding : public Material
 {
 private:
+
 	double outer_radius_;
 	double inner_radius_;
 
@@ -27,7 +28,7 @@ public:
 
     double get_medium_radius() const
     {
-        return (outer_radius_ - inner_radius_) / 2;
+        return (outer_radius_ + inner_radius_) / 2;
     }
 
     double get_inner_radius() const
@@ -55,6 +56,7 @@ public:
         return std::numbers::pi * (std::pow(outer_radius, 2) - std::pow(inner_radius, 2));
     }
 };
+
 
 #endif
 

@@ -10,10 +10,11 @@ template<typename Material>
 class Fuel : public Material
 {
 private:
+
     double outer_radius_;
     double inner_radius_;
 
-    Fuel(double orad, double mrad, double irad)
+    Fuel(double orad, double irad)
         : outer_radius_(orad)
         , inner_radius_(irad)
     {}
