@@ -74,7 +74,7 @@ void RodGeometry() {
         }
 
         bundle[n_rod - 1][j] = cvd[n_rod][j];
-        bundle[n_rod][j] = cvd[n_rod + 1][j];
+        bundle[n_rod][j] = cvd[n_rod][j];
         bundle[n_rod + 1][j] = cvd[n_rod + 2][j];
 
         for (int i = 0; i < n_rod + 2; ++i) {
