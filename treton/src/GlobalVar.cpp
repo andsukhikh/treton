@@ -46,6 +46,8 @@ namespace GlobalVariables {
         double x_mesh;
         double s_mesh;
         double d_mesh;
+        double wireStep;
+
         std::vector<std::vector<double>> tmp;
         std::vector<double> P_rod;
         std::vector<double> a_fuel;

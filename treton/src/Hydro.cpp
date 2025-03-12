@@ -1467,18 +1467,24 @@ void KinViscosity(const Coolant& coolant) {
 void FormFriction(const Coolant& coolant) {
     //double a_mesh = 0.58 + 9.2 * (x_mesh - 1.0);   
     //double formula = 0.57 + 0.18 * (x_mesh - 1.0) + 0.53 * (1.0 - exp(-a_mesh));
-    double formula = (1 + std::pow((x_mesh + 1), 0.32));
 
-    double eff_tvel_radius = 2 * d_mesh / std::sqrt(3);
-    double rows = std::round((dr - eff_tvel_radius ) / (eff_tvel_radius * 0.75));
+    //double formula = (1 + std::pow((x_mesh + 1), 0.32));
 
-    double Constant = 0.0;
-    if (x_mesh > 1.44) {
-        Constant = 3.2 + 0.66 * std::pow(0.7, 1.5) +
-            ((1.44 - x_mesh) / 0.11) * (0.8 + 0.2 * std::pow(0.7, 1.5));
-    } else {
-        Constant = 3.2 + 0.66 * std::pow(0.7, 1.5);
-    }
+    //double eff_tvel_radius = 2 * d_mesh / std::sqrt(3);
+    //double rows = std::round((dr - eff_tvel_radius ) / (eff_tvel_radius * 0.75));
+
+    //double Constant = 0.0;
+    //if (x_mesh > 1.44) {
+    //    Constant = 3.2 + 0.66 * std::pow(0.7, 1.5) +
+    //        ((1.44 - x_mesh) / 0.11) * (0.8 + 0.2 * std::pow(0.7, 1.5));
+    //} else {
+    //    Constant = 3.2 + 0.66 * std::pow(0.7, 1.5);
+    //}
+
+    double tvel_step_up = s_mesh / d_mesh - 1;
+    double rel_wire_step = wireStep / d_mesh;
+    double formula = 1 + (124 / std::pow(rel_wire_step, 1.165)) * (1.78 + 1.485 * tvel_step_up) * std::pow(tvel_step_up, 0.32);
+    double coeff_prop = (0.16 / std::pow(tvel_step_up, 2)) + 24 * s_mesh / d_mesh;
 
     double d_hydraulic = d_mesh * (1.103 * std::pow(x_mesh, 2) - 1.0);
 
@@ -1507,7 +1513,8 @@ void FormFriction(const Coolant& coolant) {
                 double viscosity = coolant.KinVis(temperature);
                 double re = vel * d_hydraulic / viscosity;
 
-                effK_z[i][j] = formula * 0.316 * std::pow(re, -0.25) / (2.0 * d_hydraulic);
+                //effK_z[i][j] = formula * 0.317 * std::pow(re, -0.25) / (2.0 * d_hydraulic);
+                effK_z[i][j] = formula * 0.21 * std::pow(re, -0.25) / (2.0 * d_hydraulic);
                 
                 double height_elem = blockade_coord[0][j];
                 double TBC_number = blockade_coord[1][j];
@@ -1530,7 +1537,8 @@ void FormFriction(const Coolant& coolant) {
                         effK_r[i][jV_n] = 0.0;
                     } else {
                         double re = vel * d_mesh / coolant.KinVis((h_f[i][j] + h_f[i][jf]) / 2.0);
-                        effK_r[i][jV_n] = Constant * (rows + 1.0) * std::pow(re, -0.27) / (2.0 * dr);
+                        //effK_r[i][jV_n] = Constant * (rows + 1.0) * std::pow(re, -0.27) / (2.0 * dr);
+                        effK_r[i][jV_n] = coeff_prop * formula * 0.21 * std::pow(re, -0.25) / (2.0 * d_hydraulic);
                     }
                 }
                 V_nMap[jV_n] = 1;
