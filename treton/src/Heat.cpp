@@ -27,7 +27,6 @@ void RodOnce() {
         clad_l =            nlr.get<double>("clad_l", 1);
         wireStep =          nlr.get<double>("wireStep", 1);
 
-
         for (int i = 0; i < 4; ++i)
         {
             for (int j = 0; j < type; ++j)
@@ -36,7 +35,9 @@ void RodOnce() {
             }
         }
 
+        wireStep /= 1000.0;
         x_mesh = s_mesh / d_mesh;
+        s_mesh /= 1000.0;
         d_mesh /= 1000.0;
 
         for (int k = 0; k < type; ++k) {

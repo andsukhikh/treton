@@ -1479,12 +1479,11 @@ void FormFriction(const Coolant& coolant) {
     //        ((1.44 - x_mesh) / 0.11) * (0.8 + 0.2 * std::pow(0.7, 1.5));
     //} else {
     //    Constant = 3.2 + 0.66 * std::pow(0.7, 1.5);
-    //}
-
-    double tvel_step_up = s_mesh / d_mesh - 1;
+     
+    double tvel_step_up = x_mesh - 1;
     double rel_wire_step = wireStep / d_mesh;
     double formula = 1 + (124 / std::pow(rel_wire_step, 1.165)) * (1.78 + 1.485 * tvel_step_up) * std::pow(tvel_step_up, 0.32);
-    double coeff_prop = (0.16 / std::pow(tvel_step_up, 2)) + 24 * s_mesh / d_mesh;
+    double coeff_prop = (0.16 / std::pow(tvel_step_up, 2)) + 24 * x_mesh;
 
     double d_hydraulic = d_mesh * (1.103 * std::pow(x_mesh, 2) - 1.0);
 
