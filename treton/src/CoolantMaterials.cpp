@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string_view>
 #include <exception>
+#include <cstdlib>
 
 #include "CoolantMaterials.hpp"
 
@@ -66,13 +67,16 @@ double Sodium::HeatCond(const double temperature) const {
 }
 
 double Sodium::Nu(const double Re, const double Pr) const {
+	double Pe = Re * Pr;
+
 	if (Re <= 2300.0) {
-		return 3.66;
+		return 4.36;
 	}
 	if (Re > 10000.0) {
-		return 0.012 * std::pow(Pr, 0.33) * std::pow(Re, 0.87);
+		return 5 + 0.025 * std::pow(Pe, 0.8);
 	}
-	return 4.82 + 0.0185 * std::pow(Pr, 0.33) * std::pow(Re, 0.8);
+
+	std::exit(EXIT_FAILURE);
 }
 
 
@@ -118,12 +122,14 @@ double Lead::HeatCond(const double temperature) const {
 }
 
 double Lead::Nu(const double Re, const double Pr) const {
+	double Pe = Re * Pr;
+
 	if (Re <= 2300.0) {
-		return 3.66;
+		return 4.36;
 	}
 	if (Re > 10000.0) {
-		return 0.012 * std::pow(Pr, 0.33) * std::pow(Re, 0.87);
+		return 3 + 0.014 * std::pow(Pe, 0.8);
 	}
-	return 4.82 + 0.0185 * std::pow(Pr, 0.33) * std::pow(Re, 0.8);
+	std::exit(EXIT_FAILURE);
 }
 

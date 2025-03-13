@@ -583,7 +583,6 @@ double HeatTransfer(double Ux, double Uy, double Uz, double x, double d_hyd, dou
     // double NU_along = NUl(x) + (0.041 / std::pow(x, 2)) * std::pow(Pe_along, 0.56 + 0.19 * x);
     // double along = NU_along * l_Pb / d_hydro;
 
-    // // ���������� ���������
     // double sinfi = std::sqrt(Ux * Ux + Uy * Uy) / absU;
     // double Pe_cross = absU * d / a_Pb;
     // double cross = 0.0;
@@ -593,7 +592,6 @@ double HeatTransfer(double Ux, double Uy, double Uz, double x, double d_hyd, dou
     //     cross = NUfi * l_Pb / d;
     // }
 
-    // // ��������� ����������� � ����������� ���������
     // if (along > cross) {
     //     return along;
     // } else {
