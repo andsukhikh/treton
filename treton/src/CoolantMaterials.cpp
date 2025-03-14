@@ -75,8 +75,7 @@ double Sodium::Nu(const double Re, const double Pr) const {
 	if (Re > 10000.0) {
 		return 5 + 0.025 * std::pow(Pe, 0.8);
 	}
-
-	std::exit(EXIT_FAILURE);
+	return 5 + 0.025 * std::pow(Pe, 0.8);
 }
 
 
@@ -130,6 +129,6 @@ double Lead::Nu(const double Re, const double Pr) const {
 	if (Re > 10000.0) {
 		return 3 + 0.014 * std::pow(Pe, 0.8);
 	}
-	std::exit(EXIT_FAILURE);
+	return 3 + 0.014 * std::pow(Pe, 0.8);
 }
 
