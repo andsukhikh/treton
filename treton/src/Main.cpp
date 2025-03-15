@@ -56,7 +56,7 @@ int main() {
     p_output =                      nlr.get<double>("p_output", 1);
     iterations =                    nlr.get<int>("iterations", 1);
     coolantName =                   nlr.get<std::string>("coolant", "non-existent");
-    //resist_multiplier =             nlr.get<double>("resist_multiplier", 1);
+    resist_multiplier =             nlr.get<double>("resist_multiplier", 1);
 
     for (int i = 0; i < type; ++i) {
         n_RodsInTBC[i] = nlr.get<int>("n_RodsInTBC", 1.0, i);
@@ -66,9 +66,9 @@ int main() {
         blockade[i] = nlr.get<int>("blockade", 1.0, i);
     }
 
-    //for (size_t i = 0; i < 2 * mf * (n + 1); ++i) {
-    //    blockade_coord[i % 2][i / 2] = nlr.get<int>("blockade_coord", 0.0, i);
-    //}
+    for (int i = 0; i < mf; ++i) {
+        blockade_coord[i] = nlr.get<int>("blockade_coord", 1.0, i);
+    }
 
     for (size_t i = 0; i < 2 * mf; ++i) {
         crd[i % 2][i / 2] = nlr.get<int>("crd", 0.0, i);

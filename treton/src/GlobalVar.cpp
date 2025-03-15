@@ -175,12 +175,12 @@ namespace GlobalVariables {
         double resist_multiplier;
         double BlockadePorousity;
 
-        std::vector<std::vector<int>> blockade_coord;
+        std::vector<int> blockade_coord;
         std::vector<int> blockade;
 
         void initialisation() {
             resize_vector(blockade, mf);
-            resize_vector(blockade_coord, 2, mf);
+            resize_vector(blockade_coord, mf);
         }
     }
 
