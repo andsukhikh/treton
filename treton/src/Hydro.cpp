@@ -1537,12 +1537,6 @@ void FormFriction(const Coolant& coolant) {
                         double re = vel * d_mesh / coolant.KinVis((h_f[i][j] + h_f[i][jf]) / 2.0);
                         //effK_r[i][jV_n] = Constant * (rows + 1.0) * std::pow(re, -0.27) / (2.0 * dr);
                         effK_r[i][jV_n] = coeff_prop * formula * 0.21 * std::pow(re, -0.25) / (2.0 * d_hydraulic);
-                    
-                        double height_elem = blockade_coord[j];
-
-                        if (i == (height_elem - 1)) {
-                            effK_r[i][jV_n] *= resist_multiplier;
-                        }
                     }
                 }
                 V_nMap[jV_n] = 1;
