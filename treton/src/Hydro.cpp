@@ -1492,6 +1492,10 @@ void FormFriction(const Coolant& coolant) {
     }
 
     for (int j = 0; j < mf; ++j) {
+
+        double height_elem = blockade_coord[j] - 1;
+        double blockadeInfo = false;
+
         for (int i = 0; i < n + 1; ++i) {
             double vel = std::abs(V_z[i][j]);
             if (vel == 0.0) {
@@ -1514,12 +1518,17 @@ void FormFriction(const Coolant& coolant) {
 
                 //effK_z[i][j] = formula * 0.317 * std::pow(re, -0.25) / (2.0 * d_hydraulic);
                 effK_z[i][j] = formula * 0.21 * std::pow(re, -0.25) / (2.0 * d_hydraulic);
-                
-                double height_elem = blockade_coord[j];
 
-                if (i == (height_elem - 1)) {
+                if (i == height_elem)
+                {
+                    blockadeInfo = true;
+                }
+
+
+                if (blockadeInfo == true && (dz * std::abs(i - height_elem) - BlockadeThickness < 0)) {
                     effK_z[i][j] *= resist_multiplier;
                 }
+
             }
         }
 

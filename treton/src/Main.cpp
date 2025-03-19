@@ -58,6 +58,15 @@ int main() {
     coolantName =                   nlr.get<std::string>("coolant", "non-existent");
     resist_multiplier =             nlr.get<double>("resist_multiplier", 1);
 
+    dz = static_cast<double>(Height / n);
+    BlockadeThickness = nlr.get<double>("BlockadeThickness", dz);
+
+    double order = std::pow(10, std::floor(std::log10(std::fabs(dz))));
+    eps = std::round(dz / order) * order;
+
+    if (BlockadeThickness <= dz) BlockadeThickness = (order + eps);
+
+
     for (int i = 0; i < type; ++i) {
         n_RodsInTBC[i] = nlr.get<int>("n_RodsInTBC", 1.0, i);
     }
@@ -74,8 +83,6 @@ int main() {
         crd[i % 2][i / 2] = nlr.get<int>("crd", 0.0, i);
     }
 	
-    dz = static_cast<double>(Height / n);
-
     #ifdef TEST_CRD
         testCRD();
     #endif // TEST_CRD

@@ -12,7 +12,7 @@ public:
 
     EquationSolver(double param1, double param2, EquationType type, double tol = 1e-6, int maxIter = 100);
 
-    double solve(double left = 0.1, double right = 10);
+    double solve(double left = 0.0, double right = 10);
 
 private:
     double equation(double x) const;

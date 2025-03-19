@@ -174,6 +174,7 @@ namespace GlobalVariables {
     namespace blockages {
         double resist_multiplier;
         double BlockadePorousity;
+        double BlockadeThickness;
 
         std::vector<int> blockade_coord;
         std::vector<int> blockade;
@@ -187,6 +188,7 @@ namespace GlobalVariables {
     namespace errors {
         double PVTerror;
         double Disbalance;
+        double eps;
     }
 
     namespace boundary_temperature {
