@@ -82,6 +82,10 @@ int main() {
     for (size_t i = 0; i < 2 * mf; ++i) {
         crd[i % 2][i / 2] = nlr.get<int>("crd", 0.0, i);
     }
+
+    for (size_t i = 0; i < 2; ++i) {
+        sectionRange[i] = nlr.get<int>("sectionRange", 1.0, i);
+    }
 	
     #ifdef TEST_CRD
         testCRD();
@@ -167,8 +171,8 @@ int main() {
 
     auto Radius = *(std::max_element(xx.begin(), xx.end()));
 
-    double H_eff = EquationSolver(K_z, Height, EquationSolver::EquationType::Height).solve();
-    double R_eff = EquationSolver(K_r, Radius, EquationSolver::EquationType::Radius).solve();
+    double H_eff = EquationSolver(K_z, Height, EquationSolver::EquationType::Height).solve(Height / 2, 10);
+    double R_eff = EquationSolver(K_r, Radius, EquationSolver::EquationType::Radius).solve(Radius / 2, 10);
 
     std::cout << "                        ***********Power = " << Power << " ***********              " << "\n" << std::endl;
 
@@ -297,7 +301,7 @@ int main() {
         VxVy_z_file.close();
 
         std::ofstream VxVz_file(output_dir + "//VxVz.dat");
-        for (int j = 75; j < 88; ++j) {
+        for (int j = sectionRange[0] - 1; j < sectionRange[1]; ++j) {
             for (int ii = 0; ii < n + 1; ++ii) {
                 double Vr_nm;
                 double Fi_nm;
@@ -316,7 +320,7 @@ int main() {
 
         // roVz_xz.dat
         std::ofstream roVz_xz_file(output_dir + "//roVz_xz.dat");
-        for (int j = 75; j < 88; ++j) {
+        for (int j = sectionRange[0] - 1; j < sectionRange[1]; ++j) {
 
             roVz_xz_file.setf(std::ios::scientific | std::ios::right);
             roVz_xz_file.precision(6);
@@ -339,7 +343,7 @@ int main() {
 
         // T_xz.dat
         std::ofstream T_xz_file(output_dir + "//T_xz.dat");
-        for (int j = 75; j < 88; ++j) {
+        for (int j = sectionRange[0] - 1; j < sectionRange[1]; ++j) {
             for (int ii = 0; ii < n; ++ii) {
 
                 T_xz_file.setf(std::ios::scientific | std::ios::right);
@@ -351,14 +355,6 @@ int main() {
             }
         }
         T_xz_file.close();
-
-        // Vz77.dat
-        std::ofstream Vz77_file(output_dir + "//Vz77.dat");
-        for (int ii = 0; ii < n + 1; ++ii) {
-            Vz77_file << std::setw(5) << std::right << ii + 1 << " "
-                      << std::setw(8) << std::setprecision(6) << V_z[ii][77] << std::endl;
-        }
-        Vz77_file.close();
 
         // Kord.dat
         std::ofstream Kord_file(output_dir + "//Kord.dat");
@@ -591,19 +587,6 @@ int main() {
 
             for (int i = 0; i < n; ++i) {
                 file << std::setw(15) << Q_neutron[i][j][0];
-            }
-            file << std::endl;
-        }
-        file.close();
-
-        // t_r77.dat
-        file.open(output_dir + "//t_r77.dat");
-        for (int ii = 0; ii < n; ++ii) {
-            file.setf(std::ios::fixed);
-            file.precision(4);
-
-            for (int l = 0; l < n_rod + 2; ++l) {
-                file << std::setw(12) << t_rod[l][ii][76][0];
             }
             file << std::endl;
         }

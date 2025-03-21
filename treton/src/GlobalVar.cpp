@@ -234,6 +234,8 @@ namespace GlobalVariables {
         std::string coolantName;
         std::string input_dir;
         std::string output_dir;
+
+        std::vector<double> sectionRange(2);
         double time_;
     }
 

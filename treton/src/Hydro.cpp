@@ -138,7 +138,7 @@ void Viter(double dt)
     int iii = 0;
     double V_up, V_down, jf, jV_n, const_Vn, cr_M, roV_n, Vn, e;   
 
-    while ((error > PVTerror) && (iii < 1500)) 
+    while ((error > PVTerror) && (iii < 150'000)) 
     {
         error = 0.0;
         iii++;  
@@ -375,7 +375,7 @@ void Viter(double dt)
                             int jf4 = bonds[3][jf];
                             int jf5 = bonds[4][jf];
                             int jf6 = bonds[5][jf];
-                            double V3;
+                            double V3 = 0.0;
 
                             switch (k) {
                                 case 0:
@@ -976,7 +976,7 @@ void pes(double dt) {
                 int jf4 = bonds[3][jf];
                 int jf5 = bonds[4][jf];
                 int jf6 = bonds[5][jf];
-                double V3;
+                double V3 = 0.0;
 
                 switch (k) {
                     case 0:
@@ -1354,7 +1354,7 @@ void piter() {
     int sum;
     std::vector<int> targ(mf);
 
-    while (error > PVTerror && iii < 1500) {
+    while (error > PVTerror && iii < 150'000) {
         error = 0.0;
         iii++;
 

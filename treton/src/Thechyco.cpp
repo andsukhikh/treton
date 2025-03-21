@@ -47,7 +47,7 @@ double thehyco(double dt, const Coolant& coolant) {
 
     for (int i = 0; i < iterations; ++i) {
         bool disbalanceSatisfied = false;
-        for (int j = 0; j < 50; ++j) {
+        for (int j = 0; j < 500'000; ++j) {
             KinViscosity(coolant);
             FormFriction(coolant);
             Viter(dt);
